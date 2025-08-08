@@ -1,0 +1,91 @@
+version: "3.8"
+
+services:
+  nexus-frontend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: nexus-agents-frontend
+    environment:
+      - NODE_ENV=production
+      - LOG_LEVEL=error
+      - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - WHATSAPP_WEBHOOK_API_KEY=${WHATSAPP_WEBHOOK_API_KEY}
+    networks:
+      - network_public
+    volumes:
+      - nexus_logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          # Ajustar conforme seu ambiente
+          - node.role == manager
+      resources:
+        limits:
+          cpus: "2"
+          memory: 1024M
+        reservations:
+          cpus: "0.5"
+          memory: 512M
+      labels:
+        # Habilita o Traefik
+        - traefik.enable=true
+        
+        # Roteador principal para o frontend
+        - traefik.http.routers.nexus_frontend.rule=Host(`beta.nexusagents.com`)
+        - traefik.http.routers.nexus_frontend.entrypoints=websecure
+        - traefik.http.routers.nexus_frontend.tls.certresolver=le
+        - traefik.http.routers.nexus_frontend.service=nexus_frontend
+        
+        # Configuração do serviço
+        - traefik.http.services.nexus_frontend.loadbalancer.server.port=3000
+        - traefik.http.services.nexus_frontend.loadbalancer.passHostHeader=true
+        
+        # Health check para o Traefik
+        - traefik.http.services.nexus_frontend.loadbalancer.healthcheck.path=/api/health
+        - traefik.http.services.nexus_frontend.loadbalancer.healthcheck.interval=30s
+        
+        # Headers de segurança
+        - traefik.http.middlewares.nexus-security.headers.frameDeny=true
+        - traefik.http.middlewares.nexus-security.headers.contentTypeNosniff=true
+        - traefik.http.middlewares.nexus-security.headers.browserXssFilter=true
+        - traefik.http.middlewares.nexus-security.headers.stsSeconds=31536000
+        - traefik.http.middlewares.nexus-security.headers.stsIncludeSubdomains=true
+        - traefik.http.middlewares.nexus-security.headers.stsPreload=true
+        - traefik.http.middlewares.nexus-security.headers.referrerPolicy=strict-origin-when-cross-origin
+        
+        # Rate limiting
+        - traefik.http.middlewares.nexus-ratelimit.ratelimit.burst=100
+        - traefik.http.middlewares.nexus-ratelimit.ratelimit.average=50
+        
+        # Middleware chain
+        - traefik.http.routers.nexus_frontend.middlewares=nexus-security@docker,nexus-ratelimit@docker
+        
+        # Redirect HTTP to HTTPS
+        - traefik.http.routers.nexus_frontend_http.rule=Host(`beta.nexusagents.com`)
+        - traefik.http.routers.nexus_frontend_http.entrypoints=web
+        - traefik.http.routers.nexus_frontend_http.middlewares=redirect-to-https@docker
+        - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+        - traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true
+
+volumes:
+  nexus_logs:
+    external: true
+    name: nexus_logs
+
+networks:
+  network_public:
+    external: true
+    name: network_public

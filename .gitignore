@@ -1,0 +1,22 @@
+# Node/Next (subpasta web)
+web/node_modules/
+web/.next/
+web/.turbo/
+web/.vercel/
+web/.pnpm-store/
+
+# Logs
+**/*.log
+**/.DS_Store
+
+# Build/coverage
+web/out/
+web/build/
+web/coverage/
+
+# Env (NUNCA commitar segredos)
+*.env
+*.env.*
+env.docker
+web/.env*
+web/*.env*
