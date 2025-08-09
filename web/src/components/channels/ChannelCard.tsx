@@ -374,16 +374,26 @@ export function ChannelCard({ channel, onEdit, onDelete, onConnect }: ChannelCar
                   {/* Seção para listar as bases de conhecimento */}
                   {channel.agent.knowledge_bases && channel.agent.knowledge_bases.length > 0 && (
                     <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-700">
-                      <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-2">
-                        <BrainCircuit className="h-4 w-4" />
-                        <h4 className="text-sm font-medium">Base de Conhecimento</h4>
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="p-2 bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/30 rounded-lg ring-1 ring-purple-200/50 dark:ring-purple-700/30">
+                          <BrainCircuit className="h-5 w-5 text-purple-700 dark:text-purple-300" />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Base de Conhecimento</h4>
+                          <p className="text-xs text-purple-600 dark:text-purple-400">IA Avançada • RAG Enabled</p>
+                        </div>
+                        <div className="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-xs font-medium">
+                          Premium
+                        </div>
                       </div>
                       <div className="flex flex-wrap gap-1.5 pl-1">
-                        {channel.agent.knowledge_bases.map((kb) => (
-                          <Badge key={kb.id} variant="secondary" className="font-normal text-xs bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-200">
-                            {kb.name}
-                          </Badge>
-                        ))}
+                        {channel.agent.knowledge_bases
+                          .filter((kb) => kb.name && kb.name.trim().length > 0)
+                          .map((kb) => (
+                            <Badge key={kb.id} variant="secondary" className="font-normal text-xs bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-200">
+                              {kb.name}
+                            </Badge>
+                          ))}
                       </div>
                     </div>
                   )}

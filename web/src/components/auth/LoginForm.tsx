@@ -54,8 +54,12 @@ export default function LoginForm() {
       <div className="h-2 bg-[#00e980]" />
       
       <div className="flex justify-center mt-8 mb-2">
-        <div className="h-20 w-20 bg-gradient-to-br from-[#00e980] to-[#4d7cfe] rounded-2xl flex items-center justify-center shadow-lg">
-          <BrainCircuit className="h-10 w-10 text-white" />
+        <div className="h-20 w-20 rounded-2xl overflow-hidden shadow-lg">
+          <img 
+            src="/images/logos/logo_128x128.png" 
+            alt="Nexus Agents Logo" 
+            className="w-full h-full object-contain"
+          />
         </div>
       </div>
       
@@ -73,14 +77,14 @@ export default function LoginForm() {
               Email
             </Label>
             <div className="relative">
-              <Mail className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+              <Mail className="absolute left-3 top-3 h-5 w-5 text-[#00e980]" />
               <Input
                 id="email"
                 type="email"
                 placeholder="seu@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="pl-10 bg-[#13131f] border-gray-700 focus-visible:ring-[#00e980] text-white"
+                className="h-12 pl-10 bg-[#13131f] border-gray-700 focus-visible:ring-[#00e980] text-white selection:bg-[#00e980] selection:text-black"
                 required
                 disabled={isLoading}
               />
@@ -100,13 +104,13 @@ export default function LoginForm() {
               </Link>
             </div>
             <div className="relative">
-              <Lock className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+              <Lock className="absolute left-3 top-3 h-5 w-5 text-[#00e980]" />
               <Input
                 id="password"
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="pl-10 bg-[#13131f] border-gray-700 focus-visible:ring-[#00e980] text-white"
+                className="h-12 pl-10 bg-[#13131f] border-gray-700 focus-visible:ring-[#00e980] text-white selection:bg-[#00e980] selection:text-black"
                 required
                 disabled={isLoading}
               />
@@ -114,7 +118,7 @@ export default function LoginForm() {
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="absolute right-1 top-1 h-8 w-8 text-gray-400 hover:text-gray-600"
+                className="absolute right-1 top-1.5 h-8 w-8 text-gray-400 hover:text-[#00e980] transition-colors"
                 onClick={toggleShowPassword}
               >
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}

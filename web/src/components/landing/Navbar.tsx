@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Menu, X, BrainCircuit, ChevronDown } from "lucide-react";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,8 +13,12 @@ export function Navbar() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <div className="relative h-8 w-8 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">N</span>
+            <div className="relative h-16 w-16 rounded-lg overflow-hidden shadow-lg">
+              <img 
+                src="/images/logos/logo_64x64.png" 
+                alt="Nexus Agents Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <span className="text-xl font-bold text-white">
               Nexus Agents
@@ -22,52 +26,24 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1">
-            <div className="relative group px-3 py-2">
-              <button className="flex items-center text-gray-300 hover:text-white font-medium group-hover:text-white">
-                Soluções <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
-              <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-[#151522] ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right">
-                <div className="py-1">
-                  <Link href="#" className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">
-                    Agentes de IA
-                  </Link>
-                  <Link href="#" className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">
-                    Base de Conhecimento
-                  </Link>
-                  <Link href="#" className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">
-                    Integrações
-                  </Link>
-                </div>
-              </div>
-            </div>
-            
-            <div className="relative group px-3 py-2">
-              <button className="flex items-center text-gray-300 hover:text-white font-medium group-hover:text-white">
-                Recursos <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
-              <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-[#151522] ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right">
-                <div className="py-1">
-                  <Link href="#features" className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">
-                    Principais Recursos
-                  </Link>
-                  <Link href="#how-it-works" className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">
-                    Como Funciona
-                  </Link>
-                </div>
-              </div>
-            </div>
+          <nav className="hidden md:flex items-center space-x-6">
+            <Link 
+              href="#features" 
+              className="px-3 py-2 text-gray-300 hover:text-white font-medium transition-colors"
+            >
+              Recursos
+            </Link>
             
             <Link 
-              href="#nexus-vs-others" 
-              className="px-3 py-2 text-gray-300 hover:text-white font-medium"
+              href="#how-it-works" 
+              className="px-3 py-2 text-gray-300 hover:text-white font-medium transition-colors"
             >
-              Nexus vs. Concorrentes
+              Como Funciona
             </Link>
             
             <Link 
               href="#pricing" 
-              className="px-3 py-2 text-gray-300 hover:text-white font-medium"
+              className="px-3 py-2 text-gray-300 hover:text-white font-medium transition-colors"
             >
               Preços
             </Link>
@@ -105,28 +81,21 @@ export function Navbar() {
             <nav className="flex flex-col space-y-4">
               <Link 
                 href="#features" 
-                className="text-gray-300 hover:text-white font-medium"
+                className="text-gray-300 hover:text-white font-medium transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Recursos
               </Link>
               <Link 
                 href="#how-it-works" 
-                className="text-gray-300 hover:text-white font-medium"
+                className="text-gray-300 hover:text-white font-medium transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Como Funciona
               </Link>
               <Link 
-                href="#nexus-vs-others" 
-                className="text-gray-300 hover:text-white font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Nexus vs. Concorrentes
-              </Link>
-              <Link 
                 href="#pricing" 
-                className="text-gray-300 hover:text-white font-medium"
+                className="text-gray-300 hover:text-white font-medium transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Preços

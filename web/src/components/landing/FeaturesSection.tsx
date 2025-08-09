@@ -16,42 +16,52 @@ export function FeaturesSection() {
   const features = [
     {
       icon: <Bot className="h-8 w-8 text-[#00e980]" />,
-      title: "Agentes de IA Personalizados",
-      description: "Configure agentes com personalidades e conhecimentos específicos para diferentes funções no seu negócio.",
+      title: "Gerador de Alma",
+      description: "Wizard inteligente que cria agentes personalizados através de arquetipos, traços de personalidade e fluxos de conversação.",
       benefits: [
-        "Personalidade customizável",
-        "Conhecimento específico",
-        "Adaptável a diferentes funções"
-      ]
-    },
-    {
-      icon: <MessageSquare className="h-8 w-8 text-[#00e980]" />,
-      title: "Múltiplos Canais",
-      description: "Conecte seus agentes ao WhatsApp, Instagram e outros canais para atender seus clientes onde eles estiverem.",
-      benefits: [
-        "Integração com WhatsApp",
-        "Suporte a Instagram",
-        "API aberta para novos canais"
+        "Modo Avançado (prompt manual)",
+        "Modo Template (arquetipos prontos)",
+        "Modo Guiado (wizard passo a passo)"
       ]
     },
     {
       icon: <BrainCircuit className="h-8 w-8 text-[#00e980]" />,
-      title: "Base de Conhecimento RAG",
-      description: "Alimente seus agentes com documentos específicos para que respondam com precisão sobre seu negócio.",
+      title: "RAG por Agente",
+      description: "Cada agente possui sua própria base de conhecimento isolada. Upload de PDFs, processamento automático e busca vetorial.",
       benefits: [
-        "Upload de documentos",
-        "Indexação automática",
-        "Respostas contextualizadas"
+        "Base de conhecimento isolada",
+        "Processamento automático de PDFs",
+        "Busca vetorial inteligente"
+      ]
+    },
+    {
+      icon: <MessageSquare className="h-8 w-8 text-[#00e980]" />,
+      title: "Deploy Multi-Canal",
+      description: "Conecte seus agentes ao WhatsApp, Instagram e outros canais com configuração automática de webhooks.",
+      benefits: [
+        "WhatsApp Business API",
+        "Instagram Direct",
+        "Webhooks automáticos"
       ]
     },
     {
       icon: <Database className="h-8 w-8 text-[#00e980]" />,
-      title: "Isolamento de Dados",
-      description: "Cada agente possui sua própria base de conhecimento, garantindo respostas contextualizadas e seguras.",
+      title: "Perfis de Cliente",
+      description: "IA analisa conversas e cria perfis detalhados dos clientes, identificando preferências e padrões de comportamento.",
       benefits: [
-        "Segurança de dados",
-        "Respostas específicas",
-        "Sem vazamento de contexto"
+        "Análise automática de conversas",
+        "Identificação de preferências",
+        "Insights comportamentais"
+      ]
+    },
+    {
+      icon: <Shield className="h-8 w-8 text-[#00e980]" />,
+      title: "Multi-Tenant Seguro",
+      description: "Arquitetura multi-tenant com isolamento total de dados via RLS, garantindo segurança e privacidade.",
+      benefits: [
+        "Isolamento total de dados",
+        "Row Level Security (RLS)",
+        "Conformidade LGPD"
       ]
     }
   ];

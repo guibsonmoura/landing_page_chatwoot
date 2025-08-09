@@ -20,31 +20,34 @@ export async function register() {
     });
   } catch {}
 
-  process.on('unhandledRejection', (reason: any, promise) => {
-    // eslint-disable-next-line no-console
-    console.error('[unhandledRejection]', {
-      reason: reason instanceof Error
-        ? {
-            message: reason.message,
-            stack:
-              process.env.DIAG_DEBUG === '1' || process.env.NODE_ENV !== 'production'
-                ? reason.stack
-                : '[REDACTED]',
-            name: reason.name,
-          }
-        : reason,
+  // Only register process handlers in Node.js environment (not in browser/edge runtime)
+  if (typeof process !== 'undefined' && process.on) {
+    process.on('unhandledRejection', (reason: any, promise) => {
+      // eslint-disable-next-line no-console
+      console.error('[unhandledRejection]', {
+        reason: reason instanceof Error
+          ? {
+              message: reason.message,
+              stack:
+                process.env.DIAG_DEBUG === '1' || process.env.NODE_ENV !== 'production'
+                  ? reason.stack
+                  : '[REDACTED]',
+              name: reason.name,
+            }
+          : reason,
+      });
     });
-  });
 
-  process.on('uncaughtException', (err: any) => {
-    // eslint-disable-next-line no-console
-    console.error('[uncaughtException]', {
-      message: err?.message,
-      stack:
-        process.env.DIAG_DEBUG === '1' || process.env.NODE_ENV !== 'production'
-          ? err?.stack
-          : '[REDACTED]',
-      name: err?.name,
+    process.on('uncaughtException', (err: any) => {
+      // eslint-disable-next-line no-console
+      console.error('[uncaughtException]', {
+        message: err?.message,
+        stack:
+          process.env.DIAG_DEBUG === '1' || process.env.NODE_ENV !== 'production'
+            ? err?.stack
+            : '[REDACTED]',
+        name: err?.name,
+      });
     });
-  });
+  }
 }

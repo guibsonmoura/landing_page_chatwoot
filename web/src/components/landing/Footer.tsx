@@ -19,8 +19,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
           <div className="col-span-1 md:col-span-4">
             <Link href="/" className="flex items-center gap-2 mb-5">
-              <div className="relative h-8 w-8 rounded-full bg-[#00e980] flex items-center justify-center">
-                <span className="text-[#0d0d17] font-bold text-sm">N</span>
+              <div className="relative h-8 w-8 rounded-lg overflow-hidden shadow-lg">
+                <img 
+                  src="/images/logos/logo_64x64.png" 
+                  alt="Nexus Agents Logo" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <span className="text-xl font-bold text-white">
                 Nexus Agents

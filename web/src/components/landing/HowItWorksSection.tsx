@@ -135,44 +135,112 @@ export function HowItWorksSection() {
             </div>
             
             <div className="bg-[#0d0d17] p-8 flex items-center justify-center">
-              <div className="relative w-full max-w-md aspect-video bg-[#1e1e2d] rounded-lg shadow-xl overflow-hidden border border-gray-700">
-                <div className="h-10 bg-[#151522] flex items-center px-4">
-                  <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              <div className="relative w-full max-w-2xl h-96 overflow-hidden rounded-xl shadow-2xl border border-gray-700">
+                {/* Carousel Container */}
+                <div className="carousel-container relative w-full h-full">
+                  {/* Agents Dashboard */}
+                  <div className="carousel-slide absolute inset-0 opacity-100 transition-all duration-1000 ease-in-out animate-[slideShow_12s_infinite]">
+                    <img 
+                      src="/images/product/agents.png" 
+                      alt="Nexus Agents Dashboard" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                    <div className="absolute bottom-6 left-6 text-white">
+                      <div className="text-lg font-semibold text-[#00e980]">Agentes IA</div>
+                      <div className="text-sm text-gray-300">Crie e gerencie agentes inteligentes</div>
+                    </div>
+                    <div className="absolute top-6 right-6">
+                      <div className="bg-[#00e980]/20 backdrop-blur-sm rounded-full px-3 py-1 text-xs text-[#00e980] font-medium">
+                        1/3
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Analytics Dashboard */}
+                  <div className="carousel-slide absolute inset-0 opacity-0 transition-all duration-1000 ease-in-out animate-[slideShow_12s_infinite_4s]">
+                    <img 
+                      src="/images/product/analytics.png" 
+                      alt="Nexus Analytics Dashboard" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                    <div className="absolute bottom-6 left-6 text-white">
+                      <div className="text-lg font-semibold text-[#00e980]">Analytics</div>
+                      <div className="text-sm text-gray-300">Insights e métricas em tempo real</div>
+                    </div>
+                    <div className="absolute top-6 right-6">
+                      <div className="bg-[#00e980]/20 backdrop-blur-sm rounded-full px-3 py-1 text-xs text-[#00e980] font-medium">
+                        2/3
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Channels Dashboard */}
+                  <div className="carousel-slide absolute inset-0 opacity-0 transition-all duration-1000 ease-in-out animate-[slideShow_12s_infinite_8s]">
+                    <img 
+                      src="/images/product/channels.png" 
+                      alt="Nexus Channels Dashboard" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                    <div className="absolute bottom-6 left-6 text-white">
+                      <div className="text-lg font-semibold text-[#00e980]">Canais</div>
+                      <div className="text-sm text-gray-300">Deploy em WhatsApp, Instagram e mais</div>
+                    </div>
+                    <div className="absolute top-6 right-6">
+                      <div className="bg-[#00e980]/20 backdrop-blur-sm rounded-full px-3 py-1 text-xs text-[#00e980] font-medium">
+                        3/3
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Progress Indicators */}
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+                    <div className="w-2 h-2 rounded-full bg-[#00e980] animate-[progressDot_12s_infinite]"></div>
+                    <div className="w-2 h-2 rounded-full bg-gray-600 animate-[progressDot_12s_infinite_4s]"></div>
+                    <div className="w-2 h-2 rounded-full bg-gray-600 animate-[progressDot_12s_infinite_8s]"></div>
                   </div>
                 </div>
-                <div className="p-4">
-                  <div className="flex gap-4 mb-4">
-                    <div className="w-1/4 h-8 bg-[#151522] rounded"></div>
-                    <div className="w-1/4 h-8 bg-[#00e980]/20 rounded"></div>
-                    <div className="w-1/4 h-8 bg-[#151522] rounded"></div>
-                    <div className="w-1/4 h-8 bg-[#151522] rounded"></div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="h-24 bg-[#151522] rounded p-3">
-                      <div className="w-3/4 h-4 bg-gray-700 rounded mb-2"></div>
-                      <div className="w-1/2 h-4 bg-gray-700 rounded mb-2"></div>
-                      <div className="w-1/4 h-4 bg-[#00e980]/20 rounded"></div>
-                    </div>
-                    <div className="h-24 bg-[#151522] rounded p-3">
-                      <div className="w-3/4 h-4 bg-gray-700 rounded mb-2"></div>
-                      <div className="w-1/2 h-4 bg-gray-700 rounded mb-2"></div>
-                      <div className="w-1/4 h-4 bg-[#00e980]/20 rounded"></div>
-                    </div>
-                    <div className="h-24 bg-[#151522] rounded p-3">
-                      <div className="w-3/4 h-4 bg-gray-700 rounded mb-2"></div>
-                      <div className="w-1/2 h-4 bg-gray-700 rounded mb-2"></div>
-                      <div className="w-1/4 h-4 bg-[#00e980]/20 rounded"></div>
-                    </div>
-                    <div className="h-24 bg-[#151522] rounded p-3">
-                      <div className="w-3/4 h-4 bg-gray-700 rounded mb-2"></div>
-                      <div className="w-1/2 h-4 bg-gray-700 rounded mb-2"></div>
-                      <div className="w-1/4 h-4 bg-[#00e980]/20 rounded"></div>
-                    </div>
-                  </div>
-                </div>
+
+                {/* Custom CSS for animations */}
+                <style jsx>{`
+                  @keyframes slideShow {
+                    0%, 25% { opacity: 1; transform: scale(1); }
+                    33.33%, 91.66% { opacity: 0; transform: scale(1.05); }
+                    100% { opacity: 1; transform: scale(1); }
+                  }
+                  
+                  @keyframes progressDot {
+                    0%, 25% { background-color: #00e980; transform: scale(1.2); }
+                    33.33%, 91.66% { background-color: #4b5563; transform: scale(1); }
+                    100% { background-color: #00e980; transform: scale(1.2); }
+                  }
+                  
+                  .animate-\[slideShow_12s_infinite\] {
+                    animation: slideShow 12s infinite;
+                  }
+                  
+                  .animate-\[slideShow_12s_infinite_4s\] {
+                    animation: slideShow 12s infinite 4s;
+                  }
+                  
+                  .animate-\[slideShow_12s_infinite_8s\] {
+                    animation: slideShow 12s infinite 8s;
+                  }
+                  
+                  .animate-\[progressDot_12s_infinite\] {
+                    animation: progressDot 12s infinite;
+                  }
+                  
+                  .animate-\[progressDot_12s_infinite_4s\] {
+                    animation: progressDot 12s infinite 4s;
+                  }
+                  
+                  .animate-\[progressDot_12s_infinite_8s\] {
+                    animation: progressDot 12s infinite 8s;
+                  }
+                `}</style>
               </div>
             </div>
           </div>

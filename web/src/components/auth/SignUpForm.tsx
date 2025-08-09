@@ -92,12 +92,26 @@ export default function SignUpForm() {
       {/* Barra de gradiente no topo */}
       <div className="h-2 bg-[#00e980]" />
       
-      <CardHeader className="space-y-1 pt-6">
-        <CardTitle className="text-2xl font-bold flex items-center gap-2 text-white">
-          <User className="h-6 w-6 text-[#00e980]" />
-          Criar Conta
-        </CardTitle>
-        <CardDescription className="text-gray-300">Crie uma nova conta para começar a usar o Nexus Agents.</CardDescription>
+      <CardHeader className="space-y-4 pt-6">
+        {/* Logo centralizado */}
+        <div className="flex justify-center">
+          <div className="relative h-16 w-16 rounded-xl overflow-hidden shadow-lg">
+            <img 
+              src="/images/logos/logo_128x128.png" 
+              alt="Nexus Agents Logo" 
+              className="w-full h-full object-contain"
+            />
+          </div>
+        </div>
+        
+        <div className="text-center">
+          <CardTitle className="text-2xl font-bold text-white">
+            Criar Conta
+          </CardTitle>
+          <CardDescription className="text-gray-300 mt-2">
+            Crie sua conta para começar a usar o Nexus Agents
+          </CardDescription>
+        </div>
       </CardHeader>
       <CardContent className="pt-6">
         <Form {...form}>
@@ -113,10 +127,10 @@ export default function SignUpForm() {
                       <Input
                         placeholder="Seu nome completo"
                         {...field}
-                        className="pl-10 bg-[#13131f] border-gray-700 focus-visible:ring-[#00e980] text-white"
+                        className="h-12 pl-10 bg-[#13131f] border-gray-700 focus-visible:ring-[#00e980] text-white selection:bg-[#00e980] selection:text-black"
                       />
                     </FormControl>
-                    <User className="absolute left-3 top-2.5 h-6 w-6 text-[#00e980]" />
+                    <User className="absolute left-3 top-3 h-5 w-5 text-[#00e980]" />
                   </div>
                   <FormMessage />
                 </FormItem>
@@ -135,10 +149,10 @@ export default function SignUpForm() {
                         placeholder="seu@email.com"
                         type="email"
                         {...field}
-                        className="pl-10 bg-[#13131f] border-gray-700 focus-visible:ring-[#00e980] text-white"
+                        className="h-12 pl-10 bg-[#13131f] border-gray-700 focus-visible:ring-[#00e980] text-white selection:bg-[#00e980] selection:text-black"
                       />
                     </FormControl>
-                    <Mail className="absolute left-3 top-2.5 h-6 w-6 text-[#00e980]" />
+                    <Mail className="absolute left-3 top-3 h-5 w-5 text-[#00e980]" />
                   </div>
                   <FormMessage />
                 </FormItem>
@@ -156,10 +170,10 @@ export default function SignUpForm() {
                       <Input
                         placeholder="+55 (11) 98765-4321"
                         {...field}
-                        className="pl-10 bg-[#13131f] border-gray-700 focus-visible:ring-[#00e980] text-white"
+                        className="h-12 pl-10 bg-[#13131f] border-gray-700 focus-visible:ring-[#00e980] text-white selection:bg-[#00e980] selection:text-black"
                       />
                     </FormControl>
-                    <Phone className="absolute left-3 top-2.5 h-6 w-6 text-[#00e980]" />
+                    <Phone className="absolute left-3 top-3 h-5 w-5 text-[#00e980]" />
                   </div>
                   <FormMessage />
                 </FormItem>
@@ -178,19 +192,19 @@ export default function SignUpForm() {
                         placeholder="********"
                         type={showPassword ? "text" : "password"}
                         {...field}
-                        className="pl-10 pr-10 bg-[#13131f] border-gray-700 focus-visible:ring-[#00e980] text-white"
+                        className="h-12 pl-10 pr-10 bg-[#13131f] border-gray-700 focus-visible:ring-[#00e980] text-white selection:bg-[#00e980] selection:text-black"
                       />
                     </FormControl>
-                    <Lock className="absolute left-3 top-2.5 h-6 w-6 text-[#00e980]" />
+                    <Lock className="absolute left-3 top-3 h-5 w-5 text-[#00e980]" />
                     <button 
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-2.5 text-slate-400 hover:text-indigo-600"
+                      className="absolute right-3 top-3 text-slate-400 hover:text-[#00e980] transition-colors"
                     >
                       {showPassword ? (
-                        <EyeOff className="h-6 w-6" />
+                        <EyeOff className="h-5 w-5" />
                       ) : (
-                        <Eye className="h-6 w-6" />
+                        <Eye className="h-5 w-5" />
                       )}
                     </button>
                   </div>

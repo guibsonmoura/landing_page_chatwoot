@@ -2,7 +2,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Home, Users, Bot, MessageSquare, Settings, Menu, X, Database, Crown } from 'lucide-react';
+import { Home, Users, Bot, MessageSquare, Settings, Menu, X, Database, Crown, Mail } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import { usePlanStore } from '@/stores/planStore';
 import { createClient } from '@/lib/supabase';
@@ -81,8 +81,12 @@ export default function DashboardLayout({
       >
         <div className="px-6 py-5 flex items-center justify-between border-b border-slate-200 dark:border-slate-700">
           <Link href="/dashboard" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-md">
-              <span className="text-white font-bold text-xl">N</span>
+            <div className="w-12 h-12 rounded-xl overflow-hidden shadow-lg">
+              <img 
+                src="/images/logos/logo_64x64.png" 
+                alt="Nexus Agents Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <h1 className={cn(
               "font-bold text-gray-900 dark:text-white transition-all duration-300",
@@ -92,12 +96,13 @@ export default function DashboardLayout({
         </div>
 
         <nav className="mt-8 px-4 flex-1 flex flex-col">
-          <NavLink href="/dashboard" icon={<Home className="h-6 w-6" />} label="Analytics" isCollapsed={!sidebarOpen} />
+          <NavLink href="/dashboard/plano" icon={<Crown className="h-6 w-6" />} label="Meu Plano" isCollapsed={!sidebarOpen} />
           <NavLink href="/dashboard/agents" icon={<Bot className="h-6 w-6" />} label="Agentes IA" isCollapsed={!sidebarOpen} />
           <NavLink href="/dashboard/knowledge-base" icon={<Database className="h-6 w-6" />} label="Conhecimento" isCollapsed={!sidebarOpen} />
           <NavLink href="/dashboard/channels" icon={<MessageSquare className="h-6 w-6" />} label="Canais" isCollapsed={!sidebarOpen} />
+          <NavLink href="/dashboard/messages" icon={<Mail className="h-6 w-6" />} label="Mensagens" isCollapsed={!sidebarOpen} />
           <NavLink href="/dashboard/attendants" icon={<Users className="h-6 w-6" />} label="Atendentes" isCollapsed={!sidebarOpen} />
-          <NavLink href="/dashboard/plano" icon={<Crown className="h-6 w-6" />} label="Meu Plano" isCollapsed={!sidebarOpen} />
+          <NavLink href="/dashboard/analytics" icon={<Home className="h-6 w-6" />} label="Analytics" isCollapsed={!sidebarOpen} />
           {/* <NavLink href="/dashboard/settings" icon={<Settings className="h-6 w-6" />} label="Configurações" isCollapsed={!sidebarOpen} /> */}
           
           <div className="mt-auto mb-6 px-3">

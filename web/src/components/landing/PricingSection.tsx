@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, Zap, Shield, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function PricingSection() {
@@ -11,6 +11,9 @@ export function PricingSection() {
       price: "R$99",
       period: "/mês",
       description: "Ideal para pequenas empresas iniciando com IA",
+      icon: Zap,
+      iconColor: "text-blue-500",
+      iconBg: "from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800",
       features: [
         "2 agentes de IA",
         "Integração com WhatsApp",
@@ -21,13 +24,16 @@ export function PricingSection() {
       cta: "Começar Grátis",
       popular: false,
       color: "border-gray-700",
-      ctaColor: "bg-[#151522] hover:bg-[#1e1e2d]"
+      ctaColor: "bg-[#151522] hover:bg-[#1e1e2d] border-2 border-[#00e980] hover:border-[#00c870]"
     },
     {
       name: "Pro",
       price: "R$299",
       period: "/mês",
       description: "Para empresas em crescimento que precisam de mais recursos",
+      icon: Shield,
+      iconColor: "text-green-500",
+      iconBg: "from-green-100 to-green-200 dark:from-green-900 dark:to-green-800",
       features: [
         "5 agentes de IA",
         "Integração com WhatsApp e Instagram",
@@ -47,6 +53,9 @@ export function PricingSection() {
       price: "R$999",
       period: "/mês",
       description: "Solução completa para grandes empresas",
+      icon: Crown,
+      iconColor: "text-amber-500",
+      iconBg: "from-amber-100 to-amber-200 dark:from-amber-900 dark:to-amber-800",
       features: [
         "Agentes ilimitados",
         "Todos os canais disponíveis",
@@ -61,7 +70,7 @@ export function PricingSection() {
       cta: "Falar com Vendas",
       popular: false,
       color: "border-gray-700",
-      ctaColor: "bg-[#151522] hover:bg-[#1e1e2d]"
+      ctaColor: "bg-[#151522] hover:bg-[#1e1e2d] border-2 border-[#00e980] hover:border-[#00c870]"
     }
   ];
 
@@ -81,7 +90,7 @@ export function PricingSection() {
           {plans.map((plan, index) => (
             <div 
               key={index} 
-              className={`relative rounded-xl overflow-hidden border ${plan.color} bg-[#151522]`}
+              className={`relative rounded-xl overflow-hidden border ${plan.color} bg-[#1e1e2d] flex flex-col h-full`}
             >
               {plan.popular && (
                 <div className="absolute top-0 right-0 bg-[#00e980] text-black text-xs font-bold px-3 py-1 rounded-bl-lg">
@@ -90,14 +99,23 @@ export function PricingSection() {
               )}
               
               <div className="p-8">
-                <h3 className="text-2xl font-bold mb-2 text-white">{plan.name}</h3>
-                <div className="flex items-baseline mb-4">
-                  <span className="text-4xl font-bold text-white">{plan.price}</span>
-                  <span className="text-gray-400 ml-1">{plan.period}</span>
+                {/* Header with Icon, Name and Price in one line */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className={`h-12 w-12 rounded-lg bg-gradient-to-br ${plan.iconBg} flex items-center justify-center shadow-lg flex-shrink-0`}>
+                    <plan.icon className={`h-6 w-6 ${plan.iconColor}`} />
+                  </div>
+                  <div className="flex-grow">
+                    <h3 className="text-xl font-bold text-white mb-1">{plan.name}</h3>
+                    <div className="flex items-baseline">
+                      <span className="text-3xl font-bold text-white">{plan.price}</span>
+                      <span className="text-gray-400 ml-1">{plan.period}</span>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-gray-400 mb-6">{plan.description}</p>
                 
-                <Link href="/signup" className="block">
+                <p className="text-gray-400 mb-6 h-12">{plan.description}</p>
+                
+                <Link href="/signup" className="block mb-6">
                   <Button 
                     className={`w-full font-medium py-6 rounded-md ${plan.ctaColor}`}
                   >
@@ -107,8 +125,8 @@ export function PricingSection() {
                 </Link>
               </div>
               
-              <div className="p-8 bg-[#1e1e2d] border-t border-gray-700">
-                <ul className="space-y-4">
+              <div className="p-8 pt-0 border-t border-gray-700">
+                <ul className="space-y-3">
                   {plan.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start gap-2">
                       <Check className="h-5 w-5 text-[#00e980] mt-0.5" />

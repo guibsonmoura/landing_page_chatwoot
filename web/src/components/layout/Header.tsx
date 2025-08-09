@@ -3,12 +3,12 @@
 
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { Bell, Moon, Sun, Menu } from 'lucide-react';
+import { Moon, Sun, Menu } from 'lucide-react';
 import LogoutButton from '@/components/auth/LogoutButton';
 import { Button } from '@/components/ui/button';
-
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
+import { NotificationBell } from '@/components/messaging/NotificationBell';
 import { createClient } from '@/lib/supabase';
 import { cn } from '@/lib/utils';
 
@@ -22,7 +22,6 @@ export default function Header({ sidebarOpen, toggleSidebar }: HeaderProps) {
   const [mounted, setMounted] = useState(false);
   const [userName, setUserName] = useState<string>('');
   const [userInitials, setUserInitials] = useState<string>('NA');
-  const [notifications, setNotifications] = useState<number>(2); // Example notification count
   
   // Após a montagem do componente, podemos renderizar com segurança elementos dependentes do tema
   useEffect(() => {
@@ -59,7 +58,7 @@ export default function Header({ sidebarOpen, toggleSidebar }: HeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-30 flex items-center justify-between w-full px-4 md:px-6 py-4 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+    <header className="sticky top-0 z-30 flex items-center justify-between w-full px-4 md:px-6 py-5 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shadow-sm">
       {/* Left Section */}
       <div className="flex items-center gap-4">
         <Button 
@@ -77,8 +76,12 @@ export default function Header({ sidebarOpen, toggleSidebar }: HeaderProps) {
           "md:hidden flex items-center gap-3 transition-all duration-300",
           sidebarOpen ? "opacity-0 -translate-x-2" : "opacity-100 translate-x-0"
         )}>
-          <div className="h-9 w-9 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-md">
-            <span className="text-white font-bold text-lg">N</span>
+          <div className="h-10 w-10 rounded-lg overflow-hidden shadow-lg">
+            <img 
+              src="/images/logos/logo_64x64.png" 
+              alt="Nexus Agents Logo" 
+              className="w-full h-full object-contain"
+            />
           </div>
           <div className="flex flex-col">
             <span className="font-bold text-sm text-slate-900 dark:text-slate-100">Nexus Agents</span>
@@ -109,21 +112,13 @@ export default function Header({ sidebarOpen, toggleSidebar }: HeaderProps) {
         </Button>
         
         {/* Notifications */}
-        <div className="relative">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="h-9 w-9 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800"
-            aria-label={`${notifications} notificações`}
-          >
-            <Bell className="h-4 w-4" />
-            {notifications > 0 && (
-              <div className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs font-medium">{notifications > 9 ? '9+' : notifications}</span>
-              </div>
-            )}
-          </Button>
-        </div>
+        <NotificationBell 
+          className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800"
+          onMessageClick={(message) => {
+            // Navegar para a página de mensagens quando clicar em uma notificação
+            window.location.href = '/dashboard/messages';
+          }}
+        />
         
         {/* User Profile Section */}
         <div className="flex items-center gap-3 ml-2 pl-3 border-l border-slate-200 dark:border-slate-700">
