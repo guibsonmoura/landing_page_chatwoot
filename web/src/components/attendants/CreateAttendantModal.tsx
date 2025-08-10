@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader2, User, Sparkles, AlertTriangle } from 'lucide-react';
+import { Loader2, User, Sparkles, AlertTriangle, Eye, EyeOff } from 'lucide-react';
 import { toast } from 'sonner';
 import { Attendant } from '@/types/attendant';
 import { createAttendant, updateAttendant, getAttendants } from '@/lib/actions/attendant.actions';
@@ -43,7 +43,10 @@ import { cn } from '@/lib/utils';
 const attendantFormSchema = z.object({
   name: z.string().min(3, 'Nome deve ter pelo menos 3 caracteres'),
   email: z.string().email('Email inválido'),
-  password_temp: z.string().min(6, 'A senha temporária deve ter pelo menos 6 caracteres'),
+  password_temp: z
+    .string()
+    .min(8, 'A senha deve ter pelo menos 8 caracteres')
+    .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/, 'A senha deve conter maiúscula, minúscula, número e caractere especial'),
   profile: z.enum(['atendente', 'administrador']).refine(val => val === 'atendente' || val === 'administrador', {
     message: 'O perfil deve ser "atendente" ou "administrador"'
   }),
@@ -68,6 +71,7 @@ export function CreateAttendantModal({
 }: CreateAttendantModalProps) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [attendantCount, setAttendantCount] = useState<number>(0);
   const [isLimitReached, setIsLimitReached] = useState<boolean>(false);
   
@@ -280,16 +284,31 @@ export function CreateAttendantModal({
                     <FormItem>
                       <FormLabel>Senha Temporária</FormLabel>
                       <FormControl>
-                        <Input
-                          type="password"
-                          placeholder="Senha temporária"
-                          className="w-full border-slate-200 dark:border-slate-700 focus-visible:ring-blue-500"
-                          {...field}
-                        />
+                        <div className="relative">
+                          <Input
+                            type={showPassword ? 'text' : 'password'}
+                            placeholder="Senha temporária"
+                            className="w-full pr-10 border-slate-200 dark:border-slate-700 focus-visible:ring-blue-500"
+                            {...field}
+                          />
+                          <button
+                            type="button"
+                            aria-label={showPassword ? 'Ocultar senha' : 'Revelar senha'}
+                            onClick={() => setShowPassword((v) => !v)}
+                            className="absolute inset-y-0 right-2 flex items-center text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                          >
+                            {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                          </button>
+                        </div>
                       </FormControl>
                       <FormDescription className="text-xs text-slate-500">
-                        Senha inicial que o atendente usará no primeiro acesso.
-                      </FormDescription>
+                      <strong>Requisitos da senha:</strong> mínimo de 
+  <span className="text-rose-500 font-semibold"> 8 caracteres</span>, contendo pelo menos
+  <span className="text-blue-500 font-semibold"> (1 letra maiúscula</span>, 
+  <span className="text-purple-500 font-semibold"> 1 número</span> e 
+  <span className="text-orange-500 font-semibold"> 1 caractere especial)</span>   
+</FormDescription>
+
                       <FormMessage />
                     </FormItem>
                   )}

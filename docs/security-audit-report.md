@@ -56,7 +56,7 @@
 - **Problema:** 
   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` exposta no client
   - `OPENAI_API_KEY` pode vazar em logs de erro
-  - `WHATSAPP_WEBHOOK_API_KEY` em logs
+  - `WEBHOOK_API_KEY` em logs
 - **Impacto:** Chaves podem ser interceptadas
 
 ### 5. **[CRÍTICO] Senhas Temporárias em Logs**

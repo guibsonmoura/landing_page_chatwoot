@@ -285,6 +285,175 @@ COMMENT ON TABLE public.dialogue_examples IS 'Exemplos de "few-shot" para treina
 -- ativadas para garantir o isolamento de dados entre os clientes.
 ```
 
+## 3.5. Sistema de Gestão de Pagamentos
+
+### 3.5.1. Visão Geral
+*   **Propósito:** Sistema completo de controle financeiro para gerenciar faturas, pagamentos e métodos de pagamento dos tenants.
+*   **Escopo:** Invoices visíveis aos clientes, controle administrativo completo, preparação para integração com gateways de pagamento (cartão e Pix).
+*   **Isolamento:** Todos os dados financeiros são isolados por tenant usando RLS.
+
+### 3.5.2. Estrutura de Dados
+
+```sql
+-- Faturas por tenant
+CREATE TABLE public.invoices (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  tenant_id uuid NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+  invoice_number text NOT NULL UNIQUE,
+  plan_id uuid REFERENCES plans(id),
+  amount decimal(10,2) NOT NULL,
+  currency text DEFAULT 'BRL',
+  status text CHECK (status IN ('pending', 'paid', 'overdue', 'cancelled')) DEFAULT 'pending',
+  due_date timestamptz NOT NULL,
+  paid_at timestamptz,
+  description text,
+  billing_period text CHECK (billing_period IN ('monthly', 'yearly')) DEFAULT 'monthly',
+  created_at timestamptz DEFAULT NOW(),
+  updated_at timestamptz DEFAULT NOW(),
+  CONSTRAINT invoices_pkey PRIMARY KEY (id)
+);
+
+-- Histórico de pagamentos
+CREATE TABLE public.payments (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  tenant_id uuid NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+  invoice_id uuid NOT NULL REFERENCES invoices(id) ON DELETE CASCADE,
+  amount decimal(10,2) NOT NULL,
+  payment_method text CHECK (payment_method IN ('credit_card', 'pix', 'bank_transfer')),
+  gateway_transaction_id text,
+  status text CHECK (status IN ('processing', 'completed', 'failed', 'refunded')) DEFAULT 'processing',
+  paid_at timestamptz DEFAULT NOW(),
+  gateway_response jsonb,
+  created_at timestamptz DEFAULT NOW(),
+  CONSTRAINT payments_pkey PRIMARY KEY (id)
+);
+
+-- Métodos de pagamento salvos por tenant
+CREATE TABLE public.payment_methods (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  tenant_id uuid NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+  type text CHECK (type IN ('credit_card', 'pix')) NOT NULL,
+  is_default boolean DEFAULT FALSE,
+  card_last_four text,
+  card_brand text,
+  pix_key text,
+  is_active boolean DEFAULT TRUE,
+  created_at timestamptz DEFAULT NOW(),
+  CONSTRAINT payment_methods_pkey PRIMARY KEY (id)
+);
+
+-- RLS para isolamento por tenant
+ALTER TABLE invoices ENABLE ROW LEVEL SECURITY;
+ALTER TABLE payments ENABLE ROW LEVEL SECURITY;
+ALTER TABLE payment_methods ENABLE ROW LEVEL SECURITY;
+```
+
+### 3.5.3. Funcionalidades
+
+#### Para Tenants (Clientes):
+*   **Dashboard de Faturas:** Visualização de todas as faturas (pagas, pendentes, vencidas)
+*   **Detalhes da Fatura:** Visualização completa com possibilidade de download em PDF
+*   **Histórico de Pagamentos:** Timeline de todos os pagamentos realizados
+*   **Métodos de Pagamento:** Gerenciar cartões salvos e chaves Pix
+*   **Notificações:** Alertas de vencimento e confirmações de pagamento
+
+#### Para Administradores:
+*   **Gestão de Faturas:** Criar, editar, cancelar faturas manualmente
+*   **Controle de Pagamentos:** Visualizar e confirmar pagamentos
+*   **Relatórios Financeiros:** Dashboard com métricas e gráficos
+*   **Configurações:** Definir valores de planos e períodos de cobrança
+
+### 3.5.4. Integração com Gateways (Futuro)
+*   **Preparação para:** Stripe, Mercado Pago, PagSeguro
+*   **Métodos Suportados:** Cartão de crédito, Pix, boleto bancário
+*   **Webhooks:** Sistema para confirmação automática de pagamentos
+*   **Segurança:** Tokenização de dados sensíveis, PCI compliance
+
+## 3.6. Sistema de Mensagens/Notificações Internas
+
+### 3.6.1. Visão Geral
+*   **Propósito:** Sistema interno para envio de comunicados, notificações e mensagens para tenants de forma coletiva ou individual.
+*   **Escopo:** Painel administrativo para criação e envio, interface do cliente para recebimento, templates personalizáveis.
+*   **Segmentação:** Suporte a envio por plano, tenant específico ou broadcast geral.
+
+### 3.6.2. Estrutura de Dados
+
+```sql
+-- Mensagens/comunicados
+CREATE TABLE public.messages (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  title text NOT NULL,
+  content text NOT NULL,
+  type text CHECK (type IN ('announcement', 'notification', 'alert', 'update', 'payment_reminder')) DEFAULT 'notification',
+  priority text CHECK (priority IN ('low', 'medium', 'high', 'urgent')) DEFAULT 'medium',
+  sender_id uuid REFERENCES auth.users(id), -- Admin que enviou
+  target_type text CHECK (target_type IN ('all_tenants', 'specific_tenants', 'plan_based')) DEFAULT 'all_tenants',
+  target_criteria jsonb, -- Filtros: planos específicos, etc
+  is_published boolean DEFAULT FALSE,
+  published_at timestamptz,
+  expires_at timestamptz,
+  created_at timestamptz DEFAULT NOW(),
+  updated_at timestamptz DEFAULT NOW(),
+  CONSTRAINT messages_pkey PRIMARY KEY (id)
+);
+
+-- Destinatários específicos (tenant-based)
+CREATE TABLE public.message_recipients (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  message_id uuid NOT NULL REFERENCES messages(id) ON DELETE CASCADE,
+  tenant_id uuid NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+  is_read boolean DEFAULT FALSE,
+  read_at timestamptz,
+  created_at timestamptz DEFAULT NOW(),
+  CONSTRAINT message_recipients_pkey PRIMARY KEY (id)
+);
+
+-- Templates de mensagem
+CREATE TABLE public.message_templates (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  name text NOT NULL,
+  subject_template text NOT NULL,
+  content_template text NOT NULL,
+  type text CHECK (type IN ('welcome', 'payment_reminder', 'plan_upgrade', 'system_update')) NOT NULL,
+  variables jsonb, -- {tenant_name}, {plan_name}, {amount}, etc
+  is_active boolean DEFAULT TRUE,
+  created_at timestamptz DEFAULT NOW(),
+  CONSTRAINT message_templates_pkey PRIMARY KEY (id)
+);
+
+-- RLS para isolamento
+ALTER TABLE message_recipients ENABLE ROW LEVEL SECURITY;
+```
+
+### 3.6.3. Funcionalidades
+
+#### Para Tenants (Clientes):
+*   **Central de Notificações:** Lista todas as mensagens recebidas
+*   **Filtros:** Por tipo, prioridade, lidas/não lidas, data
+*   **Detalhes:** Visualização completa da mensagem com formatação
+*   **Marcação:** Marcar como lida/não lida, arquivar mensagens
+*   **Configurações:** Preferências de notificação por email/push
+
+#### Para Administradores:
+*   **Criar Mensagem:** Editor rico com suporte a markdown e templates
+*   **Segmentação Avançada:** Escolher destinatários (todos, por plano, específicos)
+*   **Agendamento:** Enviar imediatamente ou agendar para data/hora específica
+*   **Templates:** Gerenciar modelos pré-definidos com variáveis dinâmicas
+*   **Relatórios:** Métricas de entrega, abertura e engajamento
+
+### 3.6.4. Tipos de Notificação
+*   **Comunicados Gerais:** Atualizações do sistema, novidades, manutenções
+*   **Alertas de Pagamento:** Lembretes de vencimento, confirmações, falhas
+*   **Notificações de Plano:** Upgrades disponíveis, limites atingidos, recursos
+*   **Mensagens Personalizadas:** Comunicação direta e específica com clientes
+*   **Alertas de Sistema:** Problemas técnicos, downtime, recuperação
+
+### 3.6.5. Integração com Sistema de Pagamentos
+*   **Notificações Automáticas:** Geração automática de lembretes de vencimento
+*   **Confirmações:** Mensagens de confirmação após pagamentos bem-sucedidos
+*   **Alertas de Falha:** Notificações quando pagamentos falham
+*   **Relatórios:** Mensagens sobre mudanças de plano e faturamento
+
 ## 4. Funcionalidades Principais Detalhadas
 
 ### 4.1. Gestão de Agentes de IA (Admin)

@@ -15,34 +15,42 @@ interface TotalizadorCardProps {
 
 const colorClasses = {
   blue: {
-    bg: 'bg-blue-50 dark:bg-blue-950/20',
-    border: 'border-blue-200 dark:border-blue-800/30',
+    bg: 'from-blue-50/70 to-white/40 dark:from-blue-950/30 dark:to-slate-900/30',
+    border: 'border-blue-200/60 dark:border-blue-800/40',
     icon: 'text-blue-600 dark:text-blue-400',
-    iconBg: 'bg-blue-100 dark:bg-blue-900/30',
+    iconBg: 'from-blue-500/10 to-blue-500/0',
+    ring: 'ring-blue-200/60 dark:ring-blue-800/60',
+    glow: 'bg-blue-400/20 dark:bg-blue-500/10',
     text: 'text-blue-900 dark:text-blue-100',
     number: 'text-blue-700 dark:text-blue-300'
   },
   green: {
-    bg: 'bg-green-50 dark:bg-green-950/20',
-    border: 'border-green-200 dark:border-green-800/30',
+    bg: 'from-green-50/70 to-white/40 dark:from-green-950/30 dark:to-slate-900/30',
+    border: 'border-green-200/60 dark:border-green-800/40',
     icon: 'text-green-600 dark:text-green-400',
-    iconBg: 'bg-green-100 dark:bg-green-900/30',
+    iconBg: 'from-green-500/10 to-green-500/0',
+    ring: 'ring-green-200/60 dark:ring-green-800/60',
+    glow: 'bg-green-400/20 dark:bg-green-500/10',
     text: 'text-green-900 dark:text-green-100',
     number: 'text-green-700 dark:text-green-300'
   },
   purple: {
-    bg: 'bg-purple-50 dark:bg-purple-950/20',
-    border: 'border-purple-200 dark:border-purple-800/30',
+    bg: 'from-purple-50/70 to-white/40 dark:from-purple-950/30 dark:to-slate-900/30',
+    border: 'border-purple-200/60 dark:border-purple-800/40',
     icon: 'text-purple-600 dark:text-purple-400',
-    iconBg: 'bg-purple-100 dark:bg-purple-900/30',
+    iconBg: 'from-purple-500/10 to-purple-500/0',
+    ring: 'ring-purple-200/60 dark:ring-purple-800/60',
+    glow: 'bg-purple-400/20 dark:bg-purple-500/10',
     text: 'text-purple-900 dark:text-purple-100',
     number: 'text-purple-700 dark:text-purple-300'
   },
   orange: {
-    bg: 'bg-orange-50 dark:bg-orange-950/20',
-    border: 'border-orange-200 dark:border-orange-800/30',
+    bg: 'from-orange-50/70 to-white/40 dark:from-orange-950/30 dark:to-slate-900/30',
+    border: 'border-orange-200/60 dark:border-orange-800/40',
     icon: 'text-orange-600 dark:text-orange-400',
-    iconBg: 'bg-orange-100 dark:bg-orange-900/30',
+    iconBg: 'from-orange-500/10 to-orange-500/0',
+    ring: 'ring-orange-200/60 dark:ring-orange-800/60',
+    glow: 'bg-orange-400/20 dark:bg-orange-500/10',
     text: 'text-orange-900 dark:text-orange-100',
     number: 'text-orange-700 dark:text-orange-300'
   }
@@ -59,11 +67,14 @@ export function TotalizadorCard({
   const colors = colorClasses[color];
 
   return (
-    <Card className={`${colors.bg} ${colors.border} shadow-sm hover:shadow-md transition-all duration-300`}>
+    <Card className={`group relative overflow-hidden rounded-2xl border ${colors.border} bg-white/60 dark:bg-slate-900/40 backdrop-blur supports-[backdrop-filter]:backdrop-blur-sm shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5`}>
+      {/* decor */}
+      <div className={`pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-40 blur-2xl ${colors.glow}`} />
+      <div className={`pointer-events-none absolute -left-16 -bottom-16 h-48 w-48 rounded-full opacity-30 blur-3xl ${colors.glow}`} />
       <CardContent className="p-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-4">
           <div className="space-y-2">
-            <p className={`text-sm font-medium ${colors.text}`}>
+            <p className={`text-sm font-medium tracking-wide ${colors.text}`}>
               {title}
             </p>
             {loading ? (
@@ -73,12 +84,12 @@ export function TotalizadorCard({
                 --
               </p>
             ) : (
-              <p className={`text-3xl font-bold ${colors.number} transition-all duration-500`}>
+              <p className={`text-4xl md:text-5xl font-semibold tracking-tight ${colors.number} transition-all duration-500`}>
                 {value.toLocaleString('pt-BR')}
               </p>
             )}
           </div>
-          <div className={`p-3 rounded-xl ${colors.iconBg} shadow-sm`}>
+          <div className={`relative p-3 rounded-xl bg-gradient-to-br ${colors.iconBg} ring-1 ${colors.ring} shadow-sm transition-transform duration-300 group-hover:scale-105`}> 
             <Icon className={`h-6 w-6 ${colors.icon}`} />
           </div>
         </div>

@@ -198,8 +198,299 @@
 
 - [ ] **(SEC-005)** Sanitizar logs de credenciais e API keys
   - **Prioridade:** CRÍTICA
+
+---
+
+## 🏦 ÉPICO: SISTEMA DE GESTÃO DE PAGAMENTOS (PAYMENT-SYSTEM)
+
+**Descrição:** Implementar sistema completo de controle financeiro com faturas, pagamentos e métodos de pagamento isolados por tenant. Preparação para integração futura com gateways de pagamento.
+
+### 📊 FASE 1 - ESTRUTURA DE DADOS E BACKEND (PAYMENT-DB)
+
+- [ ] **(PAY-001)** Criar migração SQL para tabelas de pagamento
+  - **Prioridade:** ALTA
   - **Estimativa:** 4 horas
-  - **Descrição:** Garantir que OPENAI_API_KEY, WHATSAPP_WEBHOOK_API_KEY nunca apareçam em logs
+  - **Descrição:** Criar tabelas `invoices`, `payments`, `payment_methods` com RLS habilitado
+  - **Arquivo:** `web/migrations/002_create_payment_tables.sql`
+  - **Critério:** Todas as tabelas devem ter isolamento por tenant_id via RLS
+
+- [ ] **(PAY-002)** Implementar políticas RLS para isolamento de dados financeiros
+  - **Prioridade:** CRÍTICA
+  - **Estimativa:** 3 horas
+  - **Descrição:** Criar políticas que garantam que tenants só vejam seus próprios dados financeiros
+  - **Tabelas:** `invoices`, `payments`, `payment_methods`
+  - **Critério:** Tenant A nunca deve acessar dados financeiros do Tenant B
+
+- [ ] **(PAY-003)** Criar Server Actions para gestão de faturas
+  - **Prioridade:** ALTA
+  - **Estimativa:** 6 horas
+  - **Descrição:** CRUD completo para faturas com validação de tenant
+  - **Arquivo:** `src/lib/actions/invoice.actions.ts`
+  - **Funções:**
+    - `getInvoicesByTenant(tenant_id: string)`
+    - `getInvoiceById(invoice_id: string)`
+    - `createInvoice(data: CreateInvoiceData)`
+    - `updateInvoiceStatus(invoice_id: string, status: InvoiceStatus)`
+  - **Critério:** Todas as operações devem respeitar isolamento por tenant
+
+- [ ] **(PAY-004)** Criar Server Actions para histórico de pagamentos
+  - **Prioridade:** ALTA
+  - **Estimativa:** 4 horas
+  - **Descrição:** Gerenciar pagamentos e transações
+  - **Arquivo:** `src/lib/actions/payment.actions.ts`
+  - **Funções:**
+    - `getPaymentsByTenant(tenant_id: string)`
+    - `getPaymentsByInvoice(invoice_id: string)`
+    - `createPayment(data: CreatePaymentData)`
+    - `updatePaymentStatus(payment_id: string, status: PaymentStatus)`
+  - **Critério:** Integração preparada para webhooks de gateways
+
+- [ ] **(PAY-005)** Criar Server Actions para métodos de pagamento
+  - **Prioridade:** MÉDIA
+  - **Estimativa:** 3 horas
+  - **Descrição:** Gerenciar cartões salvos e chaves Pix
+  - **Arquivo:** `src/lib/actions/payment-method.actions.ts`
+  - **Funções:**
+    - `getPaymentMethodsByTenant(tenant_id: string)`
+    - `addPaymentMethod(data: PaymentMethodData)`
+    - `setDefaultPaymentMethod(method_id: string)`
+    - `deletePaymentMethod(method_id: string)`
+  - **Critério:** Dados sensíveis devem ser tokenizados
+
+### 🎨 FASE 2 - INTERFACE DO CLIENTE (PAYMENT-FE-CLIENT)
+
+- [ ] **(PAY-006)** Criar página de dashboard de faturas para tenants
+  - **Prioridade:** ALTA
+  - **Estimativa:** 8 horas
+  - **Descrição:** Interface para visualizar todas as faturas (pagas, pendentes, vencidas)
+  - **Arquivo:** `src/app/dashboard/billing/page.tsx`
+  - **Componentes:**
+    - Lista de faturas com filtros por status
+    - Cards com resumo financeiro
+    - Indicadores visuais para status
+  - **Critério:** Interface responsiva e intuitiva
+
+- [ ] **(PAY-007)** Criar página de detalhes da fatura
+  - **Prioridade:** ALTA
+  - **Estimativa:** 6 horas
+  - **Descrição:** Visualização completa da fatura com opção de download PDF
+  - **Arquivo:** `src/app/dashboard/billing/[invoiceId]/page.tsx`
+  - **Funcionalidades:**
+    - Detalhes completos da fatura
+    - Histórico de pagamentos
+    - Botão de download PDF
+    - Status de pagamento em tempo real
+  - **Critério:** PDF deve ser gerado dinamicamente
+
+- [ ] **(PAY-008)** Criar interface de métodos de pagamento
+  - **Prioridade:** MÉDIA
+  - **Estimativa:** 5 horas
+  - **Descrição:** Gerenciar cartões salvos e chaves Pix
+  - **Arquivo:** `src/app/dashboard/billing/payment-methods/page.tsx`
+  - **Funcionalidades:**
+    - Lista de métodos salvos
+    - Adicionar novo método
+    - Definir método padrão
+    - Remover métodos
+  - **Critério:** Dados sensíveis mascarados (últimos 4 dígitos)
+
+- [ ] **(PAY-009)** Implementar componente de histórico de pagamentos
+  - **Prioridade:** MÉDIA
+  - **Estimativa:** 4 horas
+  - **Descrição:** Timeline de todos os pagamentos realizados
+  - **Arquivo:** `src/components/billing/PaymentHistory.tsx`
+  - **Funcionalidades:**
+    - Timeline cronológica
+    - Filtros por período e status
+    - Detalhes de cada transação
+  - **Critério:** Performance otimizada para grandes volumes
+
+### ⚙️ FASE 3 - PAINEL ADMINISTRATIVO (PAYMENT-FE-ADMIN)
+
+- [ ] **(PAY-010)** Criar dashboard administrativo de pagamentos
+  - **Prioridade:** ALTA
+  - **Estimativa:** 10 horas
+  - **Descrição:** Painel para administradores gerenciarem todos os pagamentos
+  - **Arquivo:** `src/app/admin/payments/page.tsx`
+  - **Funcionalidades:**
+    - Visão geral de receitas
+    - Lista de todas as faturas
+    - Métricas e gráficos
+    - Filtros avançados
+  - **Critério:** Acesso restrito apenas para admins
+
+- [ ] **(PAY-011)** Implementar geração automática de faturas
+  - **Prioridade:** ALTA
+  - **Estimativa:** 6 horas
+  - **Descrição:** Sistema para gerar faturas automaticamente baseado nos planos
+  - **Arquivo:** `src/lib/billing/invoice-generator.ts`
+  - **Funcionalidades:**
+    - Geração baseada no plano ativo
+    - Cálculo de valores e impostos
+    - Numeração sequencial
+    - Agendamento de vencimentos
+  - **Critério:** Integração com cron jobs
+
+### 🔌 FASE 4 - PREPARAÇÃO PARA GATEWAYS (PAYMENT-GATEWAY)
+
+- [ ] **(PAY-012)** Criar estrutura base para integração com gateways
+  - **Prioridade:** BAIXA
+  - **Estimativa:** 8 horas
+  - **Descrição:** Arquitetura extensível para múltiplos gateways
+  - **Arquivo:** `src/lib/payment-gateways/`
+  - **Estrutura:**
+    - Interface comum para gateways
+    - Adaptadores para Stripe, Mercado Pago
+    - Sistema de webhooks
+  - **Critério:** Facilitar integração futura
+
+---
+
+## 📨 ÉPICO: SISTEMA DE MENSAGENS/NOTIFICAÇÕES INTERNAS (MESSAGING-SYSTEM)
+
+**Descrição:** Sistema interno para envio de comunicados, notificações e mensagens para tenants de forma coletiva ou individual, com templates e segmentação avançada.
+
+### 📊 FASE 1 - ESTRUTURA DE DADOS E BACKEND (MESSAGING-DB)
+
+- [ ] **(MSG-001)** Criar migração SQL para tabelas de mensagens
+  - **Prioridade:** ALTA
+  - **Estimativa:** 3 horas
+  - **Descrição:** Criar tabelas `messages`, `message_recipients`, `message_templates`
+  - **Arquivo:** `web/migrations/003_create_messaging_tables.sql`
+  - **Critério:** RLS habilitado para `message_recipients`
+
+- [ ] **(MSG-002)** Implementar políticas RLS para mensagens
+  - **Prioridade:** CRÍTICA
+  - **Estimativa:** 2 horas
+  - **Descrição:** Garantir que tenants só vejam suas próprias mensagens
+  - **Tabela:** `message_recipients`
+  - **Critério:** Isolamento total entre tenants
+
+- [ ] **(MSG-003)** Criar Server Actions para gestão de mensagens
+  - **Prioridade:** ALTA
+  - **Estimativa:** 6 horas
+  - **Descrição:** CRUD para mensagens com segmentação
+  - **Arquivo:** `src/lib/actions/message.actions.ts`
+  - **Funções:**
+    - `createMessage(data: CreateMessageData)`
+    - `getMessagesByTenant(tenant_id: string)`
+    - `markMessageAsRead(message_id: string, tenant_id: string)`
+    - `sendMessageToTargets(message_id: string, targets: MessageTarget[])`
+  - **Critério:** Suporte a segmentação por plano e tenant específico
+
+- [ ] **(MSG-004)** Criar Server Actions para templates
+  - **Prioridade:** MÉDIA
+  - **Estimativa:** 4 horas
+  - **Descrição:** Gerenciar templates de mensagem com variáveis
+  - **Arquivo:** `src/lib/actions/message-template.actions.ts`
+  - **Funções:**
+    - `getMessageTemplates()`
+    - `createTemplate(data: TemplateData)`
+    - `renderTemplate(template_id: string, variables: TemplateVariables)`
+  - **Critério:** Sistema de variáveis dinâmicas {tenant_name}, {plan_name}
+
+### 🎨 FASE 2 - INTERFACE DO CLIENTE (MESSAGING-FE-CLIENT)
+
+- [ ] **(MSG-005)** Criar central de notificações para tenants
+  - **Prioridade:** ALTA
+  - **Estimativa:** 8 horas
+  - **Descrição:** Interface para visualizar todas as mensagens recebidas
+  - **Arquivo:** `src/app/dashboard/notifications/page.tsx`
+  - **Funcionalidades:**
+    - Lista de mensagens com filtros
+    - Indicadores de não lidas
+    - Marcação como lida/não lida
+    - Busca por conteúdo
+  - **Critério:** Interface intuitiva e responsiva
+
+- [ ] **(MSG-006)** Implementar componente de detalhes da mensagem
+  - **Prioridade:** MÉDIA
+  - **Estimativa:** 4 horas
+  - **Descrição:** Visualização completa da mensagem com formatação
+  - **Arquivo:** `src/components/messaging/MessageDetail.tsx`
+  - **Funcionalidades:**
+    - Renderização de markdown
+    - Indicação de prioridade
+    - Timestamp de recebimento
+    - Ações (marcar como lida, arquivar)
+  - **Critério:** Suporte a formatação rica
+
+- [ ] **(MSG-007)** Criar sistema de notificações em tempo real
+  - **Prioridade:** BAIXA
+  - **Estimativa:** 6 horas
+  - **Descrição:** Notificações push e badges de contagem
+  - **Arquivo:** `src/components/messaging/NotificationBadge.tsx`
+  - **Funcionalidades:**
+    - Badge no header com contagem
+    - Notificações toast
+    - Som de notificação
+  - **Critério:** Integração com Supabase Realtime
+
+### ⚙️ FASE 3 - PAINEL ADMINISTRATIVO (MESSAGING-FE-ADMIN)
+
+- [ ] **(MSG-008)** Criar interface de criação de mensagens
+  - **Prioridade:** ALTA
+  - **Estimativa:** 10 horas
+  - **Descrição:** Editor rico para criar e enviar mensagens
+  - **Arquivo:** `src/app/admin/messages/create/page.tsx`
+  - **Funcionalidades:**
+    - Editor markdown com preview
+    - Seleção de destinatários
+    - Agendamento de envio
+    - Templates pré-definidos
+  - **Critério:** Interface intuitiva para admins
+
+- [ ] **(MSG-009)** Implementar sistema de segmentação avançada
+  - **Prioridade:** ALTA
+  - **Estimativa:** 6 horas
+  - **Descrição:** Seleção de destinatários por critérios
+  - **Arquivo:** `src/components/admin/MessageTargeting.tsx`
+  - **Funcionalidades:**
+    - Todos os tenants
+    - Por plano específico
+    - Tenants individuais
+    - Filtros customizados
+  - **Critério:** Interface visual para seleção
+
+- [ ] **(MSG-010)** Criar dashboard de métricas de mensagens
+  - **Prioridade:** MÉDIA
+  - **Estimativa:** 8 horas
+  - **Descrição:** Relatórios de entrega e engajamento
+  - **Arquivo:** `src/app/admin/messages/analytics/page.tsx`
+  - **Funcionalidades:**
+    - Taxa de abertura
+    - Tempo de leitura
+    - Engajamento por tipo
+    - Gráficos e métricas
+  - **Critério:** Dados em tempo real
+
+### 🔗 FASE 4 - INTEGRAÇÃO ENTRE SISTEMAS (INTEGRATION)
+
+- [ ] **(INT-001)** Integrar sistema de mensagens com pagamentos
+  - **Prioridade:** ALTA
+  - **Estimativa:** 4 horas
+  - **Descrição:** Notificações automáticas para eventos de pagamento
+  - **Arquivo:** `src/lib/integrations/payment-messaging.ts`
+  - **Funcionalidades:**
+    - Lembrete de vencimento
+    - Confirmação de pagamento
+    - Falha de pagamento
+    - Mudança de plano
+  - **Critério:** Mensagens automáticas baseadas em eventos
+
+- [ ] **(INT-002)** Criar sistema de templates automáticos
+  - **Prioridade:** MÉDIA
+  - **Estimativa:** 5 horas
+  - **Descrição:** Templates que são enviados automaticamente
+  - **Arquivo:** `src/lib/messaging/auto-templates.ts`
+  - **Tipos:**
+    - Boas-vindas para novos tenants
+    - Lembretes de pagamento
+    - Alertas de limite de uso
+    - Atualizações de sistema
+  - **Critério:** Configurável via admin panel
+  - **Estimativa:** 4 horas
+  - **Descrição:** Garantir que OPENAI_API_KEY, WEBHOOK_API_KEY nunca apareçam em logs
   - **Arquivos:** `wizard.actions.ts`, `whatsapp.actions.ts`, tratamento de erros
   - **Critério:** Nenhuma chave API deve ser logada, mesmo em erros
 

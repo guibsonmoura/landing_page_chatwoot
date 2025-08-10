@@ -42,6 +42,7 @@ import {
   MESSAGE_TYPES,
   MESSAGE_PRIORITIES 
 } from '@/types/message';
+import { HeaderSetter } from '@/components/layout/HeaderSetter';
 
 export function MessagesClientPage() {
   const [activeTab, setActiveTab] = useState('received');
@@ -158,17 +159,10 @@ export function MessagesClientPage() {
 
   return (
     <div className="space-y-6">
+      <HeaderSetter title="Mensagens" subtitle="Sistema de mensagens e notificações internas" />
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold flex items-center gap-2">
-            <MessageSquare className="h-6 w-6 text-blue-500" />
-            Mensagens
-          </h1>
-          <p className="text-slate-500 dark:text-slate-400 mt-1">
-            Sistema de mensagens e notificações internas
-          </p>
-        </div>
+        <div />
         
         {/* Botão de Nova Mensagem ocultado para clientes */}
         {/* 

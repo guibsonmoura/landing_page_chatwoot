@@ -173,7 +173,7 @@ const SENSITIVE_FIELDS = [
   
   // Chaves de API Específicas
   'OPENAI_API_KEY', 'SUPABASE_ANON_KEY', 'SUPABASE_SERVICE_ROLE_KEY',
-  'WHATSAPP_WEBHOOK_API_KEY', 'WHATSAPP_TOKEN',
+  'WEBHOOK_API_KEY', 'WHATSAPP_TOKEN',
   
   // Dados Binários
   'base64', 'image_data', 'file_content', 'blob'

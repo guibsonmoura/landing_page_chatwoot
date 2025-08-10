@@ -144,7 +144,7 @@ export function NotificationBell({ className, onMessageClick }: NotificationBell
             <Badge 
               variant="destructive" 
               className={cn(
-                "absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs flex items-center justify-center",
+                "absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs flex items-center justify-center text-white dark:text-white font-semibold",
                 urgentCount > 0 ? "animate-pulse" : ""
               )}
             >
@@ -230,7 +230,7 @@ export function NotificationBell({ className, onMessageClick }: NotificationBell
                       </span>
                       
                       {message.priority === 'urgent' && (
-                        <Badge variant="destructive" className="text-xs px-1.5 py-0.5">
+                        <Badge variant="destructive" className="text-xs px-1.5 py-0.5 text-white dark:text-white">
                           Urgente
                         </Badge>
                       )}

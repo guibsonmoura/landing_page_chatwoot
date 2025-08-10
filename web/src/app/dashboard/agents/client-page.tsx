@@ -29,6 +29,7 @@ import {
 
 import { CreateAgentDialog } from '@/components/agents/CreateAgentDialog';
 import { AgentCard } from '@/components/agents/AgentCard';
+import { HeaderSetter } from '@/components/layout/HeaderSetter';
 
 interface AgentClientPageProps {
   initialAgents: Agent[];
@@ -71,6 +72,7 @@ export default function AgentClientPage({ initialAgents }: AgentClientPageProps)
 
   return (
     <>
+      <HeaderSetter title="Meus Agentes" subtitle="Configure agentes de IA personalizados para interagir com seus clientes" />
       <CreateAgentDialog
         isOpen={isDialogOpen}
         onOpenChange={setIsDialogOpen}
@@ -119,15 +121,7 @@ export default function AgentClientPage({ initialAgents }: AgentClientPageProps)
 
       <div className="flex flex-col gap-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-bold flex items-center gap-2">
-              
-              Meus Agentes
-            </h1>
-            <p className="text-slate-500 dark:text-slate-400 mt-1">
-              Configure agentes de IA personalizados para interagir com seus clientes
-            </p>
-          </div>
+          <div />
           <Button 
             onClick={handleOpenCreateDialog}
             className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 transition-all shadow-md hover:shadow-lg hover:translate-y-[-1px] active:translate-y-[1px] text-white"

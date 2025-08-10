@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { PlusCircle, Trash2, Edit, User } from 'lucide-react';
+import { PlusCircle, Trash2, Edit, User, ExternalLink } from 'lucide-react';
 import { Attendant } from '@/types/attendant';
 import { deleteAttendant } from '@/lib/actions/attendant.actions';
 
@@ -17,14 +17,17 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import { Card, CardContent } from '@/components/ui/card';
 import { AttendantCard } from '@/components/attendants/AttendantCard';
 import { CreateAttendantModal } from '@/components/attendants/CreateAttendantModal';
+import { HeaderSetter } from '@/components/layout/HeaderSetter';
 
 interface AttendantClientPageProps {
   initialAttendants: Attendant[];
+  chatUrl?: string;
 }
 
-export default function AttendantClientPage({ initialAttendants }: AttendantClientPageProps) {
+export default function AttendantClientPage({ initialAttendants, chatUrl }: AttendantClientPageProps) {
   const router = useRouter();
   const [attendants, setAttendants] = useState<Attendant[]>(initialAttendants);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -93,10 +96,10 @@ export default function AttendantClientPage({ initialAttendants }: AttendantClie
 
   return (
     <div className="container mx-auto p-6">
+      <HeaderSetter title="Atendentes" subtitle="Gerencie sua equipe de atendentes humanos" />
+
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
-          Atendentes
-        </h1>
+        <div />
         <Button 
           onClick={handleOpenCreateModal}
           className="flex items-center gap-2"
@@ -118,73 +121,37 @@ export default function AttendantClientPage({ initialAttendants }: AttendantClie
           ))}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center p-10 border border-dashed rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50">
-          <div className="h-12 w-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-4">
-            <User className="h-6 w-6 text-slate-500 dark:text-slate-400" />
-          </div>
-          <h3 className="text-lg font-medium text-slate-900 dark:text-slate-100 mb-2">
-            Nenhum atendente cadastrado
-          </h3>
-          <p className="text-slate-500 dark:text-slate-400 text-center mb-4">
-            Crie seu primeiro atendente para começar a gerenciar sua equipe.
-          </p>
-          <Button 
-            onClick={handleOpenCreateModal}
-            className="flex items-center gap-2"
-          >
-            <PlusCircle className="h-4 w-4" />
-            Criar Atendente
-          </Button>
+        <div className="text-center text-slate-500 dark:text-slate-400">
+          Nenhum atendente cadastrado ainda.
         </div>
       )}
 
-      {/* Modal de criação de atendente */}
-      {isCreateModalOpen && (
-        <CreateAttendantModal
-          isOpen={isCreateModalOpen}
-          onOpenChange={setIsCreateModalOpen}
-          onAttendantCreated={handleAttendantCreated}
-        />
-      )}
+      {/* Modais e diálogos */}
+      <CreateAttendantModal 
+        isOpen={isCreateModalOpen} 
+        onOpenChange={setIsCreateModalOpen}
+        onAttendantCreated={handleAttendantCreated}
+      />
 
-      {/* Modal de edição de atendente */}
-      {isEditModalOpen && selectedAttendant && (
-        <CreateAttendantModal
-          isOpen={isEditModalOpen}
-          onOpenChange={setIsEditModalOpen}
-          onAttendantUpdated={handleAttendantUpdated}
-          attendant={selectedAttendant}
-        />
-      )}
+      <CreateAttendantModal 
+        isOpen={isEditModalOpen} 
+        onOpenChange={setIsEditModalOpen}
+        onAttendantUpdated={handleAttendantUpdated}
+        attendant={selectedAttendant}
+      />
 
-      {/* Diálogo de confirmação de exclusão */}
       <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
-        <AlertDialogContent className="border border-slate-200 dark:border-slate-800">
+        <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle className="text-slate-900 dark:text-slate-100">
-              Confirmar exclusão
-            </AlertDialogTitle>
-            <AlertDialogDescription className="text-slate-500 dark:text-slate-400">
-              Tem certeza que deseja excluir o atendente{' '}
-              <span className="font-medium text-slate-700 dark:text-slate-300">
-                {selectedAttendant?.name}
-              </span>?
-              <br />
-              Esta ação não pode ser desfeita.
+            <AlertDialogTitle>Confirmar exclusão</AlertDialogTitle>
+            <AlertDialogDescription>
+              Tem certeza que deseja excluir este atendente? Esta ação não pode ser desfeita.
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter className="flex justify-end gap-3">
-            <AlertDialogCancel 
-              disabled={isDeleting}
-              className="border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300"
-            >
-              Cancelar
-            </AlertDialogCancel>
-            <AlertDialogAction
-              onClick={confirmDelete}
-              disabled={isDeleting}
-              className="bg-red-600 hover:bg-red-700 text-white px-6"
-            >
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={isDeleting}>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmDelete} disabled={isDeleting} className="bg-red-500 hover:bg-red-600 text-white">
+              <Trash2 className="mr-2 h-4 w-4" />
               {isDeleting ? 'Excluindo...' : 'Excluir'}
             </AlertDialogAction>
           </AlertDialogFooter>

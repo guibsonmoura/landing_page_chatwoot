@@ -2,11 +2,13 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Home, Users, Bot, MessageSquare, Settings, Menu, X, Database, Crown, Mail } from 'lucide-react';
+import { Home, Users, Bot, MessageSquare, Settings, Menu, X, Database, Crown, Mail, ExternalLink } from 'lucide-react';
 import Header from '@/components/layout/Header';
+import { HeaderProvider } from '@/components/layout/HeaderContext';
 import { usePlanStore } from '@/stores/planStore';
 import { createClient } from '@/lib/supabase';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
 export default function DashboardLayout({
   children,
@@ -16,6 +18,7 @@ export default function DashboardLayout({
   const { fetchPlanFeatures, planFeatures } = usePlanStore();
   // Em dispositivos móveis, a sidebar começa fechada
   const [sidebarOpen, setSidebarOpen] = useState(typeof window !== 'undefined' ? window.innerWidth > 768 : true);
+  const [chatUrl, setChatUrl] = useState<string | null>(null);
   
   // Detecta mudanças no tamanho da tela
   useEffect(() => {
@@ -37,16 +40,27 @@ export default function DashboardLayout({
       const { data: { user } } = await supabase.auth.getUser();
       // Busca as features apenas se tivermos um usuário e elas ainda não foram carregadas.
       if (user && !planFeatures) {
-        fetchPlanFeatures(user.id);
+        await fetchPlanFeatures(user.id);
+      }
+      // Buscar chat_url do tenant para exibir atalho da plataforma de atendimentos
+      if (user) {
+        const { data: tenant } = await supabase
+          .from('tenants')
+          .select('chat_url')
+          .eq('user_id', user.id)
+          .single();
+        setChatUrl(tenant?.chat_url ?? null);
+      } else {
+        setChatUrl(null);
       }
     };
-
     checkUserAndFetchFeatures();
   }, [fetchPlanFeatures, planFeatures]);
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   return (
+    <HeaderProvider>
     <div className="flex min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-900 dark:to-gray-800">
       {/* Overlay para fechar a sidebar em dispositivos móveis */}
       {sidebarOpen && (
@@ -106,11 +120,28 @@ export default function DashboardLayout({
           {/* <NavLink href="/dashboard/settings" icon={<Settings className="h-6 w-6" />} label="Configurações" isCollapsed={!sidebarOpen} /> */}
           
           <div className="mt-auto mb-6 px-3">
-            <div className="flex items-center justify-center py-4 rounded-lg bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-100 dark:border-blue-900">
-              <span className="text-xs text-center text-blue-600 dark:text-blue-400">
-                Powered by Nexus Agents
-              </span>
-            </div>
+            {chatUrl ? (
+              sidebarOpen ? (
+                <a href={chatUrl} target="_blank" rel="noopener noreferrer" className="block cursor-pointer">
+                  <Button className="cursor-pointer w-full h-11 px-4 text-[15px] font-semibold bg-gradient-to-r from-indigo-600 via-purple-600 to-fuchsia-600 hover:from-indigo-700 hover:via-purple-700 hover:to-fuchsia-700 text-white shadow-lg hover:shadow-xl transition-all relative overflow-hidden">
+                    <ExternalLink className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
+                    <span className="block w-full text-center whitespace-nowrap">Plataforma de Atendimentos</span>
+                  </Button>
+                </a>
+              ) : (
+                <a href={chatUrl} target="_blank" rel="noopener noreferrer" className="block cursor-pointer" title="Plataforma de Atendimentos">
+                  <Button className="cursor-pointer w-12 h-12 rounded-xl p-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-fuchsia-600 hover:from-indigo-700 hover:via-purple-700 hover:to-fuchsia-700 text-white shadow-lg hover:shadow-xl transition-all flex items-center justify-center">
+                    <ExternalLink className="h-5 w-5" aria-hidden="true" />
+                  </Button>
+                </a>
+              )
+            ) : (
+              <div className="flex items-center justify-center py-4 rounded-lg bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-100 dark:border-blue-900">
+                <span className="text-xs text-center text-blue-600 dark:text-blue-400">
+                  Powered by Nexus Agents
+                </span>
+              </div>
+            )}
           </div>
         </nav>
       </aside>
@@ -129,6 +160,7 @@ export default function DashboardLayout({
         </main>
       </div>
     </div>
+    </HeaderProvider>
   );
 }
 

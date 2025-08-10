@@ -14,6 +14,7 @@ import { AnalyticsDashboard } from '@/components/analytics/AnalyticsDashboard';
 import { TotalizadoresGrid } from '@/components/dashboard/TotalizadoresGrid';
 import ConversationHeatmap from '@/components/analytics/ConversationHeatmap';
 import { Loading, CardSkeleton } from '@/components/ui/loading';
+import { HeaderSetter } from '@/components/layout/HeaderSetter';
 
 interface Agent {
   id: string;
@@ -37,60 +38,80 @@ export function AnalyticsClientPage() {
   const [loading, setLoading] = useState(true);
   const [period, setPeriod] = useState<PeriodFilter>('7d');
   const [data, setData] = useState<any>(null);
+  const [analyticsLoading, setAnalyticsLoading] = useState(false);
 
-  const loadData = async () => {
-    try {
-      setLoading(true);
-      
-      // Buscar dados em paralelo
-      const [
-        agentsResult,
-        channelsResult,
-        attendantsResult,
-        customersAnalytics,
-        chatAnalytics,
-        totalCustomers,
-        totalAtendimentos,
-        totalMensagensEnviadas,
-        totalMensagensRecebidas,
-        heatmapData7Days,
-        heatmapData30Days
-      ] = await Promise.all([
-        getAgents(),
-        getChannels(),
-        getAttendants(),
-        getCustomersAnalytics(period),
-        getChatAnalytics(period),
-        getTotalCustomers(),
-        getTotalAtendimentos(),
-        getTotalMensagensEnviadas(),
-        getTotalMensagensRecebidas(),
-        getConversationHeatmap(7),
-        getConversationHeatmap(30)
-      ]);
-
-      setData({
-        agents: agentsResult.data || [],
-        channels: channelsResult.data || [],
-        attendants: attendantsResult.data || [],
-        customersAnalytics,
-        chatAnalytics,
-        totalCustomers,
-        totalAtendimentos,
-        totalMensagensEnviadas,
-        totalMensagensRecebidas,
-        heatmapData7Days,
-        heatmapData30Days
-      });
-    } catch (error) {
-      console.error('Erro ao carregar dados do analytics:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  // Carregar dados estáticos/independentes do período apenas uma vez
   useEffect(() => {
-    loadData();
+    const loadBaseData = async () => {
+      try {
+        setLoading(true);
+        const [
+          agentsResult,
+          channelsResult,
+          attendantsResult,
+          totalCustomers,
+          totalAtendimentos,
+          totalMensagensEnviadas,
+          totalMensagensRecebidas,
+          heatmapData7Days,
+          heatmapData30Days
+        ] = await Promise.all([
+          getAgents(),
+          getChannels(),
+          getAttendants(),
+          getTotalCustomers(),
+          getTotalAtendimentos(),
+          getTotalMensagensEnviadas(),
+          getTotalMensagensRecebidas(),
+          getConversationHeatmap(7),
+          getConversationHeatmap(30)
+        ]);
+
+        setData(prev => ({
+          ...(prev || {}),
+          agents: agentsResult.data || [],
+          channels: channelsResult.data || [],
+          attendants: attendantsResult.data || [],
+          totalCustomers,
+          totalAtendimentos,
+          totalMensagensEnviadas,
+          totalMensagensRecebidas,
+          heatmapData7Days,
+          heatmapData30Days
+        }));
+      } catch (error) {
+        console.error('Erro ao carregar dados base do analytics:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadBaseData();
+  }, []);
+
+  // Carregar apenas dados dependentes do período quando o período mudar
+  useEffect(() => {
+    const loadPeriodData = async () => {
+      try {
+        setAnalyticsLoading(true);
+        const [customersAnalytics, chatAnalytics] = await Promise.all([
+          getCustomersAnalytics(period),
+          getChatAnalytics(period)
+        ]);
+
+        setData(prev => ({
+          ...(prev || {}),
+          customersAnalytics,
+          chatAnalytics
+        }));
+      } catch (error) {
+        console.error('Erro ao carregar dados por período do analytics:', error);
+      } finally {
+        setAnalyticsLoading(false);
+      }
+    };
+
+    loadPeriodData();
   }, [period]);
 
   if (loading) {
@@ -110,17 +131,17 @@ export function AnalyticsClientPage() {
   const channelCount = channels.length;
   const activeAgents = agents.filter((a: Agent) => a.is_active).length;
   const activeChannels = channels.filter((c: Channel) => c.is_active).length;
+  
+  // Fallbacks para evitar undefined enquanto dados por período carregam
+  const customersAnalyticsData = data.customersAnalytics ?? { data: [], total: 0, percentageChange: 0 };
+  const chatAnalyticsData = data.chatAnalytics ?? { data: [], total: 0, percentageChange: 0 };
 
   return (
     <div className="space-y-6">
+      <HeaderSetter title="Analytics" subtitle="Métricas e análises de performance dos seus agentes de IA" />
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold">Analytics</h1>
-          <p className="text-slate-500 dark:text-slate-400 mt-1">
-            Métricas e análises de performance dos seus agentes de IA
-          </p>
-        </div>
+        <div />
         
         <PeriodFilterComponent 
           selectedPeriod={period} 
@@ -139,16 +160,16 @@ export function AnalyticsClientPage() {
       {/* Analytics Dashboard */}
       <AnalyticsDashboard 
         customersData={{
-          data: data.customersAnalytics.data || [],
-          total: data.customersAnalytics.total || 0,
-          percentageChange: data.customersAnalytics.percentageChange || 0,
-          error: 'error' in data.customersAnalytics ? data.customersAnalytics.error : undefined
+          data: customersAnalyticsData.data || [],
+          total: customersAnalyticsData.total || 0,
+          percentageChange: customersAnalyticsData.percentageChange || 0,
+          error: 'error' in customersAnalyticsData ? (customersAnalyticsData as any).error : undefined
         }}
         chatData={{
-          data: data.chatAnalytics.data || [],
-          total: data.chatAnalytics.total || 0,
-          percentageChange: data.chatAnalytics.percentageChange || 0,
-          error: 'error' in data.chatAnalytics ? data.chatAnalytics.error : undefined
+          data: chatAnalyticsData.data || [],
+          total: chatAnalyticsData.total || 0,
+          percentageChange: chatAnalyticsData.percentageChange || 0,
+          error: 'error' in chatAnalyticsData ? (chatAnalyticsData as any).error : undefined
         }}
         initialPeriod={period}
       />

@@ -60,8 +60,8 @@ export async function POST(request: NextRequest) {
     }
     logger.info(`[RAG_API] Status do agente RAG atualizado para "processing".`);
 
-    const baseUrl = process.env.WHATSAPP_WEBHOOK_URL;
-    const apiKey = process.env.WHATSAPP_WEBHOOK_API_KEY;
+    const baseUrl = process.env.WEBHOOK_URL;
+    const apiKey = process.env.WEBHOOK_API_KEY;
 
     if (!baseUrl || !apiKey) {
       logger.error('[RAG_API_ERROR] Variáveis de ambiente para o webhook não configuradas.');

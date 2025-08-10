@@ -11,6 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { NotificationBell } from '@/components/messaging/NotificationBell';
 import { createClient } from '@/lib/supabase';
 import { cn } from '@/lib/utils';
+import { useHeader } from '@/components/layout/HeaderContext';
 
 type HeaderProps = {
   sidebarOpen?: boolean;
@@ -22,6 +23,7 @@ export default function Header({ sidebarOpen, toggleSidebar }: HeaderProps) {
   const [mounted, setMounted] = useState(false);
   const [userName, setUserName] = useState<string>('');
   const [userInitials, setUserInitials] = useState<string>('NA');
+  const { title, subtitle } = useHeader();
   
   // Após a montagem do componente, podemos renderizar com segurança elementos dependentes do tema
   useEffect(() => {
@@ -85,15 +87,15 @@ export default function Header({ sidebarOpen, toggleSidebar }: HeaderProps) {
           </div>
           <div className="flex flex-col">
             <span className="font-bold text-sm text-slate-900 dark:text-slate-100">Nexus Agents</span>
-            <span className="text-xs text-slate-500 dark:text-slate-400">Dashboard</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400">{title}</span>
           </div>
         </div>
         
         {/* Desktop Title */}
         <div className="hidden md:flex items-center gap-3">
           <div className="flex flex-col">
-            <h1 className="text-lg font-bold text-slate-900 dark:text-slate-100">Dashboard</h1>
-            <p className="text-sm text-slate-500 dark:text-slate-400">Visão geral da sua agência de IA</p>
+            <h1 className="text-lg font-bold text-slate-900 dark:text-slate-100">{title}</h1>
+            <p className="text-sm text-slate-500 dark:text-slate-400">{subtitle}</p>
           </div>
         </div>
       </div>

@@ -54,8 +54,12 @@ export default function LoginForm() {
       <div className="h-2 bg-[#00e980]" />
       
       <div className="flex justify-center mt-8 mb-2">
-        <div className="h-20 w-20 bg-gradient-to-br from-[#00e980] to-[#4d7cfe] rounded-2xl flex items-center justify-center shadow-lg">
-          <BrainCircuit className="h-10 w-10 text-white" />
+        <div className="h-20 w-20 rounded-2xl overflow-hidden shadow-lg">
+          <img 
+            src="/images/logos/logo_128x128.png" 
+            alt="Nexus Agents Logo" 
+            className="w-full h-full object-contain"
+          />
         </div>
       </div>
       

@@ -74,7 +74,11 @@ export function AnalyticsCard({
   period,
   className
 }: AnalyticsCardProps) {
-  const [chartType, setChartType] = useState<ChartType>('line');
+  const [chartType, setChartType] = useState<ChartType>(() => {
+    if (icon === 'users') return 'bar';
+    if (icon === 'messages') return 'area';
+    return 'line';
+  });
   const IconComponent = ICON_MAP[icon];
   const colors = COLOR_MAP[icon];
   

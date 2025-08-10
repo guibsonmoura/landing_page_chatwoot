@@ -23,6 +23,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import logger from '@/lib/logger';
+import { HeaderSetter } from '@/components/layout/HeaderSetter';
 // Forçar renderização dinâmica/SSR para evitar erros de prerender durante o build
 export const dynamic = 'force-dynamic';
 
@@ -447,12 +448,8 @@ export default function KnowledgeBasePage() {
 
   return (
     <div className="container mx-auto py-6 space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Base de Conhecimento</h1>
-        <p className="text-muted-foreground">
-          Gerencie os documentos para enriquecer as respostas dos seus agentes
-        </p>
-      </div>
+      <HeaderSetter title="Base de Conhecimento" subtitle="Gerencie os documentos para enriquecer as respostas dos seus agentes" />
+      <div />
 
       <Card>
         <CardHeader>

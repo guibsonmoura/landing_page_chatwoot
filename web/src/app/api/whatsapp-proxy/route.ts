@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   const cookieStore = await cookies();
   const supabase = await createClient();
-  const apiKey = process.env.WHATSAPP_WEBHOOK_API_KEY;
+  const apiKey = process.env.WEBHOOK_API_KEY;
   const apiKeyHeader = request.headers.get('apikey');
 
   try {
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: 'Não autorizado: tenant_id ausente.' }, { status: 401 });
     }
 
-    const baseUrl = process.env.WHATSAPP_WEBHOOK_URL;
+    const baseUrl = process.env.WEBHOOK_URL;
 
     // Validação crítica das variáveis de ambiente
     if (!baseUrl || !apiKey) {

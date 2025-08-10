@@ -22,7 +22,7 @@ const SENSITIVE_FIELDS = [
   'whatsapp_number', 'wa_id', 'profile_name', 'contact_name',
   
   // Chaves de API específicas
-  'OPENAI_API_KEY', 'SUPABASE_SERVICE_ROLE_KEY', 'WHATSAPP_WEBHOOK_API_KEY',
+  'OPENAI_API_KEY', 'SUPABASE_SERVICE_ROLE_KEY', 'WEBHOOK_API_KEY',
   'NEXT_PUBLIC_SUPABASE_ANON_KEY', 'SUPABASE_ANON_KEY',
   
   // Dados de imagem e arquivos

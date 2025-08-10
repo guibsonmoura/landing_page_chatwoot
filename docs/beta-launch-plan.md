@@ -302,7 +302,7 @@ services:
       - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
       - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - WHATSAPP_WEBHOOK_API_KEY=${WHATSAPP_WEBHOOK_API_KEY}
+      - WEBHOOK_API_KEY=${WEBHOOK_API_KEY}
     ports:
       - "3000:3000"
     restart: unless-stopped
@@ -462,7 +462,7 @@ SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 OPENAI_API_KEY=sk-...
 
 # WhatsApp
-WHATSAPP_WEBHOOK_API_KEY=your-webhook-key
+WEBHOOK_API_KEY=your-webhook-key
 
 # Configurações de produção
 NODE_ENV=production

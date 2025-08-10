@@ -1,9 +1,6 @@
 'use client';
 
-import { useState, useTransition } from 'react';
-import { useRouter } from 'next/navigation';
 import { AnalyticsCard } from './AnalyticsCard';
-import { PeriodFilter as PeriodFilterComponent } from './PeriodFilter';
 import { PeriodFilter, AnalyticsDataPoint } from '@/lib/utils/analytics';
 
 interface AnalyticsDashboardProps {
@@ -31,55 +28,8 @@ export function AnalyticsDashboard({
   customStart,
   customEnd
 }: AnalyticsDashboardProps) {
-  const router = useRouter();
-  const [isPending, startTransition] = useTransition();
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodFilter>(initialPeriod);
-  const [customStartDate, setCustomStartDate] = useState<Date | undefined>(customStart);
-  const [customEndDate, setCustomEndDate] = useState<Date | undefined>(customEnd);
-
-  const handlePeriodChange = (
-    period: PeriodFilter,
-    customStart?: Date,
-    customEnd?: Date
-  ) => {
-    setSelectedPeriod(period);
-    setCustomStartDate(customStart);
-    setCustomEndDate(customEnd);
-
-    startTransition(() => {
-      const params = new URLSearchParams();
-      params.set('period', period);
-      
-      if (period === 'custom' && customStart && customEnd) {
-        params.set('start', customStart.toISOString().split('T')[0]);
-        params.set('end', customEnd.toISOString().split('T')[0]);
-      }
-
-      router.push(`/dashboard?${params.toString()}`);
-    });
-  };
-
   return (
     <div className="space-y-6">
-      {/* Filtro de Período */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
-            Analytics Dashboard
-          </h2>
-          <p className="text-sm text-slate-600 dark:text-slate-400">
-            Acompanhe o desempenho dos seus agentes e atendimentos
-          </p>
-        </div>
-        
-        <PeriodFilterComponent
-          selectedPeriod={selectedPeriod}
-          customStartDate={customStartDate}
-          customEndDate={customEndDate}
-          onPeriodChange={handlePeriodChange}
-        />
-      </div>
-
       {/* Cards de Analytics */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <AnalyticsCard
@@ -89,9 +39,9 @@ export function AnalyticsDashboard({
           data={customersData.data}
           total={customersData.total}
           percentageChange={customersData.percentageChange}
-          isLoading={isPending}
+          isLoading={false}
           error={customersData.error}
-          period={selectedPeriod}
+          period={initialPeriod}
         />
         
         <AnalyticsCard
@@ -101,9 +51,9 @@ export function AnalyticsDashboard({
           data={chatData.data}
           total={chatData.total}
           percentageChange={chatData.percentageChange}
-          isLoading={isPending}
+          isLoading={false}
           error={chatData.error}
-          period={selectedPeriod}
+          period={initialPeriod}
         />
       </div>
     </div>

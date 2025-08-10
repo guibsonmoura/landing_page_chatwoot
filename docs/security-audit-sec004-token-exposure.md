@@ -60,14 +60,14 @@ console.log('[WHATSAPP_PROXY] Webhook disparado com sucesso:', responseData);
 
 ```typescript
 // LINHA 62 - REFERÊNCIA EXPLÍCITA A CHAVES SENSÍVEIS
-console.error('[WHATSAPP_PROXY] Erro Crítico: As variáveis de ambiente WHATSAPP_WEBHOOK_URL ou WHATSAPP_WEBHOOK_API_KEY não estão definidas no servidor.');
+console.error('[WHATSAPP_PROXY] Erro Crítico: As variáveis de ambiente WEBHOOK_URL ou WEBHOOK_API_KEY não estão definidas no servidor.');
 
 // LINHA 98 - EXPOSIÇÃO POTENCIAL DE STACK TRACES COM TOKENS
 console.error('[WHATSAPP_PROXY] Erro inesperado no handler da rota:', error);
 ```
 
 **Risco:**
-- **WHATSAPP_WEBHOOK_API_KEY** pode vazar em stack traces
+- **WEBHOOK_API_KEY** pode vazar em stack traces
 - **Logs de erro** podem expor tokens em produção
 - **Debugging information** pode conter credenciais
 
@@ -181,7 +181,7 @@ process.env.NEXT_PUBLIC_WHATSAPP_STATUS_CHECK_INTERVAL
 // LINHA 77 - API KEY EM HEADER
 headers: {
   'Content-Type': 'application/json',
-  'apikey': apiKey, // WHATSAPP_WEBHOOK_API_KEY exposta em header
+  'apikey': apiKey, // WEBHOOK_API_KEY exposta em header
 },
 ```
 

@@ -13,8 +13,8 @@ services:
       SUPABASE_ANON_KEY: "CHAVE"
       # SEGREDOS SOMENTE NO SERVIDOR (não expostos ao client)
       OPENAI_API_KEY: "COLOQUE_NO_PORTAINER_COMO_SECRET_SE_POSSIVEL"
-      WHATSAPP_WEBHOOK_URL: "URL"
-      WHATSAPP_WEBHOOK_API_KEY: "CHAVE"
+      WEBHOOK_URL: "URL"
+      WEBHOOK_API_KEY: "CHAVE"
       # Outras variáveis necessárias ao servidor (service role NUNCA vai para o cliente)
       # SUPABASE_SERVICE_ROLE_KEY: "COLOQUE_NO_PORTAINER_COMO_SECRET_SE_POSSIVEL"
     deploy:
