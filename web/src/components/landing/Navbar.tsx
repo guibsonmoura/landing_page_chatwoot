@@ -3,118 +3,147 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, X, BrainCircuit, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const navLinks = [
+    { label: "Recursos", href: "#features" },
+    { label: "Como Funciona", href: "#how-it-works" },
+    { label: "Preços", href: "#pricing" },
+  ];
+
   return (
-    <header className="bg-[#0d0d17] sticky top-0 z-50 border-b border-gray-800">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
+    <header className="bg-[#0d0d17]/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
+      <div className="container mx-auto px-6 py-3 flex items-center justify-between">
+        
+        {/* Logo Animada */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut", type: "spring" }}
+        >
           <Link href="/" className="flex items-center gap-2">
-            <div className="relative h-16 w-16 rounded-lg overflow-hidden shadow-lg">
-              <img 
-                src="/images/logos/logo_64x64.png" 
-                alt="Nexus Agents Logo" 
+            <div className="relative h-10 w-10">
+              <img
+                src="/images/logos/logo_64x64.png"
+                alt="365IA Logo"
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="text-xl font-bold text-white">
-              Nexus Agents
-            </span>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="text-lg font-semibold text-white"
+            >
+              365IA
+            </motion.span>
           </Link>
+        </motion.div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
-            <Link 
-              href="#features" 
-              className="px-3 py-2 text-gray-300 hover:text-white font-medium transition-colors"
+        {/* Desktop Navigation */}
+        <motion.nav 
+          className="hidden md:flex items-center space-x-6"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0, y: -10 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                staggerChildren: 0.15,
+              },
+            },
+          }}
+        >
+          {navLinks.map((link, index) => (
+            <motion.div
+              key={index}
+              variants={{
+                hidden: { opacity: 0, y: -10 },
+                visible: { opacity: 1, y: 0 },
+              }}
             >
-              Recursos
-            </Link>
-            
-            <Link 
-              href="#how-it-works" 
-              className="px-3 py-2 text-gray-300 hover:text-white font-medium transition-colors"
-            >
-              Como Funciona
-            </Link>
-            
-            <Link 
-              href="#pricing" 
-              className="px-3 py-2 text-gray-300 hover:text-white font-medium transition-colors"
-            >
-              Preços
-            </Link>
-          </nav>
+              <Link
+                href={link.href}
+                className="text-gray-300 hover:text-[#00e980] transition-colors"
+              >
+                {link.label}
+              </Link>
+            </motion.div>
+          ))}
+        </motion.nav>
 
-          {/* Desktop CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-3">
-            <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-transparent" asChild>
+        {/* CTA Desktop */}
+        <motion.div
+          className="hidden md:flex"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button
+              className="px-5 py-2 bg-[#00e980] text-black font-medium rounded-full hover:bg-[#00c870] transition"
+              asChild
+            >
               <Link href="/login">Entrar</Link>
             </Button>
-            <Button variant="outline" className="border-gray-700 hover:border-gray-600 text-gray-300 hover:text-white bg-transparent hover:bg-gray-800" asChild>
-              <Link href="/demo">Agendar demo</Link>
-            </Button>
-            <Button className="bg-[#00e980] hover:bg-[#00c870] text-black font-medium rounded-md" asChild>
-              <Link href="/signup">Começar grátis</Link>
-            </Button>
-          </div>
+          </motion.div>
+        </motion.div>
 
-          {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden text-gray-300 focus:outline-none" 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4">
-            <nav className="flex flex-col space-y-4">
-              <Link 
-                href="#features" 
-                className="text-gray-300 hover:text-white font-medium transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Recursos
-              </Link>
-              <Link 
-                href="#how-it-works" 
-                className="text-gray-300 hover:text-white font-medium transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Como Funciona
-              </Link>
-              <Link 
-                href="#pricing" 
-                className="text-gray-300 hover:text-white font-medium transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Preços
-              </Link>
-              <div className="flex flex-col space-y-2 pt-2">
-                <Button variant="ghost" className="justify-start text-gray-300" asChild>
-                  <Link href="/login">Entrar</Link>
-                </Button>
-                <Button variant="outline" className="justify-start border-gray-700 text-gray-300 bg-transparent" asChild>
-                  <Link href="/demo">Agendar demo</Link>
-                </Button>
-                <Button className="justify-start bg-[#00e980] text-black" asChild>
-                  <Link href="/signup">Começar grátis</Link>
-                </Button>
-              </div>
-            </nav>
-          </div>
-        )}
+        {/* Mobile Toggle Button */}
+        <button
+          className="md:hidden text-gray-300"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-[#0d0d17] border-t border-gray-800"
+          >
+            <nav className="flex flex-col px-6 py-4 space-y-4">
+              {navLinks.map((link, index) => (
+                <Link
+                  key={index}
+                  href={link.href}
+                  className="text-gray-300 hover:text-[#00e980] transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="pt-2"
+              >
+                <Button
+                  className="w-full bg-[#00e980] text-black font-medium rounded-full hover:bg-[#00c870] transition"
+                  asChild
+                >
+                  <Link href="/login" onClick={() => setIsMenuOpen(false)}>
+                    Entrar
+                  </Link>
+                </Button>
+              </motion.div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

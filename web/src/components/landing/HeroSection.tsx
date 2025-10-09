@@ -11,14 +11,14 @@ export function HeroSection() {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
           <div className="lg:w-1/2 space-y-8">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white">
-              Crie agentes de IA
-              <span className="block mt-2">inteligentes com</span>
+              Guibson
+              <span className="block mt-2">Moura</span>
               <span className="text-[#00e980] font-bold">
                 Nexus Agents
               </span>
             </h1>
             <p className="text-xl text-gray-300 max-w-lg">
-              Plataforma completa para criar agentes de IA especializados, cada um com sua própria base de conhecimento. Deploy em WhatsApp, Instagram e outros canais em minutos.
+              Guibson Moura
             </p>
             
 

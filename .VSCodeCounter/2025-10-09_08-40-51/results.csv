@@ -1,0 +1,168 @@
+"filename", "language", "JavaScript", "Markdown", "Ignore", "JSON", "YAML", "TypeScript", "Docker", "JSON with Comments", "XML", "Shell Script", "MS SQL", "Properties", "TypeScript JSX", "PostCSS", "comment", "blank", "total"
+"/home/moura/projetos/projetos_web/nexus-agents/web/.dockerignore", "Ignore", 0, 0, 47, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 24, 95
+"/home/moura/projetos/projetos_web/nexus-agents/web/Dockerfile", "Docker", 0, 0, 0, 0, 0, 0, 46, 0, 0, 0, 0, 0, 0, 0, 13, 18, 77
+"/home/moura/projetos/projetos_web/nexus-agents/web/README.md", "Markdown", 0, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 37
+"/home/moura/projetos/projetos_web/nexus-agents/web/components.json", "JSON", 0, 0, 0, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21
+"/home/moura/projetos/projetos_web/nexus-agents/web/deploy-direct.sh", "Shell Script", 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 8, 7, 31
+"/home/moura/projetos/projetos_web/nexus-agents/web/docker-compose.traefik.yml", "YAML", 0, 0, 0, 0, 72, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 11, 92
+"/home/moura/projetos/projetos_web/nexus-agents/web/docker-compose.yml", "YAML", 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 65
+"/home/moura/projetos/projetos_web/nexus-agents/web/docker-stack.yml", "YAML", 0, 0, 0, 0, 42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 2, 55
+"/home/moura/projetos/projetos_web/nexus-agents/web/eslint.config.mjs", "JavaScript", 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 17
+"/home/moura/projetos/projetos_web/nexus-agents/web/instrumentation.ts", "TypeScript", 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 51
+"/home/moura/projetos/projetos_web/nexus-agents/web/migrations/001_create_cms_tables.sql", "MS SQL", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 99, 0, 0, 0, 12, 17, 128
+"/home/moura/projetos/projetos_web/nexus-agents/web/migrations/003_create_messaging_system.sql", "MS SQL", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 151, 0, 0, 0, 31, 42, 224
+"/home/moura/projetos/projetos_web/nexus-agents/web/migrations/004_fix_messaging_rls_policies.sql", "MS SQL", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 124, 0, 0, 0, 14, 22, 160
+"/home/moura/projetos/projetos_web/nexus-agents/web/next.config.ts", "TypeScript", 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 0, 0, 0, 6, 8, 53
+"/home/moura/projetos/projetos_web/nexus-agents/web/nginx/nginx.conf", "Properties", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 141, 0, 0, 23, 30, 194
+"/home/moura/projetos/projetos_web/nexus-agents/web/package-lock.json", "JSON", 0, 0, 0, 8547, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 8548
+"/home/moura/projetos/projetos_web/nexus-agents/web/package.json", "JSON", 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 61
+"/home/moura/projetos/projetos_web/nexus-agents/web/pnpm-lock.yaml", "YAML", 0, 0, 0, 0, 4671, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1128, 5799
+"/home/moura/projetos/projetos_web/nexus-agents/web/portainer-stack.yml", "YAML", 0, 0, 0, 0, 81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 13, 105
+"/home/moura/projetos/projetos_web/nexus-agents/web/postcss.config.mjs", "JavaScript", 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 6
+"/home/moura/projetos/projetos_web/nexus-agents/web/public/file.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1
+"/home/moura/projetos/projetos_web/nexus-agents/web/public/globe.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1
+"/home/moura/projetos/projetos_web/nexus-agents/web/public/next.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1
+"/home/moura/projetos/projetos_web/nexus-agents/web/public/vercel.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1
+"/home/moura/projetos/projetos_web/nexus-agents/web/public/window.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/api/diag/route.ts", "TypeScript", 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 2, 6, 40
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/api/health/route.ts", "TypeScript", 0, 0, 0, 0, 0, 37, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 41
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/api/knowledge-base/route.ts", "TypeScript", 0, 0, 0, 0, 0, 151, 0, 0, 0, 0, 0, 0, 0, 0, 18, 29, 198
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/api/rag/route.ts", "TypeScript", 0, 0, 0, 0, 0, 78, 0, 0, 0, 0, 0, 0, 0, 0, 2, 16, 96
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/api/setup-bucket/route.ts", "TypeScript", 0, 0, 0, 0, 0, 44, 0, 0, 0, 0, 0, 0, 0, 0, 4, 10, 58
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/api/whatsapp-proxy/route.ts", "TypeScript", 0, 0, 0, 0, 0, 88, 0, 0, 0, 0, 0, 0, 0, 0, 7, 16, 111
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/agents/[id]/page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 72, 0, 5, 16, 93
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/agents/client-page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 158, 0, 1, 17, 176
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/agents/page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 4, 4, 17
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/analytics/client-page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 157, 0, 7, 21, 185
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/analytics/page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 38, 0, 5, 7, 50
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/attendants/client-page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 133, 0, 11, 19, 163
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/attendants/page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 0, 6, 5, 35
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/channels/client-page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 153, 0, 2, 19, 174
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/channels/page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 4, 5, 18
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/knowledge-base/page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 530, 0, 31, 70, 631
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 176, 0, 10, 14, 200
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/messages/client-page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 281, 0, 32, 26, 339
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/messages/page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 3, 17
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 2, 2, 8
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/plano/page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 573, 0, 29, 39, 641
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/globals.css", "PostCSS", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 1, 7, 127
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 54, 0, 6, 6, 66
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/login/page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 26, 0, 3, 6, 35
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 2, 6
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/app/signup/page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27, 0, 4, 6, 37
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/AgentCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 282, 0, 9, 16, 307
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/CreateAgentDialog.temp.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 383, 0, 12, 33, 428
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/CreateAgentDialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 438, 0, 18, 37, 493
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/AgentCreationWizard.temp.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 295, 0, 14, 41, 350
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/AgentCreationWizard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 207, 0, 13, 32, 252
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/AgentTemplateGallery.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 185, 0, 2, 23, 210
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/steps/ArchetypeSelector.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 182, 0, 1, 19, 202
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/steps/BusinessStep.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28, 0, 0, 3, 31
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/steps/ConversationFlows.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 164, 0, 2, 17, 183
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/steps/PersonalityTraits.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 175, 0, 1, 20, 196
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/steps/ReviewPrompt.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 112, 0, 0, 6, 118
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/steps/ReviewStep.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 0, 0, 10, 66
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/steps/index.d.ts", "TypeScript", 0, 0, 0, 0, 0, 36, 0, 0, 0, 0, 0, 0, 0, 0, 1, 9, 46
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/analytics/AnalyticsCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 350, 0, 3, 27, 380
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/analytics/AnalyticsDashboard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 0, 1, 5, 62
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/analytics/ConversationHeatmap.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 383, 0, 35, 65, 483
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/analytics/PeriodFilter.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 181, 0, 1, 16, 198
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/analytics/ValueMetricsCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 368, 0, 19, 39, 426
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/attendants/AttendantCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 164, 0, 1, 11, 176
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/attendants/CreateAttendantModal.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 352, 0, 8, 26, 386
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/auth/LoginForm.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 162, 0, 2, 17, 181
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/auth/LogoutButton.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60, 0, 1, 8, 69
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/auth/SignUpForm.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 236, 0, 6, 18, 260
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/channels/ChannelCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 421, 0, 20, 36, 477
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/channels/CreateChannelDialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 519, 0, 14, 26, 559
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/channels/QRCodeModal.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 408, 0, 40, 49, 497
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/cms/DynamicLandingPage.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 41, 0, 4, 5, 50
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/cms/DynamicSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 79, 0, 4, 11, 94
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/cms/sections/DynamicFeaturesSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 66, 0, 1, 11, 78
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/cms/sections/DynamicHeroSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 61, 0, 3, 11, 75
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/cms/sections/DynamicHowItWorksSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 102, 0, 4, 13, 119
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/cms/sections/DynamicPricingSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 113, 0, 7, 12, 132
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/cms/sections/DynamicTestimonialsSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 89, 0, 5, 11, 105
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/dashboard/StatCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 69, 0, 0, 5, 74
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/dashboard/TotalizadorCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 98, 0, 1, 6, 105
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/dashboard/TotalizadoresGrid.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 55, 0, 0, 7, 62
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/knowledge-base/CreateKnowledgeBaseDialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 325, 0, 20, 40, 385
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/knowledge/KnowledgeBaseList.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 111, 0, 3, 13, 127
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/knowledge/KnowledgeBaseUploader.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 109, 0, 4, 21, 134
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/landing/FeaturesSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 144, 0, 2, 8, 154
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/landing/Footer.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 170, 0, 1, 10, 181
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/landing/HeroSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0, 0, 9, 68
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/landing/HowItWorksSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 228, 0, 6, 18, 252
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/landing/Navbar.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 107, 0, 4, 10, 121
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/landing/PricingSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 143, 0, 1, 10, 154
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/landing/TestimonialsSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 83, 0, 0, 9, 92
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/layout/Header.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 120, 0, 12, 19, 151
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/layout/HeaderContext.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 38, 0, 0, 12, 50
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/layout/HeaderSetter.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 1, 5, 19
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/messaging/MessageForm.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 434, 0, 16, 31, 481
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/messaging/MessageList.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 276, 0, 12, 24, 312
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/messaging/NotificationBell.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 240, 0, 10, 23, 273
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/providers/ThemeProvider.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 3, 10
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/alert-dialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 143, 0, 0, 15, 158
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/alert.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 57, 0, 0, 7, 64
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/avatar.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 44, 0, 0, 7, 51
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/badge.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31, 0, 0, 6, 37
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/button.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 55, 0, 0, 6, 61
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/card.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 83, 0, 0, 10, 93
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/checkbox.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 26, 0, 0, 5, 31
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/dialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 130, 0, 0, 14, 144
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/dropdown-menu.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 239, 0, 0, 19, 258
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/form.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 143, 0, 0, 25, 168
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/input.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 4, 22
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/label.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 5, 25
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/loading.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 93, 0, 3, 9, 105
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/radio-group.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 39, 0, 0, 6, 45
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/scroll-area.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 43, 0, 0, 6, 49
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/select.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 172, 0, 0, 14, 186
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/separator.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27, 0, 0, 5, 32
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/skeleton.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 3, 16
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/stepper.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 58, 0, 0, 7, 65
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/table.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 105, 0, 0, 12, 117
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/tabs.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0, 0, 8, 67
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/textarea.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 4, 19
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/toast.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 115, 0, 0, 13, 128
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/toaster.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 0, 0, 4, 36
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/use-toast.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 159, 0, 3, 31, 193
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/contexts/AgentContext.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 37, 0, 0, 7, 44
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/instrumentation.ts", "TypeScript", 0, 0, 0, 0, 0, 43, 0, 0, 0, 0, 0, 0, 0, 0, 6, 5, 54
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/agent.actions.ts", "TypeScript", 0, 0, 0, 0, 0, 322, 0, 0, 0, 0, 0, 0, 0, 0, 24, 80, 426
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/analytics.actions.ts", "TypeScript", 0, 0, 0, 0, 0, 536, 0, 0, 0, 0, 0, 0, 0, 0, 72, 137, 745
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/attendant.actions.ts", "TypeScript", 0, 0, 0, 0, 0, 243, 0, 0, 0, 0, 0, 0, 0, 0, 27, 69, 339
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/channel.actions.ts", "TypeScript", 0, 0, 0, 0, 0, 246, 0, 0, 0, 0, 0, 0, 0, 0, 23, 62, 331
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/cms.actions.ts", "TypeScript", 0, 0, 0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 0, 0, 13, 35, 239
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/invoice.actions.ts", "TypeScript", 0, 0, 0, 0, 0, 214, 0, 0, 0, 0, 0, 0, 0, 0, 21, 40, 275
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/knowledge-base.actions.ts", "TypeScript", 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 13, 16, 89
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/knowledge.actions.ts", "TypeScript", 0, 0, 0, 0, 0, 116, 0, 0, 0, 0, 0, 0, 0, 0, 10, 27, 153
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/message.actions.ts", "TypeScript", 0, 0, 0, 0, 0, 503, 0, 0, 0, 0, 0, 0, 0, 0, 19, 82, 604
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/payment-method.actions.ts", "TypeScript", 0, 0, 0, 0, 0, 211, 0, 0, 0, 0, 0, 0, 0, 0, 31, 41, 283
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/payment.actions.ts", "TypeScript", 0, 0, 0, 0, 0, 272, 0, 0, 0, 0, 0, 0, 0, 0, 33, 47, 352
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/template.actions.ts", "TypeScript", 0, 0, 0, 0, 0, 93, 0, 0, 0, 0, 0, 0, 0, 0, 19, 28, 140
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/whatsapp.actions.ts", "TypeScript", 0, 0, 0, 0, 0, 88, 0, 0, 0, 0, 0, 0, 0, 0, 18, 18, 124
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/wizard.actions.ts", "TypeScript", 0, 0, 0, 0, 0, 110, 0, 0, 0, 0, 0, 0, 0, 0, 8, 18, 136
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/billing/invoice-generator.ts", "TypeScript", 0, 0, 0, 0, 0, 244, 0, 0, 0, 0, 0, 0, 0, 0, 30, 46, 320
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/logger.ts", "TypeScript", 0, 0, 0, 0, 0, 83, 0, 0, 0, 0, 0, 0, 0, 0, 15, 21, 119
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/plan-icons.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 36, 0, 0, 4, 40
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/security/disable-console-production.ts", "TypeScript", 0, 0, 0, 0, 0, 75, 0, 0, 0, 0, 0, 0, 0, 0, 20, 15, 110
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/security/tenant-validation.ts", "TypeScript", 0, 0, 0, 0, 0, 174, 0, 0, 0, 0, 0, 0, 0, 0, 41, 32, 247
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/supabase.ts", "TypeScript", 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 6, 3, 27
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/supabase/client.ts", "TypeScript", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 4, 3, 14
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/supabase/server.ts", "TypeScript", 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 6, 4, 40
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/types/payment.types.ts", "TypeScript", 0, 0, 0, 0, 0, 172, 0, 0, 0, 0, 0, 0, 0, 0, 13, 22, 207
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/utils.ts", "TypeScript", 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 7
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/utils/analytics.ts", "TypeScript", 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 2, 8, 50
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/lib/utils/payment.utils.ts", "TypeScript", 0, 0, 0, 0, 0, 83, 0, 0, 0, 0, 0, 0, 0, 0, 33, 21, 137
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/middleware.ts", "TypeScript", 0, 0, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 0, 17, 12, 92
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/stores/agentStore.ts", "TypeScript", 0, 0, 0, 0, 0, 120, 0, 0, 0, 0, 0, 0, 0, 0, 5, 20, 145
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/stores/planStore.ts", "TypeScript", 0, 0, 0, 0, 0, 68, 0, 0, 0, 0, 0, 0, 0, 0, 10, 19, 97
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/types/agent.ts", "TypeScript", 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 26
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/types/attendant.ts", "TypeScript", 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 10
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/types/channel.ts", "TypeScript", 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 24
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/types/message.ts", "TypeScript", 0, 0, 0, 0, 0, 226, 0, 0, 0, 0, 0, 0, 0, 0, 26, 41, 293
+"/home/moura/projetos/projetos_web/nexus-agents/web/src/types/wizard.ts", "TypeScript", 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 3, 5, 48
+"/home/moura/projetos/projetos_web/nexus-agents/web/tsconfig.json", "JSON with Comments", 0, 0, 0, 0, 0, 0, 0, 27, 0, 0, 0, 0, 0, 0, 0, 1, 28
+"Total", "-", 16, 23, 47, 8628, 4926, 5291, 46, 27, 5, 16, 374, 141, 13981, 119, 1288, 3937, 38865

@@ -7,10 +7,12 @@ import { Footer } from '@/components/landing/Footer';
 export async function DynamicLandingPage() {
   // Fetch CMS content for home page
   const { page, components } = await getCMSPageBySlug('home');
-
+  console.log('cms', page);
+  console.log('components', components);
   // Fallback to static content if CMS is not available
   if (!page || components.length === 0) {
     // Import static components as fallback
+    console.log('veio usar static components as fallback');
     const { HeroSection } = await import('@/components/landing/HeroSection');
     const { FeaturesSection } = await import('@/components/landing/FeaturesSection');
     const { HowItWorksSection } = await import('@/components/landing/HowItWorksSection');
@@ -31,7 +33,7 @@ export async function DynamicLandingPage() {
       </div>
     );
   }
-
+  console.log('veio usar cms components');
   return (
     <div className="min-h-screen bg-[#0d0d17]">
       <Navbar />

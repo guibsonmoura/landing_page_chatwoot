@@ -1,0 +1,263 @@
+Date : 2025-10-09 08:40:51
+Directory : /home/moura/projetos/projetos_web/nexus-agents/web
+Total : 166 files,  33640 codes, 1288 comments, 3937 blanks, all 38865 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| TypeScript JSX     |         98 |     13,981 |        512 |      1,500 |     15,993 |
+| JSON               |          3 |      8,628 |          0 |          2 |      8,630 |
+| TypeScript         |         43 |      5,291 |        619 |      1,087 |      6,997 |
+| YAML               |          5 |      4,926 |         31 |      1,159 |      6,116 |
+| MS SQL             |          3 |        374 |         57 |         81 |        512 |
+| Properties         |          1 |        141 |         23 |         30 |        194 |
+| PostCSS            |          1 |        119 |          1 |          7 |        127 |
+| Ignore             |          1 |         47 |         24 |         24 |         95 |
+| Docker             |          1 |         46 |         13 |         18 |         77 |
+| JSON with Comments |          1 |         27 |          0 |          1 |         28 |
+| Markdown           |          1 |         23 |          0 |         14 |         37 |
+| JavaScript         |          2 |         16 |          0 |          7 |         23 |
+| Shell Script       |          1 |         16 |          8 |          7 |         31 |
+| XML                |          5 |          5 |          0 |          0 |          5 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                           | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                              |        166 |     33,640 |      1,288 |      3,937 |     38,865 |
+| . (Files)                                                                                                      |         17 |     13,809 |         87 |      1,245 |     15,141 |
+| migrations                                                                                                     |          3 |        374 |         57 |         81 |        512 |
+| nginx                                                                                                          |          1 |        141 |         23 |         30 |        194 |
+| public                                                                                                         |          5 |          5 |          0 |          0 |          5 |
+| src                                                                                                            |        140 |     19,311 |      1,121 |      2,581 |     23,013 |
+| src (Files)                                                                                                    |          2 |        106 |         23 |         17 |        146 |
+| src/app                                                                                                        |         26 |      2,991 |        197 |        374 |      3,562 |
+| src/app (Files)                                                                                                |          3 |        177 |          7 |         15 |        199 |
+| src/app/api                                                                                                    |          6 |        430 |         34 |         80 |        544 |
+| src/app/api/diag                                                                                               |          1 |         32 |          2 |          6 |         40 |
+| src/app/api/health                                                                                             |          1 |         37 |          1 |          3 |         41 |
+| src/app/api/knowledge-base                                                                                     |          1 |        151 |         18 |         29 |        198 |
+| src/app/api/rag                                                                                                |          1 |         78 |          2 |         16 |         96 |
+| src/app/api/setup-bucket                                                                                       |          1 |         44 |          4 |         10 |         58 |
+| src/app/api/whatsapp-proxy                                                                                     |          1 |         88 |          7 |         16 |        111 |
+| src/app/dashboard                                                                                              |         15 |      2,331 |        149 |        267 |      2,747 |
+| src/app/dashboard (Files)                                                                                      |          2 |        180 |         12 |         16 |        208 |
+| src/app/dashboard/agents                                                                                       |          3 |        239 |         10 |         37 |        286 |
+| src/app/dashboard/agents (Files)                                                                               |          2 |        167 |          5 |         21 |        193 |
+| src/app/dashboard/agents/[id]                                                                                  |          1 |         72 |          5 |         16 |         93 |
+| src/app/dashboard/analytics                                                                                    |          2 |        195 |         12 |         28 |        235 |
+| src/app/dashboard/attendants                                                                                   |          2 |        157 |         17 |         24 |        198 |
+| src/app/dashboard/channels                                                                                     |          2 |        162 |          6 |         24 |        192 |
+| src/app/dashboard/knowledge-base                                                                               |          1 |        530 |         31 |         70 |        631 |
+| src/app/dashboard/messages                                                                                     |          2 |        295 |         32 |         29 |        356 |
+| src/app/dashboard/plano                                                                                        |          1 |        573 |         29 |         39 |        641 |
+| src/app/login                                                                                                  |          1 |         26 |          3 |          6 |         35 |
+| src/app/signup                                                                                                 |          1 |         27 |          4 |          6 |         37 |
+| src/components                                                                                                 |         78 |     11,502 |        351 |      1,211 |     13,064 |
+| src/components/agents                                                                                          |         13 |      2,543 |         73 |        266 |      2,882 |
+| src/components/agents (Files)                                                                                  |          3 |      1,103 |         39 |         86 |      1,228 |
+| src/components/agents/wizard                                                                                   |         10 |      1,440 |         34 |        180 |      1,654 |
+| src/components/agents/wizard (Files)                                                                           |          3 |        687 |         29 |         96 |        812 |
+| src/components/agents/wizard/steps                                                                             |          7 |        753 |          5 |         84 |        842 |
+| src/components/analytics                                                                                       |          5 |      1,338 |         59 |        152 |      1,549 |
+| src/components/attendants                                                                                      |          2 |        516 |          9 |         37 |        562 |
+| src/components/auth                                                                                            |          3 |        458 |          9 |         43 |        510 |
+| src/components/channels                                                                                        |          3 |      1,348 |         74 |        111 |      1,533 |
+| src/components/cms                                                                                             |          7 |        551 |         28 |         74 |        653 |
+| src/components/cms (Files)                                                                                     |          2 |        120 |          8 |         16 |        144 |
+| src/components/cms/sections                                                                                    |          5 |        431 |         20 |         58 |        509 |
+| src/components/dashboard                                                                                       |          3 |        222 |          1 |         18 |        241 |
+| src/components/knowledge                                                                                       |          2 |        220 |          7 |         34 |        261 |
+| src/components/knowledge-base                                                                                  |          1 |        325 |         20 |         40 |        385 |
+| src/components/landing                                                                                         |          7 |        934 |         14 |         74 |      1,022 |
+| src/components/layout                                                                                          |          3 |        171 |         13 |         36 |        220 |
+| src/components/messaging                                                                                       |          3 |        950 |         38 |         78 |      1,066 |
+| src/components/providers                                                                                       |          1 |          7 |          0 |          3 |         10 |
+| src/components/ui                                                                                              |         25 |      1,919 |          6 |        245 |      2,170 |
+| src/contexts                                                                                                   |          1 |         37 |          0 |          7 |         44 |
+| src/lib                                                                                                        |         26 |      4,172 |        501 |        881 |      5,554 |
+| src/lib (Files)                                                                                                |          4 |        142 |         21 |         30 |        193 |
+| src/lib/actions                                                                                                |         14 |      3,205 |        331 |        700 |      4,236 |
+| src/lib/billing                                                                                                |          1 |        244 |         30 |         46 |        320 |
+| src/lib/security                                                                                               |          2 |        249 |         61 |         47 |        357 |
+| src/lib/supabase                                                                                               |          2 |         37 |         10 |          7 |         54 |
+| src/lib/types                                                                                                  |          1 |        172 |         13 |         22 |        207 |
+| src/lib/utils                                                                                                  |          2 |        123 |         35 |         29 |        187 |
+| src/stores                                                                                                     |          2 |        188 |         15 |         39 |        242 |
+| src/types                                                                                                      |          5 |        315 |         34 |         52 |        401 |
++----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                       | language           | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| /home/moura/projetos/projetos_web/nexus-agents/web/.dockerignore                                               | Ignore             |         47 |         24 |         24 |         95 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/Dockerfile                                                  | Docker             |         46 |         13 |         18 |         77 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/README.md                                                   | Markdown           |         23 |          0 |         14 |         37 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/components.json                                             | JSON               |         21 |          0 |          0 |         21 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/deploy-direct.sh                                            | Shell Script       |         16 |          8 |          7 |         31 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/docker-compose.traefik.yml                                  | YAML               |         72 |          9 |         11 |         92 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/docker-compose.yml                                          | YAML               |         60 |          0 |          5 |         65 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/docker-stack.yml                                            | YAML               |         42 |         11 |          2 |         55 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/eslint.config.mjs                                           | JavaScript         |         12 |          0 |          5 |         17 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/instrumentation.ts                                          | TypeScript         |         41 |          5 |          5 |         51 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/migrations/001_create_cms_tables.sql                        | MS SQL             |         99 |         12 |         17 |        128 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/migrations/003_create_messaging_system.sql                  | MS SQL             |        151 |         31 |         42 |        224 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/migrations/004_fix_messaging_rls_policies.sql               | MS SQL             |        124 |         14 |         22 |        160 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/next.config.ts                                              | TypeScript         |         39 |          6 |          8 |         53 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/nginx/nginx.conf                                            | Properties         |        141 |         23 |         30 |        194 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/package-lock.json                                           | JSON               |      8,547 |          0 |          1 |      8,548 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/package.json                                                | JSON               |         60 |          0 |          1 |         61 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/pnpm-lock.yaml                                              | YAML               |      4,671 |          0 |      1,128 |      5,799 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/portainer-stack.yml                                         | YAML               |         81 |         11 |         13 |        105 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/postcss.config.mjs                                          | JavaScript         |          4 |          0 |          2 |          6 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/public/file.svg                                             | XML                |          1 |          0 |          0 |          1 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/public/globe.svg                                            | XML                |          1 |          0 |          0 |          1 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/public/next.svg                                             | XML                |          1 |          0 |          0 |          1 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/public/vercel.svg                                           | XML                |          1 |          0 |          0 |          1 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/public/window.svg                                           | XML                |          1 |          0 |          0 |          1 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/api/diag/route.ts                                   | TypeScript         |         32 |          2 |          6 |         40 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/api/health/route.ts                                 | TypeScript         |         37 |          1 |          3 |         41 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/api/knowledge-base/route.ts                         | TypeScript         |        151 |         18 |         29 |        198 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/api/rag/route.ts                                    | TypeScript         |         78 |          2 |         16 |         96 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/api/setup-bucket/route.ts                           | TypeScript         |         44 |          4 |         10 |         58 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/api/whatsapp-proxy/route.ts                         | TypeScript         |         88 |          7 |         16 |        111 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/agents/[id]/page.tsx                      | TypeScript JSX     |         72 |          5 |         16 |         93 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/agents/client-page.tsx                    | TypeScript JSX     |        158 |          1 |         17 |        176 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/agents/page.tsx                           | TypeScript JSX     |          9 |          4 |          4 |         17 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/analytics/client-page.tsx                 | TypeScript JSX     |        157 |          7 |         21 |        185 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/analytics/page.tsx                        | TypeScript JSX     |         38 |          5 |          7 |         50 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/attendants/client-page.tsx                | TypeScript JSX     |        133 |         11 |         19 |        163 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/attendants/page.tsx                       | TypeScript JSX     |         24 |          6 |          5 |         35 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/channels/client-page.tsx                  | TypeScript JSX     |        153 |          2 |         19 |        174 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/channels/page.tsx                         | TypeScript JSX     |          9 |          4 |          5 |         18 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/knowledge-base/page.tsx                   | TypeScript JSX     |        530 |         31 |         70 |        631 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/layout.tsx                                | TypeScript JSX     |        176 |         10 |         14 |        200 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/messages/client-page.tsx                  | TypeScript JSX     |        281 |         32 |         26 |        339 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/messages/page.tsx                         | TypeScript JSX     |         14 |          0 |          3 |         17 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/page.tsx                                  | TypeScript JSX     |          4 |          2 |          2 |          8 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/dashboard/plano/page.tsx                            | TypeScript JSX     |        573 |         29 |         39 |        641 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/globals.css                                         | PostCSS            |        119 |          1 |          7 |        127 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/layout.tsx                                          | TypeScript JSX     |         54 |          6 |          6 |         66 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/login/page.tsx                                      | TypeScript JSX     |         26 |          3 |          6 |         35 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/page.tsx                                            | TypeScript JSX     |          4 |          0 |          2 |          6 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/app/signup/page.tsx                                     | TypeScript JSX     |         27 |          4 |          6 |         37 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/AgentCard.tsx                         | TypeScript JSX     |        282 |          9 |         16 |        307 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/CreateAgentDialog.temp.tsx            | TypeScript JSX     |        383 |         12 |         33 |        428 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/CreateAgentDialog.tsx                 | TypeScript JSX     |        438 |         18 |         37 |        493 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/AgentCreationWizard.temp.tsx   | TypeScript JSX     |        295 |         14 |         41 |        350 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/AgentCreationWizard.tsx        | TypeScript JSX     |        207 |         13 |         32 |        252 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/AgentTemplateGallery.tsx       | TypeScript JSX     |        185 |          2 |         23 |        210 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/steps/ArchetypeSelector.tsx    | TypeScript JSX     |        182 |          1 |         19 |        202 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/steps/BusinessStep.tsx         | TypeScript JSX     |         28 |          0 |          3 |         31 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/steps/ConversationFlows.tsx    | TypeScript JSX     |        164 |          2 |         17 |        183 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/steps/PersonalityTraits.tsx    | TypeScript JSX     |        175 |          1 |         20 |        196 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/steps/ReviewPrompt.tsx         | TypeScript JSX     |        112 |          0 |          6 |        118 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/steps/ReviewStep.tsx           | TypeScript JSX     |         56 |          0 |         10 |         66 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/agents/wizard/steps/index.d.ts               | TypeScript         |         36 |          1 |          9 |         46 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/analytics/AnalyticsCard.tsx                  | TypeScript JSX     |        350 |          3 |         27 |        380 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/analytics/AnalyticsDashboard.tsx             | TypeScript JSX     |         56 |          1 |          5 |         62 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/analytics/ConversationHeatmap.tsx            | TypeScript JSX     |        383 |         35 |         65 |        483 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/analytics/PeriodFilter.tsx                   | TypeScript JSX     |        181 |          1 |         16 |        198 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/analytics/ValueMetricsCard.tsx               | TypeScript JSX     |        368 |         19 |         39 |        426 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/attendants/AttendantCard.tsx                 | TypeScript JSX     |        164 |          1 |         11 |        176 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/attendants/CreateAttendantModal.tsx          | TypeScript JSX     |        352 |          8 |         26 |        386 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/auth/LoginForm.tsx                           | TypeScript JSX     |        162 |          2 |         17 |        181 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/auth/LogoutButton.tsx                        | TypeScript JSX     |         60 |          1 |          8 |         69 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/auth/SignUpForm.tsx                          | TypeScript JSX     |        236 |          6 |         18 |        260 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/channels/ChannelCard.tsx                     | TypeScript JSX     |        421 |         20 |         36 |        477 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/channels/CreateChannelDialog.tsx             | TypeScript JSX     |        519 |         14 |         26 |        559 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/channels/QRCodeModal.tsx                     | TypeScript JSX     |        408 |         40 |         49 |        497 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/cms/DynamicLandingPage.tsx                   | TypeScript JSX     |         41 |          4 |          5 |         50 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/cms/DynamicSection.tsx                       | TypeScript JSX     |         79 |          4 |         11 |         94 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/cms/sections/DynamicFeaturesSection.tsx      | TypeScript JSX     |         66 |          1 |         11 |         78 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/cms/sections/DynamicHeroSection.tsx          | TypeScript JSX     |         61 |          3 |         11 |         75 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/cms/sections/DynamicHowItWorksSection.tsx    | TypeScript JSX     |        102 |          4 |         13 |        119 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/cms/sections/DynamicPricingSection.tsx       | TypeScript JSX     |        113 |          7 |         12 |        132 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/cms/sections/DynamicTestimonialsSection.tsx  | TypeScript JSX     |         89 |          5 |         11 |        105 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/dashboard/StatCard.tsx                       | TypeScript JSX     |         69 |          0 |          5 |         74 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/dashboard/TotalizadorCard.tsx                | TypeScript JSX     |         98 |          1 |          6 |        105 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/dashboard/TotalizadoresGrid.tsx              | TypeScript JSX     |         55 |          0 |          7 |         62 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/knowledge-base/CreateKnowledgeBaseDialog.tsx | TypeScript JSX     |        325 |         20 |         40 |        385 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/knowledge/KnowledgeBaseList.tsx              | TypeScript JSX     |        111 |          3 |         13 |        127 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/knowledge/KnowledgeBaseUploader.tsx          | TypeScript JSX     |        109 |          4 |         21 |        134 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/landing/FeaturesSection.tsx                  | TypeScript JSX     |        144 |          2 |          8 |        154 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/landing/Footer.tsx                           | TypeScript JSX     |        170 |          1 |         10 |        181 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/landing/HeroSection.tsx                      | TypeScript JSX     |         59 |          0 |          9 |         68 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/landing/HowItWorksSection.tsx                | TypeScript JSX     |        228 |          6 |         18 |        252 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/landing/Navbar.tsx                           | TypeScript JSX     |        107 |          4 |         10 |        121 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/landing/PricingSection.tsx                   | TypeScript JSX     |        143 |          1 |         10 |        154 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/landing/TestimonialsSection.tsx              | TypeScript JSX     |         83 |          0 |          9 |         92 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/layout/Header.tsx                            | TypeScript JSX     |        120 |         12 |         19 |        151 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/layout/HeaderContext.tsx                     | TypeScript JSX     |         38 |          0 |         12 |         50 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/layout/HeaderSetter.tsx                      | TypeScript JSX     |         13 |          1 |          5 |         19 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/messaging/MessageForm.tsx                    | TypeScript JSX     |        434 |         16 |         31 |        481 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/messaging/MessageList.tsx                    | TypeScript JSX     |        276 |         12 |         24 |        312 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/messaging/NotificationBell.tsx               | TypeScript JSX     |        240 |         10 |         23 |        273 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/providers/ThemeProvider.tsx                  | TypeScript JSX     |          7 |          0 |          3 |         10 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/alert-dialog.tsx                          | TypeScript JSX     |        143 |          0 |         15 |        158 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/alert.tsx                                 | TypeScript JSX     |         57 |          0 |          7 |         64 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/avatar.tsx                                | TypeScript JSX     |         44 |          0 |          7 |         51 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/badge.tsx                                 | TypeScript JSX     |         31 |          0 |          6 |         37 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/button.tsx                                | TypeScript JSX     |         55 |          0 |          6 |         61 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/card.tsx                                  | TypeScript JSX     |         83 |          0 |         10 |         93 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/checkbox.tsx                              | TypeScript JSX     |         26 |          0 |          5 |         31 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/dialog.tsx                                | TypeScript JSX     |        130 |          0 |         14 |        144 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/dropdown-menu.tsx                         | TypeScript JSX     |        239 |          0 |         19 |        258 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/form.tsx                                  | TypeScript JSX     |        143 |          0 |         25 |        168 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/input.tsx                                 | TypeScript JSX     |         18 |          0 |          4 |         22 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/label.tsx                                 | TypeScript JSX     |         20 |          0 |          5 |         25 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/loading.tsx                               | TypeScript JSX     |         93 |          3 |          9 |        105 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/radio-group.tsx                           | TypeScript JSX     |         39 |          0 |          6 |         45 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/scroll-area.tsx                           | TypeScript JSX     |         43 |          0 |          6 |         49 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/select.tsx                                | TypeScript JSX     |        172 |          0 |         14 |        186 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/separator.tsx                             | TypeScript JSX     |         27 |          0 |          5 |         32 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/skeleton.tsx                              | TypeScript JSX     |         13 |          0 |          3 |         16 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/stepper.tsx                               | TypeScript JSX     |         58 |          0 |          7 |         65 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/table.tsx                                 | TypeScript JSX     |        105 |          0 |         12 |        117 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/tabs.tsx                                  | TypeScript JSX     |         59 |          0 |          8 |         67 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/textarea.tsx                              | TypeScript JSX     |         15 |          0 |          4 |         19 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/toast.tsx                                 | TypeScript JSX     |        115 |          0 |         13 |        128 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/toaster.tsx                               | TypeScript JSX     |         32 |          0 |          4 |         36 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/components/ui/use-toast.tsx                             | TypeScript JSX     |        159 |          3 |         31 |        193 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/contexts/AgentContext.tsx                               | TypeScript JSX     |         37 |          0 |          7 |         44 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/instrumentation.ts                                      | TypeScript         |         43 |          6 |          5 |         54 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/agent.actions.ts                            | TypeScript         |        322 |         24 |         80 |        426 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/analytics.actions.ts                        | TypeScript         |        536 |         72 |        137 |        745 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/attendant.actions.ts                        | TypeScript         |        243 |         27 |         69 |        339 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/channel.actions.ts                          | TypeScript         |        246 |         23 |         62 |        331 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/cms.actions.ts                              | TypeScript         |        191 |         13 |         35 |        239 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/invoice.actions.ts                          | TypeScript         |        214 |         21 |         40 |        275 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/knowledge-base.actions.ts                   | TypeScript         |         60 |         13 |         16 |         89 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/knowledge.actions.ts                        | TypeScript         |        116 |         10 |         27 |        153 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/message.actions.ts                          | TypeScript         |        503 |         19 |         82 |        604 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/payment-method.actions.ts                   | TypeScript         |        211 |         31 |         41 |        283 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/payment.actions.ts                          | TypeScript         |        272 |         33 |         47 |        352 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/template.actions.ts                         | TypeScript         |         93 |         19 |         28 |        140 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/whatsapp.actions.ts                         | TypeScript         |         88 |         18 |         18 |        124 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/actions/wizard.actions.ts                           | TypeScript         |        110 |          8 |         18 |        136 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/billing/invoice-generator.ts                        | TypeScript         |        244 |         30 |         46 |        320 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/logger.ts                                           | TypeScript         |         83 |         15 |         21 |        119 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/plan-icons.tsx                                      | TypeScript JSX     |         36 |          0 |          4 |         40 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/security/disable-console-production.ts              | TypeScript         |         75 |         20 |         15 |        110 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/security/tenant-validation.ts                       | TypeScript         |        174 |         41 |         32 |        247 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/supabase.ts                                         | TypeScript         |         18 |          6 |          3 |         27 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/supabase/client.ts                                  | TypeScript         |          7 |          4 |          3 |         14 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/supabase/server.ts                                  | TypeScript         |         30 |          6 |          4 |         40 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/types/payment.types.ts                              | TypeScript         |        172 |         13 |         22 |        207 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/utils.ts                                            | TypeScript         |          5 |          0 |          2 |          7 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/utils/analytics.ts                                  | TypeScript         |         40 |          2 |          8 |         50 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/lib/utils/payment.utils.ts                              | TypeScript         |         83 |         33 |         21 |        137 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/middleware.ts                                           | TypeScript         |         63 |         17 |         12 |         92 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/stores/agentStore.ts                                    | TypeScript         |        120 |          5 |         20 |        145 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/stores/planStore.ts                                     | TypeScript         |         68 |         10 |         19 |         97 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/types/agent.ts                                          | TypeScript         |         22 |          2 |          2 |         26 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/types/attendant.ts                                      | TypeScript         |          9 |          0 |          1 |         10 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/types/channel.ts                                        | TypeScript         |         18 |          3 |          3 |         24 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/types/message.ts                                        | TypeScript         |        226 |         26 |         41 |        293 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/src/types/wizard.ts                                         | TypeScript         |         40 |          3 |          5 |         48 |
+| /home/moura/projetos/projetos_web/nexus-agents/web/tsconfig.json                                               | JSON with Comments |         27 |          0 |          1 |         28 |
+| Total                                                                                                          |                    |     33,640 |      1,288 |      3,937 |     38,865 |
++----------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
