@@ -16,7 +16,7 @@ export async function DynamicLandingPage() {
     const { HeroSection } = await import('@/components/landing/HeroSection');
     const { FeaturesSection } = await import('@/components/landing/FeaturesSection');
     const { HowItWorksSection } = await import('@/components/landing/HowItWorksSection');
-    const { TestimonialsSection } = await import('@/components/landing/TestimonialsSection');
+    // const { TestimonialsSection } = await import('@/components/landing/TestimonialsSection');
     const { PricingSection } = await import('@/components/landing/PricingSection');
 
     return (
@@ -26,7 +26,7 @@ export async function DynamicLandingPage() {
           <HeroSection />
           <FeaturesSection />
           <HowItWorksSection />
-          <TestimonialsSection />
+          {/* <TestimonialsSection /> */}
           <PricingSection />
         </main>
         <Footer />

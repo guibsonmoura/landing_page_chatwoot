@@ -1,116 +1,124 @@
-// Dynamic How It Works Section Component
 'use client';
 
-import { useState, useEffect } from 'react';
+import { motion } from "framer-motion";
 import { SectionProps } from "../DynamicSection";
+import { MessageSquare, Users, Bot, BarChart3, Cable } from "lucide-react";
 
 interface Step {
   title: string;
   description: string;
-  details: string[];
 }
 
 interface HowItWorksContent {
   steps: Step[];
 }
 
-const productImages = [
+const stepIcons = [MessageSquare, Bot, Cable];
+
+const mockScreens = [
   "/images/product/agents.png",
-  "/images/product/knowledge.png", 
-  "/images/product/analytics.png"
+  "/images/product/analytics.png", 
+  "/images/product/channels.png"
 ];
 
 export function DynamicHowItWorksSection({ title, subtitle, content }: SectionProps) {
   const howItWorksContent = content as HowItWorksContent;
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
-    <section id="how-it-works" className="py-24 bg-gradient-to-b from-[#0d0d17] to-[#151522]">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+    <section id="how-it-works" className="py-24 bg-gradient-to-b from-[#0d0d17] to-[#151522] relative overflow-hidden">
+      {/* Sutil background com gradiente radial */}
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_#00e980,_transparent_70%)]" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Cabeçalho */}
+        <div className="text-center mb-20">
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl lg:text-5xl font-bold text-white mb-6"
+          >
             {title}
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto"
+          >
             {subtitle}
-          </p>
+          </motion.p>
         </div>
-        
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Steps */}
-          <div className="space-y-8">
-            {howItWorksContent.steps.map((step, index) => (
-              <div 
-                key={index}
-                className="flex gap-6 group"
-              >
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-gradient-to-r from-[#00e980] to-[#4d7cfe] rounded-full flex items-center justify-center text-black font-bold text-lg group-hover:scale-110 transition-transform duration-300">
-                    {index + 1}
+
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          {/* Timeline minimalista */}
+          <div className="space-y-12 relative border-l border-gray-700 pl-8">
+            {howItWorksContent.steps.map((step, index) => {
+              const Icon = stepIcons[index] || MessageSquare;
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.2, duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="group relative"
+                >
+                  {/* Ponto pulsante */}
+                  <motion.div
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ repeat: Infinity, duration: 2 }}
+                    className="absolute -left-[34px] w-4 h-4 rounded-full bg-[#00e980] border-2 border-gray-900"
+                  />
+                  
+                  {/* Card minimalista */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-[#00e980] to-[#4d7cfe] flex items-center justify-center text-black">
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#00e980] transition-colors">
+                        {step.title}
+                      </h3>
+                      <p className="text-gray-400 text-sm leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="flex-1">
-                  <h3 className="text-2xl font-semibold text-white mb-3 group-hover:text-[#00e980] transition-colors duration-300">
-                    {step.title}
-                  </h3>
-                  <p className="text-gray-400 mb-4 leading-relaxed">
-                    {step.description}
-                  </p>
-                  <ul className="space-y-2">
-                    {step.details.map((detail, detailIndex) => (
-                      <li key={detailIndex} className="flex items-center text-gray-300">
-                        <div className="w-2 h-2 bg-[#00e980] rounded-full mr-3 flex-shrink-0"></div>
-                        <span className="text-sm">{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
-          
-          {/* Product Images Carousel */}
-          <div className="relative">
-            <div className="relative overflow-hidden rounded-xl shadow-2xl border border-gray-800">
-              <div className="relative h-96">
-                {productImages.map((image, index) => (
+
+          {/* Mockup animado das telas */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative w-full max-w-lg mx-auto"
+          >
+            <div className="rounded-2xl border border-gray-800 overflow-hidden shadow-xl bg-black/40">
+              <motion.div
+                animate={{ x: ["0%", "-100%"] }}
+                transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+                className="flex w-[300%]"
+              >
+                {mockScreens.map((src, idx) => (
                   <img
-                    key={index}
-                    src={image}
-                    alt={`Nexus Agents Product ${index + 1}`}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                      index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-                    }`}
+                    key={idx}
+                    src={src}
+                    alt={`App screen ${idx + 1}`}
+                    className="max-h-80 object-contain flex-shrink-0 mx-auto"
                   />
                 ))}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-              </div>
+              </motion.div>
             </div>
-            
-            {/* Image Indicators */}
-            <div className="flex justify-center mt-6 space-x-2">
-              {productImages.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentImageIndex 
-                      ? 'bg-[#00e980] scale-125' 
-                      : 'bg-gray-600 hover:bg-gray-500'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
+            <p className="text-center text-gray-500 text-sm mt-4">
+              Visualize como seu time trabalha no fluxo de atendimento
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>

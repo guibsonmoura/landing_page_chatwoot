@@ -1,7 +1,7 @@
-// Dynamic Pricing Section Component
-'use client';
+"use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { getPlanIcon } from "@/lib/plan-icons";
@@ -25,103 +25,104 @@ export function DynamicPricingSection({ title, subtitle, content }: SectionProps
   const pricingContent = content as PricingContent;
 
   return (
-    <section id="pricing" className="py-24 bg-gradient-to-b from-[#151522] to-[#0d0d17]">
-      <div className="container mx-auto px-6">
+    <section id="pricing" className="relative py-24 bg-[#0d0d17] overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute inset-0">
+        <div className="absolute w-[600px] h-[600px] bg-[#00e980]/10 rounded-full blur-3xl top-20 left-1/2 -translate-x-1/2" />
+      </div>
+
+      <div className="container mx-auto px-6 relative">
+        {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl lg:text-5xl font-bold text-white mb-6"
+          >
             {title}
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-lg text-gray-400 max-w-2xl mx-auto"
+          >
             {subtitle}
-          </p>
+          </motion.p>
         </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {pricingContent.plans.map((plan, index) => {
-            const { icon: IconComponent, iconColor, bgGradient } = getPlanIcon(plan.name);
-            const isPopular = plan.popular;
-            
+
+        {/* Plans - Carousel for mobile, row for large screens */}
+        <div className="flex lg:grid lg:grid-cols-3 gap-6 lg:gap-8 overflow-x-auto overflow-y-visible lg:overflow-visible snap-x snap-mandatory scrollbar-hide px-6 lg:px-0 py-8">
+        {pricingContent.plans.map((plan, index) => {
+          const { icon: IconComponent, iconColor } = getPlanIcon(plan.name);
+          const isPopular = plan.popular;
+
             return (
-              <div 
-                key={index}
-                className={`relative rounded-2xl border transition-all duration-300 hover:scale-105 ${
-                  isPopular 
-                    ? 'border-[#00e980] shadow-lg shadow-[#00e980]/20' 
-                    : 'border-gray-800 hover:border-[#00e980]/30'
-                }`}
+              <motion.div
+                 key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className={`relative group flex-shrink-0 w-[85vw] max-w-[340px] lg:w-auto lg:max-w-none rounded-3xl p-6 shadow-lg
+          ${isPopular ? "bg-[#111] border border-[#00e980]/40 lg:scale-105" : "bg-[#0f0f1a] border border-gray-800"}
+          snap-center
+        `}
               >
+                {/* Glow on hover */}
+                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-[#00e980]/20 via-transparent to-[#4d7cfe]/20 blur-xl" />
+
                 {/* Popular Badge */}
                 {isPopular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-[#00e980] text-black px-4 py-1 rounded-full text-sm font-medium">
-                      Mais Popular
+                  <div className="absolute -top-5 left-1/2 -translate-x-1/2">
+                    <span className="px-4 py-1 text-sm rounded-full bg-[#00e980] text-black font-medium">
+                      Recomendado
                     </span>
                   </div>
                 )}
-                
-                {/* Card Content */}
-                <div className="bg-gradient-to-br from-gray-900/50 to-gray-800/30 p-8 rounded-2xl h-full flex flex-col">
-                  {/* Header with Icon, Name and Price */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center">
-                        <IconComponent className={`w-5 h-5 ${iconColor}`} />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-semibold text-white">
-                          {plan.name}
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="flex items-baseline">
-                        <span className="text-3xl font-bold text-white">
-                          {plan.price}
-                        </span>
-                        <span className="text-gray-400 ml-1">
-                          {plan.period}
-                        </span>
-                      </div>
-                    </div>
+
+                {/* Icon + Header */}
+                <div className="relative flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-gray-900 flex items-center justify-center shadow-inner">
+                    <IconComponent className={`w-6 h-6 ${iconColor}`} />
                   </div>
-                  
-                  {/* Description */}
-                  <p className="text-gray-400 mb-6 leading-relaxed">
-                    {plan.description}
-                  </p>
-                  
-                  {/* Features */}
-                  <div className="flex-1 mb-8">
-                    <ul className="space-y-3">
-                      {plan.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start gap-3">
-                          <Check className="w-5 h-5 text-[#00e980] flex-shrink-0 mt-0.5" />
-                          <span className="text-gray-300 text-sm leading-relaxed">
-                            {feature}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white">{plan.name}</h3>
+                    <p className="text-gray-500 text-sm">{plan.description}</p>
                   </div>
-                  
-                  {/* CTA Button */}
-                  <Button 
-                    size="lg" 
-                    className={`w-full font-medium ${
-                      isPopular
-                        ? 'bg-[#00e980] hover:bg-[#00c870] text-black'
-                        : plan.name === 'Enterprise'
-                        ? 'bg-transparent border-2 border-[#00e980] text-[#00e980] hover:bg-[#00e980] hover:text-black'
-                        : 'bg-transparent border-2 border-[#00e980] text-[#00e980] hover:bg-[#00e980] hover:text-black'
-                    }`}
-                    asChild
-                  >
-                    <Link href={plan.name === 'Enterprise' ? '/contato' : '/signup'}>
-                      {plan.cta}
-                    </Link>
-                  </Button>
                 </div>
-              </div>
+
+                {/* Price */}
+                <div className="relative mb-6">
+                  <span className="text-3xl lg:text-4xl font-bold text-white">{plan.price}</span>
+                  <span className="ml-1 text-gray-400">{plan.period}</span>
+                </div>
+
+                {/* Features */}
+                <ul className="relative space-y-2 mb-6">
+                  {plan.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-start gap-3 text-sm text-gray-300">
+                      <Check className="w-5 h-5 text-[#00e980] flex-shrink-0 mt-0.5" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA */}
+                <Button
+                  size="lg"
+                  className={`relative w-full font-medium rounded-xl transition
+                    ${isPopular
+                      ? "bg-[#00e980] hover:bg-[#00c870] text-black"
+                      : "bg-transparent border border-[#00e980] text-[#00e980] hover:bg-[#00e980] hover:text-black"
+                    }`}
+                  asChild
+                >
+                  <Link href={plan.name === "Enterprise" ? "/contato" : "/signup"}>
+                    {plan.cta}
+                  </Link>
+                </Button>
+              </motion.div>
             );
           })}
         </div>

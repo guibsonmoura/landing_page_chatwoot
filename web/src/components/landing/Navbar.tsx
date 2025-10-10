@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -8,83 +8,67 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const navLinks = [
-    { label: "Recursos", href: "#features" },
-    { label: "Como Funciona", href: "#how-it-works" },
-    { label: "Preços", href: "#pricing" },
+    { label: "Recursos", href: "#recursos" },
+    { label: "Como Funciona", href: "#como-funciona" },
+    { label: "Planos", href: "#planos" },
   ];
 
-  return (
-    <header className="bg-[#0d0d17]/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
-      <div className="container mx-auto px-6 py-3 flex items-center justify-between">
-        
-        {/* Logo Animada */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut", type: "spring" }}
-        >
-          <Link href="/" className="flex items-center gap-2">
-            <div className="relative h-10 w-10">
-              <img
-                src="/images/logos/logo_64x64.png"
-                alt="365IA Logo"
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="text-lg font-semibold text-white"
-            >
-              365IA
-            </motion.span>
-          </Link>
-        </motion.div>
+  // Detect scroll para mudar estilo da navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-        {/* Desktop Navigation */}
-        <motion.nav 
-          className="hidden md:flex items-center space-x-6"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: { opacity: 0, y: -10 },
-            visible: {
-              opacity: 1,
-              y: 0,
-              transition: {
-                staggerChildren: 0.15,
-              },
-            },
-          }}
-        >
+  return (
+    <header className="fixed top-6 left-0 w-full flex justify-center z-50">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className={`flex items-center justify-between px-6 py-3 rounded-full backdrop-blur-md border 
+          transition-all duration-300
+          ${isScrolled ? "bg-black/70 border-gray-700 shadow-lg" : "bg-black/40 border-gray-800"}
+          w-[90%] md:w-[70%] lg:w-[60%]`}
+      >
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2">
+          <motion.img
+            src="/images/logos/logo_64x64.png"
+            alt="365IA Logo"
+            className="h-8 w-8 object-contain"
+            whileHover={{ rotate: 10, scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 200 }}
+          />
+          <span className="text-white font-semibold">365IA</span>
+        </Link>
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center space-x-6">
           {navLinks.map((link, index) => (
             <motion.div
               key={index}
-              variants={{
-                hidden: { opacity: 0, y: -10 },
-                visible: { opacity: 1, y: 0 },
-              }}
+              whileHover={{ y: -2 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
               <Link
                 href={link.href}
-                className="text-gray-300 hover:text-[#00e980] transition-colors"
+                className="text-gray-300 hover:text-[#00e980] relative group"
               >
                 {link.label}
+                <span className="absolute bottom-[-4px] left-0 w-0 h-[2px] bg-[#00e980] rounded-full transition-all duration-300 group-hover:w-full"></span>
               </Link>
             </motion.div>
           ))}
-        </motion.nav>
+        </nav>
 
         {/* CTA Desktop */}
-        <motion.div
-          className="hidden md:flex"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
+        <div className="hidden md:flex">
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
               className="px-5 py-2 bg-[#00e980] text-black font-medium rounded-full hover:bg-[#00c870] transition"
@@ -93,54 +77,53 @@ export function Navbar() {
               <Link href="/login">Entrar</Link>
             </Button>
           </motion.div>
-        </motion.div>
+        </div>
 
-        {/* Mobile Toggle Button */}
+        {/* Mobile Menu Toggle */}
         <button
           className="md:hidden text-gray-300"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
-      </div>
+      </motion.div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Fullscreen Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-[#0d0d17] border-t border-gray-800"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/90 backdrop-blur-lg flex flex-col items-center justify-center space-y-8 z-40"
           >
-            <nav className="flex flex-col px-6 py-4 space-y-4">
-              {navLinks.map((link, index) => (
+            {navLinks.map((link, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
                 <Link
-                  key={index}
                   href={link.href}
-                  className="text-gray-300 hover:text-[#00e980] transition-colors"
+                  className="text-2xl text-white hover:text-[#00e980] transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.label}
                 </Link>
-              ))}
-
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="pt-2"
-              >
-                <Button
-                  className="w-full bg-[#00e980] text-black font-medium rounded-full hover:bg-[#00c870] transition"
-                  asChild
-                >
-                  <Link href="/login" onClick={() => setIsMenuOpen(false)}>
-                    Entrar
-                  </Link>
-                </Button>
               </motion.div>
-            </nav>
+            ))}
+
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button
+                className="bg-[#00e980] text-black font-medium rounded-full hover:bg-[#00c870] transition px-8 py-3 text-lg"
+                asChild
+              >
+                <Link href="/login" onClick={() => setIsMenuOpen(false)}>
+                  Entrar
+                </Link>
+              </Button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
