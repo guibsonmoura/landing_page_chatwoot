@@ -51,14 +51,14 @@ export function DynamicHeroSection({ title, subtitle, content }: SectionProps) {
                   {heroContent.cta_primary}
                 </Button>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+              {/* <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
                 <Button
                   variant="outline"
                   className="px-6 py-3 text-lg rounded-full border-gray-600 text-gray-300 hover:bg-gray-800 transition"
                 >
                   {heroContent.cta_secondary}
                 </Button>
-              </motion.div>
+              </motion.div> */}
             </div>
 
             {/* Stats */}
@@ -71,7 +71,7 @@ export function DynamicHeroSection({ title, subtitle, content }: SectionProps) {
                   transition={{ delay: 0.2 * index, duration: 0.5 }}
                   className="text-left"
                 >
-                  <p className="text-2xl font-bold text-white">{stat.value}</p>
+                  <p className="text-2xl font-bold text-white mb-2">{stat.value}</p>
                   <p className="text-sm text-gray-400">{stat.label}</p>
                 </motion.div>
               ))}

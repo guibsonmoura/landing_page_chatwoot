@@ -16,7 +16,7 @@ interface HowItWorksContent {
 const stepIcons = [MessageSquare, Bot, Cable];
 
 const mockScreens = [
-  "/images/product/agents.png",
+  "/images/product/caixa_de_entrada.png",
   "/images/product/analytics.png", 
   "/images/product/channels.png"
 ];
