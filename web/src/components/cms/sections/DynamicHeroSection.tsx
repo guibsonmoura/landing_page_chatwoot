@@ -61,15 +61,15 @@ export function DynamicHeroSection({ title, subtitle, content }: SectionProps) {
               </motion.div> */}
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-8 border-t border-gray-800">
+            {/* Stats */} 
+            <div className="grid xl:grid-cols-3  lg:grid-cols-2 sm:grid-cols-2 gap-2 pt-8 border-t border-gray-800  ">
               {heroContent.stats.map((stat, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 * index, duration: 0.5 }}
-                  className="text-left"
+                  className="text-left border-r border-gray-800"
                 >
                   <p className="text-2xl font-bold text-white mb-2">{stat.value}</p>
                   <p className="text-sm text-gray-400">{stat.label}</p>

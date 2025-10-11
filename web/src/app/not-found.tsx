@@ -130,7 +130,7 @@ export default function Custom404() {
         <p className="mt-4 text-xs text-gray-400">Se o problema persistir, entre em contato com o suporte.</p>
       </div>
 
-      {/* tiny CSS-in-JS fallback animations (Tailwind classes assumed available) */}
+      
       <style>{`
         @keyframes blob { 0%{transform:translate(0px,0px) scale(1)}33%{transform:translate(20px,-10px) scale(1.1)}66%{transform:translate(-10px,20px) scale(0.9)}100%{transform:translate(0px,0px) scale(1)} }
         .animate-blob{ animation: blob 8s infinite; }

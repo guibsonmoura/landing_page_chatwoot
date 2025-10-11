@@ -23,7 +23,7 @@ export function HeroSection() {
             
 
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 ">
               <div className="flex flex-col items-start">
                 <div className="flex items-center gap-2 mb-2">
                   <BarChart3 className="h-5 w-5 text-[#00e980]" />
