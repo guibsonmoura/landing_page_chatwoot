@@ -20,6 +20,7 @@ export default function LogoutButton({ variant = 'default', className }: LogoutB
 
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
+    console.log('Logout error:', error);  
     if (!error) {
       clearPlanFeatures(); // Limpa os dados do plano da store
       router.push('/login');
@@ -33,7 +34,7 @@ export default function LogoutButton({ variant = 'default', className }: LogoutB
         onClick={handleLogout} 
         variant="ghost" 
         size="icon"
-        className={cn("text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400", className)}
+        className={cn("text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-500", className)}
         aria-label="Sair"
       >
         <LogOut className="h-5 w-5" />
@@ -47,7 +48,7 @@ export default function LogoutButton({ variant = 'default', className }: LogoutB
         onClick={handleLogout} 
         variant="ghost"
         size="sm"
-        className={cn("text-gray-600 hover:text-red-600 dark:text-gray-300 dark:hover:text-red-400 px-2 py-1 h-auto", className)}
+        className={cn("text-gray-600 hover:text-red-500 dark:text-gray-300 dark:hover:text-red-500 px-2 py-1 h-auto", className)}
       >
         Sair
       </Button>

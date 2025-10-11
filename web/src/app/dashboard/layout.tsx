@@ -105,7 +105,7 @@ export default function DashboardLayout({
             <h1 className={cn(
               "font-bold text-gray-900 dark:text-white transition-all duration-300",
               sidebarOpen ? "text-xl opacity-100" : "text-xl opacity-0 md:hidden"
-            )}>Nexus Agents</h1>
+            )}>365IA </h1>
           </Link>
         </div>
 
