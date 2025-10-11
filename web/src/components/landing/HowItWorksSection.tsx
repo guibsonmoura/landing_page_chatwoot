@@ -127,7 +127,7 @@ export function HowItWorksSection() {
               
               <div className="mt-8">
                 <Button className="bg-[#00e980] hover:bg-[#00c870] text-black font-medium rounded-md px-6 py-5" asChild>
-                  <Link href="/signup">
+                  <Link href="/cadastrar">
                     Experimentar agora <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>

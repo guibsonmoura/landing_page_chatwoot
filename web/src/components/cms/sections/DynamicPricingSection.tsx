@@ -143,7 +143,7 @@ export function DynamicPricingSection({ title, subtitle, content }: SectionProps
                       }`}
                     asChild
                   >
-                    <Link href={plan.name === "Enterprise" ? "/contato" : "/signup"}>
+                    <Link href={plan.name === "Enterprise" ? "/contato" : "/cadastro"}>
                       {plan.cta}
                     </Link>
                   </Button>

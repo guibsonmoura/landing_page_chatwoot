@@ -65,7 +65,7 @@ export default function LoginForm() {
     e.preventDefault();
     setIsLoading(true);
     setLoadingMessage('Carregando...');
-    router.push('/signup');
+    router.push('/cadastro');
   };
 
   return (

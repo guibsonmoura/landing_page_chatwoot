@@ -115,7 +115,7 @@ export function PricingSection() {
                 
                 <p className="text-gray-400 mb-6 h-12">{plan.description}</p>
                 
-                <Link href="/signup" className="block mb-6">
+                <Link href="/cadastrar" className="block mb-6">
                   <Button 
                     className={`w-full font-medium py-6 rounded-md ${plan.ctaColor}`}
                   >

@@ -36,10 +36,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/**
-         * Runtime Public Config: expõe SOMENTE valores públicos necessários ao browser.
-         * Lido do ambiente em runtime (Swarm/Portainer), evitando rebuild da imagem.
-         */}
+        
         <script
           dangerouslySetInnerHTML={{
             __html: `window.__PUBLIC_CONFIG__ = ${JSON.stringify({
