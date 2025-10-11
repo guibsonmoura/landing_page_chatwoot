@@ -1,4 +1,3 @@
-// src/components/auth/LoginForm.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -9,10 +8,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Eye, EyeOff, Lock, Mail, Bot, BrainCircuit, Sparkles } from 'lucide-react';
+import { Eye, EyeOff, Lock, Mail, Bot,  Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
-// Importação dinâmica do Lottie para evitar problemas de SSR
+
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
 export default function LoginForm() {
@@ -26,7 +25,7 @@ export default function LoginForm() {
   const [loadingMessage, setLoadingMessage] = useState('');
   const router = useRouter();
 
-  // Carregar a animação Lottie
+  
   useEffect(() => {
     fetch('/lottie/Sandy Loading.json')
       .then(res => res.json())
