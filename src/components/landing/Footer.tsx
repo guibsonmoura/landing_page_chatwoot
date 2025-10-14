@@ -41,10 +41,10 @@ export function Footer() {
         {/* Links centrais minimalistas */}
         <div className="flex gap-8 mb-14">
           {[
-            { label: "Recursos", href: "#features" },
-            { label: "Como Funciona", href: "#how-it-works" },
-            { label: "Planos", href: "#pricing" },
-            { label: "Sobre", href: "#about" },
+            { label: "Recursos", href: "#recursos" },
+            { label: "Como Funciona", href: "#como-funciona" },
+            { label: "Planos", href: "#planos" },
+            { label: "Sobre", href: "#sobre" },
           ].map((item, idx) => (
             <motion.div
               key={idx}

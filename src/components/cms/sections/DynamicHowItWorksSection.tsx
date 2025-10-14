@@ -25,7 +25,7 @@ export function DynamicHowItWorksSection({ title, subtitle, content }: SectionPr
   const howItWorksContent = content as HowItWorksContent;
 
   return (
-    <section id="how-it-works" className="py-24 bg-gradient-to-b from-[#0d0d17] to-[#151522] relative overflow-hidden">
+    <section id="como-funciona" className="py-24 bg-gradient-to-b from-[#0d0d17] to-[#151522] relative overflow-hidden">
       {/* Sutil background com gradiente radial */}
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_#00e980,_transparent_70%)]" />
 

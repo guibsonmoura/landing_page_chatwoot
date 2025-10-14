@@ -26,7 +26,7 @@ export function DynamicFeaturesSection({ title, subtitle, content }: SectionProp
   const featuresContent = content as FeaturesContent;
 
   return (
-    <section id="features" className="py-24 bg-[#0d0d17] relative overflow-hidden">
+    <section id="recursos" className="py-24 bg-[#0d0d17] relative overflow-hidden">
       <div className="container mx-auto px-6">
         {/* Cabeçalho */}
         <div className="text-center mb-16">

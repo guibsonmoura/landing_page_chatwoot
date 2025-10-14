@@ -20,7 +20,7 @@ export function DynamicHeroSection({ title, subtitle, content }: SectionProps) {
   const heroContent = content as HeroContent;
 
   return (
-    <section className="relative min-h-screen flex items-center bg-[#0d0d17]">
+    <section id="sobre" className="relative min-h-screen flex items-center bg-[#0d0d17]">
       <div className="container mx-auto px-6 lg:px-12 py-24 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           

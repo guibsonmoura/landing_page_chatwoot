@@ -46,7 +46,7 @@ export function DynamicPricingSection({ title, subtitle, content }: SectionProps
   }, []);
 
   return (
-    <section id="pricing" className="relative py-24 bg-[#0d0d17] overflow-hidden">
+    <section id="planos" className="relative py-24 bg-[#0d0d17] overflow-hidden">
       {/* Background Glow */}
       <div className="absolute inset-0">
         <div className="absolute w-[600px] h-[600px] bg-[#00e980]/10 rounded-full blur-3xl top-20 left-1/2 -translate-x-1/2" />

@@ -8,6 +8,7 @@ import { createClient } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import {Loading} from '@/components/layout/loading';
 
 import { Eye, EyeOff, User, Mail, Lock, Phone } from 'lucide-react';
 import { z } from 'zod';
@@ -113,20 +114,7 @@ export default function SignUpForm() {
     <>
       {/* Overlay com Loading Lottie */}
       {isLoading && loadingAnimation && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center">
-          <div className="bg-[#13131f] rounded-2xl p-8 border border-gray-800 shadow-2xl">
-            <div className="w-32 h-32 mx-auto">
-              <Lottie 
-                animationData={loadingAnimation} 
-                loop={true}
-                autoplay={true}
-              />
-            </div>
-            <p className="text-center text-white mt-4 font-medium">
-              Criando sua conta...
-            </p>
-          </div>
-        </div>
+        <Loading loadingAnimation={loadingAnimation} Lottie={Lottie}/>
       )}
 
       <Card className="w-full max-w-md shadow-lg bg-[#13131f] border border-gray-800 mt-8">

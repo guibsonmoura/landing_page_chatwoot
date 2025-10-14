@@ -1,3 +1,4 @@
+'use client';
 import { getAgents } from '@/lib/actions/agent.actions';
 import { getChannels } from '@/lib/actions/channel.actions';
 import { getAttendants } from '@/lib/actions/attendant.actions';
@@ -11,6 +12,8 @@ import { getPlanIcon } from '@/lib/plan-icons';
 import { createClient } from '@/lib/supabase/server';
 import ValueMetricsCard from '@/components/analytics/ValueMetricsCard';
 import { HeaderSetter } from '@/components/layout/HeaderSetter';
+import { useSearchParams } from "next/navigation";
+import { useEffect } from 'react';
 
 interface Agent {
   id: string;
@@ -39,38 +42,33 @@ interface Attendant {
   [key: string]: any;
 }
 
-export default async function PlanoPage() {
-  // Busca os dados em paralelo no servidor
-  const [agentsResult, channelsResult, attendantsResult, heatmapData7Days, heatmapData30Days, heatmapDataTotal] = await Promise.all([
-    getAgents(),
-    getChannels(),
-    getAttendants(),
-    getConversationHeatmap(7),
-    getConversationHeatmap(30),
-    getConversationHeatmapTotal()
-  ]);
+export default function PlanoPage() {
+  const searchParams = useSearchParams();
+  const collectionId = searchParams.get("collection_id");
+  const status = searchParams.get("status");
+  const paymentId = searchParams.get("payment_id");
+  const paymentType = searchParams.get("payment_type");
+  const merchantOrderId = searchParams.get("merchant_order_id");
+
+  // const [agentsResult, channelsResult, attendantsResult, heatmapData7Days, heatmapData30Days, heatmapDataTotal] = await 
   
-  // Obter usuário autenticado
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
   
-  // Variáveis para dados do plano
-  let tenantData: any = null;
-  let planName = 'Plano Básico';
-  let planFeatures: any = null;
-  let maxAgents = 0;
-  let maxChannels = 0;
-  let maxAttendants = 0;
-  let allowedChannels: string[] = [];
-  let features: any = {};
+  // Promise.all([
+  //   getAgents(),
+  //   getChannels(),
+  //   getAttendants(),
+  //   getConversationHeatmap(7),
+  //   getConversationHeatmap(30),
+  //   getConversationHeatmapTotal()
+  // ]);
   
-  // Variáveis para dados de billing
-  let invoices: any[] = [];
-  let invoiceStats: any = null;
-  let paymentMethods: any[] = [];
-  
-  if (user) {
-    // Buscar informações do tenant e plano
+  useEffect(() => {
+    
+    const init = async () => {
+      const supabase = await createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+    
     const tenantResponse = await supabase
       .from('tenants')
       .select('id, plans(name, plan_features)')
@@ -80,7 +78,7 @@ export default async function PlanoPage() {
     tenantData = tenantResponse.data;
       
     if (tenantData?.plans) {
-      // Tratar o caso em que plans pode ser um array ou um objeto
+      
       let planData = null;
       
       if (Array.isArray(tenantData.plans)) {
@@ -119,18 +117,40 @@ export default async function PlanoPage() {
       }
     }
   }
+    }
+  })
+  
+  
+  
+  let tenantData: any = null;
+  let planName = 'Plano Básico';
+  let planFeatures: any = null;
+  let maxAgents = 0;
+  let maxChannels = 0;
+  let maxAttendants = 0;
+  let allowedChannels: string[] = [];
+  let features: any = {};
+  
+  // Variáveis para dados de billing
+  let invoices: any[] = [];
+  let invoiceStats: any = null;
+  let paymentMethods: any[] = [];
+  
+  
 
-  const agents = agentsResult.data as Agent[] || [];
-  const channels = channelsResult.data as Channel[] || [];
-  const attendants = attendantsResult.data || [];
+  // const agents = agentsResult.data as Agent[] || [];
+  // const channels = channelsResult.data as Channel[] || [];
+  // const attendants = attendantsResult.data || [];
 
-  const agentCount = agents.length;
-  const attendantCount = attendants.length;
-  const channelCount = channels.length;
-  const activeAgents = agents.filter((a: Agent) => a.is_active).length;
-  const activeChannels = channels.filter((c: Channel) => c.is_active).length;
+  // const agentCount = agents.length;
+  // const attendantCount = attendants.length;
+  // const channelCount = channels.length;
+  // const activeAgents = agents.filter((a: Agent) => a.is_active).length;
+  // const activeChannels = channels.filter((c: Channel) => c.is_active).length;
+  
 
-  // Normalizar nomes das features com ícones
+  
+  
   const normalizeFeatureName = (key: string, value: any) => {
     switch (key) {
       case 'rag_enabled':
@@ -182,20 +202,20 @@ export default async function PlanoPage() {
             <TrendingUp className="h-4 w-4" />
             Economia
           </TabsTrigger>
-          <TabsTrigger 
+          {/* <TabsTrigger 
             value="billing" 
             className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-md dark:data-[state=active]:bg-slate-700 dark:data-[state=active]:text-white text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition-all duration-200 font-medium"
           >
             <Receipt className="h-4 w-4" />
             Faturamento
-          </TabsTrigger>
-          <TabsTrigger 
+          </TabsTrigger> */}
+          {/* <TabsTrigger 
             value="payment-methods" 
             className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-md dark:data-[state=active]:bg-slate-700 dark:data-[state=active]:text-white text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition-all duration-200 font-medium"
           >
             <CreditCard className="h-4 w-4" />
             Pagamentos
-          </TabsTrigger>
+          </TabsTrigger> */}
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
@@ -249,19 +269,19 @@ export default async function PlanoPage() {
                       </div>
                       <div>
                         <p className="font-medium text-blue-900 dark:text-blue-100">Agentes</p>
-                        <p className="text-sm text-blue-600 dark:text-blue-400">{activeAgents} ativos de {agentCount}</p>
+                        <p className="text-sm text-blue-600 dark:text-blue-400">0 ativos de 2</p>
                       </div>
                     </div>
                     <div className="text-right">
                       <p className="text-xl font-bold text-blue-700 dark:text-blue-300">
-                        {agentCount}/{maxAgents}
+                        0/2
                       </p>
                     </div>
                   </div>
                   <div className="w-full bg-blue-200/50 dark:bg-blue-800/30 rounded-full h-2 overflow-hidden">
                     <div 
                       className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-500"
-                      style={{ width: `${Math.min((agentCount / maxAgents) * 100, 100)}%` }}
+                      style={{ width: `${Math.min((0 / maxAgents) * 100, 100)}%` }}
                     />
                   </div>
                 </div>
@@ -280,14 +300,14 @@ export default async function PlanoPage() {
                     </div>
                     <div className="text-right">
                       <p className="text-xl font-bold text-green-700 dark:text-green-300">
-                        {attendantCount}/{maxAttendants}
+                        1/{maxAttendants}
                       </p>
                     </div>
                   </div>
                   <div className="w-full bg-green-200/50 dark:bg-green-800/30 rounded-full h-2 overflow-hidden">
                     <div 
                       className="h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full transition-all duration-500"
-                      style={{ width: `${Math.min((attendantCount / maxAttendants) * 100, 100)}%` }}
+                      style={{ width: `${Math.min((1 / maxAttendants) * 100, 100)}%` }}
                     />
                   </div>
                 </div>
@@ -301,19 +321,19 @@ export default async function PlanoPage() {
                       </div>
                       <div>
                         <p className="font-medium text-purple-900 dark:text-purple-100">Canais</p>
-                        <p className="text-sm text-purple-600 dark:text-purple-400">{activeChannels} ativos de {channelCount}</p>
+                        <p className="text-sm text-purple-600 dark:text-purple-400">2 ativos de 5</p>
                       </div>
                     </div>
                     <div className="text-right">
                       <p className="text-xl font-bold text-purple-700 dark:text-purple-300">
-                        {channelCount}/{maxChannels}
+                        2/{maxChannels}
                       </p>
                     </div>
                   </div>
                   <div className="w-full bg-purple-200/50 dark:bg-purple-800/30 rounded-full h-2 overflow-hidden">
                     <div 
                       className="h-full bg-gradient-to-r from-purple-500 to-purple-600 rounded-full transition-all duration-500"
-                      style={{ width: `${Math.min((channelCount / maxChannels) * 100, 100)}%` }}
+                      style={{ width: `${Math.min((2 / maxChannels) * 100, 100)}%` }}
                     />
                   </div>
                 </div>
@@ -442,11 +462,11 @@ export default async function PlanoPage() {
 
         <TabsContent value="analytics" className="space-y-6">
           {/* Métricas de Valor Gerado pela IA */}
-          <ValueMetricsCard 
-            data7Days={heatmapData7Days}
-            data30Days={heatmapData30Days}
-            dataTotal={heatmapDataTotal}
-          />
+          {/* <ValueMetricsCard 
+             data7Days={heatmapData7Days}
+             data30Days={heatmapData30Days}
+             dataTotal={heatmapDataTotal}
+           />  */}
         </TabsContent>
 
         <TabsContent value="billing" className="space-y-6">
@@ -578,8 +598,8 @@ export default async function PlanoPage() {
           </Card>
     </TabsContent>
 
-    <TabsContent value="payment-methods" className="space-y-6">
-      {/* Métodos de Pagamento */}
+    {/* <TabsContent value="payment-methods" className="space-y-6">
+      
       <Card>
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-6">
@@ -633,7 +653,7 @@ export default async function PlanoPage() {
           )}
         </CardContent>
       </Card>
-    </TabsContent>
+    </TabsContent>  */}
   </Tabs>
     </div>
   );

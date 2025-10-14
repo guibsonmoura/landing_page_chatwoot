@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, Lock, Mail, Bot,  Sparkles } from 'lucide-react';
 import Link from 'next/link';
-
+import { Loading } from '@/components/layout/loading';
 
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
@@ -23,6 +23,7 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [loadingAnimation, setLoadingAnimation] = useState<any>(null);
   const [loadingMessage, setLoadingMessage] = useState('');
+
   const router = useRouter();
 
   
@@ -72,20 +73,7 @@ export default function LoginForm() {
     <>
       
       {isLoading && loadingAnimation && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center">
-          <div className="bg-[#13131f] rounded-2xl p-8 border border-gray-800 shadow-2xl">
-            <div className="w-32 h-32 mx-auto">
-              <Lottie 
-                animationData={loadingAnimation} 
-                loop={true}
-                autoplay={true}
-              />
-            </div>
-            <p className="text-center text-white mt-4 font-medium">
-              {loadingMessage}
-            </p>
-          </div>
-        </div>
+        <Loading loadingAnimation={loadingAnimation} Lottie={Lottie}/>
       )}
 
       <Card className="w-full max-w-md overflow-hidden shadow-lg bg-[#13131f] border border-gray-800">
