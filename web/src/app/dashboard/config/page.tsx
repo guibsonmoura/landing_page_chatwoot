@@ -120,8 +120,8 @@ export default  function ConfigPage() {
       <div className="relative w-full max-w-6xl flex flex-col lg:flex-row gap-6">
         <div className="lg:w-2/3 rounded-3xl p-6 bg-white/3 backdrop-blur border border-white/6">
           <motion.header initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} className="mb-4">
-            <h1 className="text-3xl font-bold text-white">Planos — escolha com leveza</h1>
-            <p className="text-sm text-gray-300 mt-1">Toque nas bolhas para experimentar cada plano.</p>
+            <h1 className="text-3xl font-bold text-white">Planos - Tem um plano feito sob medida pra você — escolha o seu!</h1>
+            
           </motion.header>
 
           

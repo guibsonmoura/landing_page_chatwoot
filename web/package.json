@@ -48,6 +48,7 @@
     "zod": "^4.0.5",
     "zustand": "^5.0.6"
   },
+  "packageManager": "pnpm@10.15.1",
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
