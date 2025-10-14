@@ -1,0 +1,45 @@
+name: Deploy Next.js para Servidor Debian
+
+on:
+  push:
+    branches:
+      - main  
+jobs:
+  deploy:
+    name: Deploy no Servidor Debian
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependências e buildar o projeto
+        run: |
+          npm ci
+          npm run build
+          npm run export || echo "Ignorando export (caso Next.js use SSR)"
+
+      - name: Enviar arquivos para o servidor
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          source: ".next out package.json next.config.js public"
+          target: "/var/www/365ia" 
+
+      - name: Instalar dependências no servidor e reiniciar serviço
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd /var/www/365ia/web
+            npm ci --omit=dev
+            pm2 restart meuapp || pm2 start npm --name "meuapp" -- start

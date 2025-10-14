@@ -1,22 +1,46 @@
-# Node/Next (subpasta web)
-web/node_modules/
-web/.next/
-web/.turbo/
-web/.vercel/
-web/.pnpm-store/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Logs
-**/*.log
-**/.DS_Store
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 .VSCodeCounter/*
-# Build/coverage
-web/out/
-web/build/
-web/coverage/
+ssl/*
+# testing
+/coverage
 
-# Env (NUNCA commitar segredos)
-*.env
-*.env.*
-env.docker
-web/.env*
-web/*.env*
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+fonts.zip
+# env files (can opt-in for committing if needed)
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+Dockerfile
+.env
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
