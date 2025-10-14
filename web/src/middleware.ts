@@ -5,7 +5,7 @@ import logger from '@/lib/logger';
 
 export async function middleware(req: NextRequest) {
   let res = NextResponse.next();
-
+  
   // Diagnostic bypass: when enabled, skip any Supabase auth logic to avoid Edge env issues
   if (process.env.DIAG_DEBUG === '1') {
     logger.warn('Middleware: DIAG_DEBUG enabled, bypassing all middleware logic');

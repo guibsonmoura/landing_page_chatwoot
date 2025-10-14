@@ -1,17 +1,17 @@
-// Dynamic Landing Page Component
+
 import { getCMSPageBySlug } from '@/lib/actions/cms.actions';
 import { DynamicSection } from './DynamicSection';
 import { Navbar } from '@/components/landing/Navbar';
 import { Footer } from '@/components/landing/Footer';
 
 export async function DynamicLandingPage() {
-  // Fetch CMS content for home page
+  
   const { page, components } = await getCMSPageBySlug('home');
   console.log('cms', page);
   console.log('components', components);
-  // Fallback to static content if CMS is not available
+  
   if (!page || components.length === 0) {
-    // Import static components as fallback
+
     console.log('veio usar static components as fallback');
     const { HeroSection } = await import('@/components/landing/HeroSection');
     const { FeaturesSection } = await import('@/components/landing/FeaturesSection');
