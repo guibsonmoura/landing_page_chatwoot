@@ -52,8 +52,12 @@ export default  function ConfigPage() {
     try {
       let url: string;
       if(producao === 'true'){
+        console.log('producao')
+        console.log(producao);
         url = 'https://app.365ia.com.br'
       }else{
+        console.log('producao')
+        console.log(producao);
         url = 'http://localhost:3000'
       }
       const response = await fetch(`${url}/api/pagamento`, {
