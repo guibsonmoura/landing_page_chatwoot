@@ -55,7 +55,7 @@ export default  function ConfigPage() {
         console.log('producao')
         console.log(producao);
         url = 'https://app.365ia.com.br'
-      }else{
+      } else{
         console.log('producao')
         console.log(producao);
         url = 'http://localhost:3000'

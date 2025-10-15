@@ -14,6 +14,7 @@ import ValueMetricsCard from '@/components/analytics/ValueMetricsCard';
 import { HeaderSetter } from '@/components/layout/HeaderSetter';
 import { useSearchParams } from "next/navigation";
 import { useEffect } from 'react';
+import { toast } from 'sonner';
 
 interface Agent {
   id: string;
@@ -68,7 +69,7 @@ export default function PlanoPage() {
   // ]);
   
   useEffect(() => {
-    
+    toast.error('Erro ao deletar agente', { description: status });
     const init = async () => {
       const supabase = await createClient();
       const { data: { user } } = await supabase.auth.getUser();
