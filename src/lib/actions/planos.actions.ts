@@ -2,6 +2,7 @@
 
 import {createClient} from '@/lib/supabase/server';
 
+const producao = process.env.NEXT_PUBLIC_PRODUCTION;  
 
 export async function getPlanos(): Promise<Array<{ 
     uuid: string; 

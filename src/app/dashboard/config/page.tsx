@@ -26,10 +26,12 @@ export default  function ConfigPage() {
   const [cardInput, setCardInput] = useState("");
   const [message, setMessage] = useState<string | null>(null);
 
-    
+  const producao = process.env.NEXT_PUBLIC_PRODUCTION;  
   useEffect(() => {
     
+    
     const fetchPlans = async () => {
+        console.log('entrou no planos');
         const planos = await getPlanos();
         console.log('planos');
         console.log(planos); 
@@ -48,9 +50,13 @@ export default  function ConfigPage() {
     setLoading(true);
     setMessage(null);
     try {
-      //envie os cookies salvo pro backend
-      
-      const response = await fetch(`http://localhost:3000/api/pagamento`, {
+      let url: string;
+      if(producao === 'true'){
+        url = 'https://app.365ia.com.br'
+      }else{
+        url = 'http://localhost:3000'
+      }
+      const response = await fetch(`${url}/api/pagamento`, {
         method: 'POST',
         credentials: 'include',
 
