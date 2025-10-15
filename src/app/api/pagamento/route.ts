@@ -33,9 +33,9 @@ export async function POST(request: NextRequest) {
                 }
             ],
         back_urls: {
-                success: "https://localhost:3000/success",
-                failure: "https://localhost:3000/failure",
-                pending: "https://localhost:3000/pending"
+                success: "https://app.365ia.com.br/dashboard/plano",
+                failure: "https://app.365ia.com.br/dashboard/plano",
+                pending: "https://app.365ia.com.br/dashboard/plano"
             },
             auto_return: "approved",
         }

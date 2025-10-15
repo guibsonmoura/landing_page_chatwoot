@@ -52,6 +52,11 @@ export default function PlanoPage() {
 
   // const [agentsResult, channelsResult, attendantsResult, heatmapData7Days, heatmapData30Days, heatmapDataTotal] = await 
   
+  console.log('collectionId: ', collectionId);
+  console.log('status: ', status);
+  console.log('paymentId: ', paymentId);
+  console.log('paymentType: ', paymentType);
+  console.log('merchantOrderId: ', merchantOrderId);
   
   // Promise.all([
   //   getAgents(),
