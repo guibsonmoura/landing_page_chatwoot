@@ -13,8 +13,9 @@ import { createClient } from '@/lib/supabase/server';
 import ValueMetricsCard from '@/components/analytics/ValueMetricsCard';
 import { HeaderSetter } from '@/components/layout/HeaderSetter';
 import { useSearchParams } from "next/navigation";
-import { useEffect } from 'react';
-import { toast } from 'sonner';
+import { useEffect, useState } from 'react';
+import {PaymentStatusModal} from '@/components/ui/status-pagamento';
+import { set } from 'zod';
 
 interface Agent {
   id: string;
@@ -50,14 +51,11 @@ export default function PlanoPage() {
   const paymentId = searchParams.get("payment_id");
   const paymentType = searchParams.get("payment_type");
   const merchantOrderId = searchParams.get("merchant_order_id");
+  const [openStatusPagamento, setOpenStatusPagamento] = useState<boolean>(false);
+  const [statusPagamento, setStatusPagamento] = useState<string>('failed');
 
   // const [agentsResult, channelsResult, attendantsResult, heatmapData7Days, heatmapData30Days, heatmapDataTotal] = await 
   
-  console.log('collectionId: ', collectionId);
-  console.log('status: ', status);
-  console.log('paymentId: ', paymentId);
-  console.log('paymentType: ', paymentType);
-  console.log('merchantOrderId: ', merchantOrderId);
   
   // Promise.all([
   //   getAgents(),
@@ -69,61 +67,20 @@ export default function PlanoPage() {
   // ]);
   
   useEffect(() => {
-    toast.error('Erro ao deletar agente', { description: status });
-    const init = async () => {
-      const supabase = await createClient();
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
+    console.log('=======status=======');
+    console.log(status);
+    console.log('=======status=======');
+    if(status != null){
+      setOpenStatusPagamento(true);
+      if(status == 'approved'){
+        setStatusPagamento('success')
+      }else if(status == 'pending'){
+        setStatusPagamento('pending')
+      }else if(status == 'failure'){
+        setStatusPagamento('failed')
+      }
+    }
     
-    const tenantResponse = await supabase
-      .from('tenants')
-      .select('id, plans(name, plan_features)')
-      .eq('user_id', user.id)
-      .single();
-      
-    tenantData = tenantResponse.data;
-      
-    if (tenantData?.plans) {
-      
-      let planData = null;
-      
-      if (Array.isArray(tenantData.plans)) {
-        planData = tenantData.plans[0];
-      } else if (tenantData.plans) {
-        planData = tenantData.plans as any;
-      }
-      
-      if (planData) {
-        planName = planData.name || 'Plano Básico';
-        planFeatures = planData.plan_features;
-      }
-      
-      // Extrair dados do plano conforme nova estrutura
-      if (planFeatures) {
-        // Usar o nome do plano do próprio JSON se disponível
-        planName = planFeatures.plan_name || planName;
-        maxAgents = planFeatures.max_agents || 0;
-        maxChannels = planFeatures.max_channel || 0; 
-        maxAttendants = planFeatures.max_attendants || 0; 
-        allowedChannels = planFeatures.allowed_channels || [];
-        features = planFeatures.features || {};
-      }
-      
-      // Buscar dados de billing se tenant existe
-      if (tenantData?.id) {
-        const [invoicesResult, statsResult, paymentMethodsResult] = await Promise.all([
-          getInvoicesByTenant(tenantData.id),
-          getInvoiceStats(tenantData.id),
-          getPaymentMethodsByTenant(tenantData.id)
-        ]);
-        
-        invoices = invoicesResult.success ? invoicesResult.data || [] : [];
-        invoiceStats = statsResult.success ? statsResult.data : null;
-        paymentMethods = paymentMethodsResult.success ? paymentMethodsResult.data || [] : [];
-      }
-    }
-  }
-    }
   })
   
   
@@ -188,10 +145,15 @@ export default function PlanoPage() {
 
   return (
     <div className="space-y-6">
-      {/* Set dynamic header (moved to global Header via context) */}
+      {openStatusPagamento && (
+        <PaymentStatusModal 
+          status={statusPagamento}
+          isOpen={openStatusPagamento}
+          onClose={() => setOpenStatusPagamento(false)}/>
+      )}  
       <HeaderSetter title="Meu Plano" subtitle="Gerencie e visualize os detalhes do seu plano atual" />
 
-      {/* Tabs para organizar conteúdo */}
+      
       <Tabs defaultValue="overview" className="w-full">
         <TabsList className="grid w-full grid-cols-4 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
           <TabsTrigger 
