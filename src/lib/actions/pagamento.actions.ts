@@ -1,7 +1,7 @@
 'use server';
 
 
-export async function inserirPagamento(){
+export async function inserirPagamento(pagamento:any){
     const producao = process.env.NEXT_PUBLIC_PRODUCTION;  
     let url:string;
     if(producao === 'true'){
@@ -20,9 +20,7 @@ export async function inserirPagamento(){
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-
-        })
+        body: JSON.stringify(pagamento)
     })
     response.json()
     .then(

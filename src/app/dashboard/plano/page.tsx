@@ -77,7 +77,13 @@ export default function PlanoPage() {
       setOpenStatusPagamento(true);
       if(status == 'approved'){
         setStatusPagamento('success')
-          let resposta = inserirPagamento();
+          let resposta = inserirPagamento({
+            collectionId,
+            status,
+            paymentId,
+            paymentType,
+            merchantOrderId
+          });
           console.log('responsta: haha: ', resposta)
         
       }else if(status == 'pending'){

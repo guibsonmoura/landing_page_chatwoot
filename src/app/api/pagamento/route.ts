@@ -42,12 +42,15 @@ export async function POST(request: NextRequest) {
         }
 
         })
+    console.log(`id transacao: ${id_transacao}`)
+    console.log(id_transacao['id']);
     const db = getDb();
     const insert = db.prepare(`
         INSERT INTO transacao(titulo, quantidade, preco, idproduto, idtransacao) VALUES(?, ?, ?, ?, ?);
-      `)
-    insert.run(data.name, 1, data.price, data.uuid, id_transacao);
-    console.log('inserido')
+      `).run(`${data.name}`, 1, data.price, data.uuid, id_transacao['id']);
+    
+    console.log('inserido: ', insert);
+    console.log(insert);
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   }

@@ -14,9 +14,11 @@ export function getDb() {
       db.prepare(`
         CREATE TABLE IF NOT EXISTS transacao (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
-          data TEXT NOT NULL,
-          valor REAL NOT NULL,
-          status TEXT NOT NULL
+          titulo TEXT NOT NULL,
+          quantidade INTEGER NOT NULL,
+          preco INTEGER NOT NULL,
+          idproduto TEXT,
+          idtransacao TEXT
         )
       `).run();
       

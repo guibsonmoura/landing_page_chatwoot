@@ -1,9 +1,17 @@
 import {NextRequest} from "next/server";
 import {createClient} from "@/lib/supabase/server";
+import {getDb} from '@/lib/sqlite';
 
 
 export async function POST(request: NextRequest){
     try{
+        const db = getDb();
+        const requestJson:any = request.json();
+        const select = db.prepare(`
+            SELECT * FROM transacao WHERE idtransacao = ?
+            `).get(requestJson['merchantOrderId']);
+        console.log('select')
+        console.log(select)
         const supabase = await createClient();
         const {data: {user}, error} = await supabase.auth.getUser();
         if(user){
@@ -31,8 +39,7 @@ export async function POST(request: NextRequest){
             if(paymentError){
                 console.error("Erro ao salvar registro: ", paymentError)
             }
-    }
-
+        }
     }catch(error){
         console.error(`error: ${error}`);
     }
