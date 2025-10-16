@@ -6,12 +6,18 @@ import {getDb} from '@/lib/sqlite';
 export async function POST(request: NextRequest){
     try{
         const db = getDb();
-        const requestJson:any = request.json();
+        const {
+            collectionId,
+            status,
+            paymentId,
+            paymentType,
+            merchantOrderId
+          }:any = request.json();
         console.log('======requestJson=======')
-        console.log(requestJson);
+        console.log(status);
         const select = db.prepare(`
             SELECT * FROM transacao WHERE idtransacao = ?
-            `).get(requestJson['merchantOrderId']);
+            `).get('merchantOrderId');
         console.log('=====select=====')
         console.log(select)
         const supabase = await createClient();

@@ -5,8 +5,6 @@ import {getDb} from '@/lib/sqlite';
 
 export const runtime = 'nodejs';
 
-
-
 export async function POST(request: NextRequest) {
   
   const supabase = await createClient();
