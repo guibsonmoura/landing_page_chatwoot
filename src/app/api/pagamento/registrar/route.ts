@@ -8,14 +8,11 @@ export async function POST(request: NextRequest){
         const db = getDb();
         const respostaJson:any = request.json();
         const data = await respostaJson
-        console.log('========data=========')
-        console.log(data)
-        console.log(data['preferenceId'])
-        const select = db.prepare(`
+        
+        const select:any = db.prepare(`
             SELECT * FROM transacao WHERE idtransacao = ?
             `).get(data['preferenceId']);
-        console.log('=====select=====')
-        console.log(select)
+        
         const supabase = await createClient();
         const {data: {user}, error} = await supabase.auth.getUser();
         if(user){
@@ -25,17 +22,18 @@ export async function POST(request: NextRequest){
                 .eq('user_id', user.id)
                 .single()
                 
-            
+            console.log('=====tenantdata========')
+            console.log(tenantData)
             const {data: payment, error: paymentError} = await supabase
                 .from('payments')
                 .insert({
                     tenant_id: tenantData.id,
-                    amount: 0,
-                    payment_method: "",
-                    status: "",
-                    colection_id: "",
-                    payment_id: "",
-                    merchant_order_id: ""
+                    amount: select['preco'],
+                    payment_method: data['paymentType'],
+                    status: data['status'],
+                    colection_id: data['collectionId'],
+                    payment_id: data['paymentId'],
+                    merchant_order_id: data['merchantOrderId']
                 } )
                 .select()
                 .single();
