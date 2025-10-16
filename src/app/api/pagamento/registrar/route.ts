@@ -10,8 +10,8 @@ export async function POST(request: NextRequest){
         const select = db.prepare(`
             SELECT * FROM transacao WHERE idtransacao = ?
             `).get(requestJson['merchantOrderId']);
-        console.log('select')
-        console.log(select)
+        console.error('select')
+        console.error(select)
         const supabase = await createClient();
         const {data: {user}, error} = await supabase.auth.getUser();
         if(user){
