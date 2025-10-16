@@ -1,21 +1,23 @@
 'use client';
-import { getAgents } from '@/lib/actions/agent.actions';
-import { getChannels } from '@/lib/actions/channel.actions';
-import { getAttendants } from '@/lib/actions/attendant.actions';
-import { getConversationHeatmap, getConversationHeatmapTotal } from '@/lib/actions/analytics.actions';
-import { getInvoicesByTenant, getInvoiceStats } from '@/lib/actions/invoice.actions';
-import { getPaymentMethodsByTenant } from '@/lib/actions/payment-method.actions';
+// import { getAgents } from '@/lib/actions/agent.actions';
+// import { getChannels } from '@/lib/actions/channel.actions';
+// import { getAttendants } from '@/lib/actions/attendant.actions';
+// import { getConversationHeatmap, getConversationHeatmapTotal } from '@/lib/actions/analytics.actions';
+// import { getInvoicesByTenant, getInvoiceStats } from '@/lib/actions/invoice.actions';
+// import { getPaymentMethodsByTenant } from '@/lib/actions/payment-method.actions';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Crown, Users, Bot, MessageSquare, Check, CreditCard, Receipt, FileText, TrendingUp, BrainCircuit, Search, UserCheck, BarChart3 } from 'lucide-react';
 import { getPlanIcon } from '@/lib/plan-icons';
-import { createClient } from '@/lib/supabase/server';
-import ValueMetricsCard from '@/components/analytics/ValueMetricsCard';
+// import { createClient } from '@/lib/supabase/server';
+import { createBrowserClient } from '@supabase/ssr';
+// import ValueMetricsCard from '@/components/analytics/ValueMetricsCard';
 import { HeaderSetter } from '@/components/layout/HeaderSetter';
+import {inserirPagamento} from '@/lib/actions/pagamento.actions';
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from 'react';
 import {PaymentStatusModal} from '@/components/ui/status-pagamento';
-import { set } from 'zod';
+// import { set } from 'zod';
 
 interface Agent {
   id: string;
@@ -52,6 +54,7 @@ export default function PlanoPage() {
   const paymentType = searchParams.get("payment_type");
   const merchantOrderId = searchParams.get("merchant_order_id");
   const [openStatusPagamento, setOpenStatusPagamento] = useState<boolean>(false);
+  
   const [statusPagamento, setStatusPagamento] = useState<string>('failed');
 
   // const [agentsResult, channelsResult, attendantsResult, heatmapData7Days, heatmapData30Days, heatmapDataTotal] = await 
@@ -65,7 +68,7 @@ export default function PlanoPage() {
   //   getConversationHeatmap(30),
   //   getConversationHeatmapTotal()
   // ]);
-  
+
   useEffect(() => {
     console.log('=======status=======');
     console.log(status);
@@ -74,14 +77,18 @@ export default function PlanoPage() {
       setOpenStatusPagamento(true);
       if(status == 'approved'){
         setStatusPagamento('success')
+          let resposta = inserirPagamento();
+          console.log('responsta: haha: ', resposta)
+        
       }else if(status == 'pending'){
         setStatusPagamento('pending')
       }else if(status == 'failure'){
         setStatusPagamento('failed')
       }
-    }
+
+
     
-  })
+  }})
   
   
   
@@ -135,11 +142,11 @@ export default function PlanoPage() {
     }
   };
 
-  // Filtrar apenas features ativas
+
   const activeFeatures = Object.entries(features)
     .map(([key, value]) => normalizeFeatureName(key, value))
     .filter((feature): feature is { name: string; icon: any; color: string; bg: string; special?: boolean } => feature !== null);
-  // Dividir features em duas colunas (zebra) para equilibrar alturas
+
   const featuresCol1 = activeFeatures.filter((_, i) => i % 2 === 0);
   const featuresCol2 = activeFeatures.filter((_, i) => i % 2 !== 0);
 

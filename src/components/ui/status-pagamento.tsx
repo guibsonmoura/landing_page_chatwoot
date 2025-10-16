@@ -43,7 +43,7 @@ export const PaymentStatusModal: React.FC<PaymentStatusModalProps> = ({
         className={`rounded-2xl shadow-lg p-8 w-96 text-center ${color} animate-fade-in`}
       >
         <div className="flex justify-center mb-4">{icon}</div>
-        <h2 className="text-2xl font-bold mb-2">{title}</h2>
+        <h2 className="text-gray-700 text-2xl font-bold mb-2">{title}</h2>
         <p className="text-gray-700 mb-6">{message}</p>
         <button
           onClick={onClose}

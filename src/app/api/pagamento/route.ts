@@ -1,14 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import {preference} from '@/lib/billing/mercado-pago';
 import {createClient} from '@/lib/supabase/server';
+import {getDb} from '@/lib/sqlite';
+
+export const runtime = 'nodejs';
+
 
 
 export async function POST(request: NextRequest) {
   
   const supabase = await createClient();
-
-
-
   const { id_produto } = await request.json();
 
   const { data, error } = await supabase
@@ -16,7 +17,7 @@ export async function POST(request: NextRequest) {
     .select("*")
     .eq("uuid", id_produto)
     .single();
-    const precoFormatado = (data.price / 100).    toLocaleString('pt-BR', {
+    const precoFormatado = (data.price / 100).toLocaleString('pt-BR', {
                 style: 'currency',
                 currency: 'BRL'
               });
@@ -41,7 +42,12 @@ export async function POST(request: NextRequest) {
         }
 
         })
-
+    const db = getDb();
+    const insert = db.prepare(`
+        INSERT INTO transacao(titulo, quantidade, preco, idproduto, idtransacao) VALUES(?, ?, ?, ?, ?);
+      `)
+    insert.run(data.name, 1, data.price, data.uuid, id_transacao);
+    console.log('inserido')
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   }
