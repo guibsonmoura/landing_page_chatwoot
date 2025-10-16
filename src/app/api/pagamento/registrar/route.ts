@@ -1,5 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
-import {createClient} from "@/lib/supabase/server";
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 import {getDb} from '@/lib/sqlite';
 
 
@@ -13,8 +14,10 @@ export async function POST(request: NextRequest){
             SELECT * FROM transacao WHERE idtransacao = ?
             `).get(data['preferenceId']);
         
-        const supabase = await createClient();
+        const cookieStore = cookies();
+        const supabase = createRouteHandlerClient({ cookies: () => cookieStore });
         const {data: {user}, error} = await supabase.auth.getUser();
+        
         if(user){
             console.log('entrou no user')
             const {data: tenantData, error: tenantError} = await supabase
