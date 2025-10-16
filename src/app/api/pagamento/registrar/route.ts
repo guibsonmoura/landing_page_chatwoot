@@ -16,6 +16,7 @@ export async function POST(request: NextRequest){
         const supabase = await createClient();
         const {data: {user}, error} = await supabase.auth.getUser();
         if(user){
+            console.log('entrou no user')
             const {data: tenantData, error: tenantError} = await supabase
                 .from('tenant')
                 .select('*')
