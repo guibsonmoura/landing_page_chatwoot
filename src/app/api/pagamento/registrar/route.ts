@@ -7,12 +7,9 @@ export async function POST(request: NextRequest){
     try{
         const db = getDb();
         const respostaJson:any = request.json();
-        respostaJson.then((data:any)=> {
-            console.log('=======data=======')
-            console.log(data)
-        })
-        console.log('======requestJson=======')
-        
+        const data = await respostaJson()
+        console.log('========data=========')
+        console.log(data)
         const select = db.prepare(`
             SELECT * FROM transacao WHERE idtransacao = ?
             `).get('merchantOrderId');
