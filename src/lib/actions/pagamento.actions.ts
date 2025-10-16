@@ -2,6 +2,8 @@
 
 
 export async function inserirPagamento(pagamento:any){
+    console.log('pagamento: ', pagamento)
+    console.log(pagamento)
     const producao = process.env.NEXT_PUBLIC_PRODUCTION;  
     let url:string;
     if(producao === 'true'){
