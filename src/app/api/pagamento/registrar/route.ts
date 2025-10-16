@@ -10,10 +10,10 @@ export async function POST(request: NextRequest){
         const data = await respostaJson
         console.log('========data=========')
         console.log(data)
-        console.log(data['merchantOrderId'])
+        console.log(data['preferenceId'])
         const select = db.prepare(`
             SELECT * FROM transacao WHERE idtransacao = ?
-            `).get(data['merchantOrderId']);
+            `).get(data['preferenceId']);
         console.log('=====select=====')
         console.log(select)
         const supabase = await createClient();

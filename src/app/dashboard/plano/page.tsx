@@ -49,6 +49,7 @@ interface Attendant {
 export default function PlanoPage() {
   const searchParams = useSearchParams();
   const collectionId = searchParams.get("collection_id");
+  const preferenceId = searchParams.get("preference_id")
   const status = searchParams.get("status");
   const paymentId = searchParams.get("payment_id");
   const paymentType = searchParams.get("payment_type");
@@ -82,7 +83,9 @@ export default function PlanoPage() {
             status,
             paymentId,
             paymentType,
-            merchantOrderId
+            merchantOrderId,
+            preferenceId
+
           });
           console.log('responsta: haha: ', resposta)
         
