@@ -7,7 +7,7 @@ export async function POST(request: NextRequest){
     try{
         const db = getDb();
         const respostaJson:any = request.json();
-        const data = await respostaJson()
+        const data = await respostaJson
         console.log('========data=========')
         console.log(data)
         const select = db.prepare(`
