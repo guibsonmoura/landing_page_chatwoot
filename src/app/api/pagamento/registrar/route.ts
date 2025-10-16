@@ -39,7 +39,8 @@ export async function POST(request: NextRequest){
                 } )
                 .select()
                 .single();
-
+            return NextResponse.json({ message: "tudo certo"});
+            
             if(paymentError){
                 console.error("Erro ao salvar registro: ", paymentError)
                 return NextResponse.json({ error: paymentError }, { status: 400 });
