@@ -6,15 +6,13 @@ import {getDb} from '@/lib/sqlite';
 export async function POST(request: NextRequest){
     try{
         const db = getDb();
-        const {
-            collectionId,
-            status,
-            paymentId,
-            paymentType,
-            merchantOrderId
-          }:any = request.json();
+        const respostaJson:any = request.json();
+        respostaJson.then((data:any)=> {
+            console.log('=======data=======')
+            console.log(data)
+        })
         console.log('======requestJson=======')
-        console.log(status);
+        
         const select = db.prepare(`
             SELECT * FROM transacao WHERE idtransacao = ?
             `).get('merchantOrderId');
