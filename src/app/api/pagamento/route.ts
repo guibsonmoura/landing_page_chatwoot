@@ -26,7 +26,6 @@ export async function POST(request: NextRequest) {
                 {
                     title: data.name,
                     quantity: 1,
-                    
                     unit_price: data.price / 100,
                     id: data.uuid
                 }

@@ -1,7 +1,9 @@
 'use server';
+import { cookies } from 'next/headers'
 
 
 export async function inserirPagamento(pagamento:any){
+    const cookieStore = await cookies();
     console.log('pagamento: ', pagamento)
     console.log(pagamento)
     const producao = process.env.NEXT_PUBLIC_PRODUCTION;  
@@ -20,7 +22,11 @@ export async function inserirPagamento(pagamento:any){
         method: 'POST',
         credentials: 'include',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Cookie: cookieStore
+        .getAll()
+        .map(({ name, value }) => `${name}=${value}`)
+        .join('; '),
         },
         body: JSON.stringify(pagamento)
     })
