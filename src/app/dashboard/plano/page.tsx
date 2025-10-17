@@ -17,6 +17,7 @@ import {inserirPagamento} from '@/lib/actions/pagamento.actions';
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from 'react';
 import {PaymentStatusModal} from '@/components/ui/status-pagamento';
+import { set } from 'zod';
 // import { set } from 'zod';
 
 interface Agent {
@@ -54,7 +55,7 @@ export default function PlanoPage() {
   const paymentId = searchParams.get("payment_id");
   const paymentType = searchParams.get("payment_type");
   const merchantOrderId = searchParams.get("merchant_order_id");
-  const [openStatusPagamento, setOpenStatusPagamento] = useState<boolean>(false);
+  const [openStatusPagamento, setOpenStatusPagamento] = useState<boolean>(true);
   
   const [statusPagamento, setStatusPagamento] = useState<string>('failed');
 
@@ -164,7 +165,10 @@ export default function PlanoPage() {
       <PaymentStatusModal
         status={statusPagamento}
         isOpen={openStatusPagamento}
-        onClose={() => setOpenStatusPagamento(false)}
+        onClose={() => {
+          setStatusPagamento('failed')
+          setOpenStatusPagamento(false)
+        }}
       />  
       <HeaderSetter title="Meu Plano" subtitle="Gerencie e visualize os detalhes do seu plano atual" />
 
