@@ -161,12 +161,11 @@ export default function PlanoPage() {
 
   return (
     <div className="space-y-6">
-      {openStatusPagamento && (
-        <PaymentStatusModal 
-          status={statusPagamento}
-          isOpen={openStatusPagamento}
-          onClose={() => setOpenStatusPagamento(false)}/>
-      )}  
+      <PaymentStatusModal
+        status={statusPagamento}
+        isOpen={openStatusPagamento}
+        onClose={() => setOpenStatusPagamento(false)}
+      />  
       <HeaderSetter title="Meu Plano" subtitle="Gerencie e visualize os detalhes do seu plano atual" />
 
       
