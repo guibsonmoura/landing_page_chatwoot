@@ -1,51 +1,15 @@
 'use client';
-// import { getAgents } from '@/lib/actions/agent.actions';
-// import { getChannels } from '@/lib/actions/channel.actions';
-// import { getAttendants } from '@/lib/actions/attendant.actions';
-// import { getConversationHeatmap, getConversationHeatmapTotal } from '@/lib/actions/analytics.actions';
-// import { getInvoicesByTenant, getInvoiceStats } from '@/lib/actions/invoice.actions';
-// import { getPaymentMethodsByTenant } from '@/lib/actions/payment-method.actions';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Crown, Users, Bot, MessageSquare, Check, CreditCard, Receipt, FileText, TrendingUp, BrainCircuit, Search, UserCheck, BarChart3 } from 'lucide-react';
 import { getPlanIcon } from '@/lib/plan-icons';
-// import { createClient } from '@/lib/supabase/server';
-import { createBrowserClient } from '@supabase/ssr';
-// import ValueMetricsCard from '@/components/analytics/ValueMetricsCard';
+
 import { HeaderSetter } from '@/components/layout/HeaderSetter';
 import {inserirPagamento} from '@/lib/actions/pagamento.actions';
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
 import {PaymentStatusModal} from '@/components/ui/status-pagamento';
-import { set } from 'zod';
-// import { set } from 'zod';
 
-interface Agent {
-  id: string;
-  agent_name: string;
-  system_prompt: string;
-  is_active: boolean;
-  created_at: string;
-  [key: string]: any;
-}
-
-interface Channel {
-  id: string;
-  platform: string;
-  account: string;
-  is_active: boolean;
-  created_at: string;
-  [key: string]: any;
-}
-
-interface Attendant {
-  id: string;
-  name: string;
-  email: string;
-  is_active: boolean;
-  created_at: string;
-  [key: string]: any;
-}
 
 export default function PlanoPage() {
   const searchParams = useSearchParams();
@@ -59,17 +23,6 @@ export default function PlanoPage() {
   const [merchantOrderId, setMerchantOrderId] = useState<string | null>('');
   const [statusPagamento, setStatusPagamento] = useState<string>('failed');
 
-  // const [agentsResult, channelsResult, attendantsResult, heatmapData7Days, heatmapData30Days, heatmapDataTotal] = await 
-  
-  
-  // Promise.all([
-  //   getAgents(),
-  //   getChannels(),
-  //   getAttendants(),
-  //   getConversationHeatmap(7),
-  //   getConversationHeatmap(30),
-  //   getConversationHeatmapTotal()
-  // ]);
   useEffect(()=>{
     setCollectionId(searchParams.get("collection_id"));
     setPreferenceId(searchParams.get("preference_id"));
@@ -80,65 +33,55 @@ export default function PlanoPage() {
   },[searchParams])
 
   useEffect(() => {
-    console.log('=======status=======');
-    console.log(status);
-    console.log('=======status=======');
+
     if(status != null){
       if(status == 'approved'){
         setOpenStatusPagamento(true);
         setStatusPagamento('success')
-          let resposta = inserirPagamento({
-            collectionId,
-            status,
-            paymentId,
-            paymentType,
-            merchantOrderId,
-            preferenceId
-
+        let resposta = inserirPagamento({
+          collectionId,
+          status,
+          paymentId,
+          paymentType,
+          merchantOrderId,
+          preferenceId
           });
-          console.log('responsta: haha: ', resposta)
-        
+               
       }else if(status == 'pending'){
         setOpenStatusPagamento(true);
         setStatusPagamento('pending')
+        let resposta = inserirPagamento({
+          collectionId,
+          status,
+          paymentId,
+          paymentType,
+          merchantOrderId,
+          preferenceId
+          });
       }else if(status == 'failure'){
         setOpenStatusPagamento(true);
         setStatusPagamento('failed')
+        let resposta = inserirPagamento({
+          collectionId,
+          status,
+          paymentId,
+          paymentType,
+          merchantOrderId,
+          preferenceId
+          });
       }
-
-
-    
   }})
   
   
   
-  let tenantData: any = null;
+  
   let planName = 'Plano Básico';
-  let planFeatures: any = null;
+  
   let maxAgents = 0;
   let maxChannels = 0;
   let maxAttendants = 0;
   let allowedChannels: string[] = [];
   let features: any = {};
-  
-  // Variáveis para dados de billing
-  let invoices: any[] = [];
-  let invoiceStats: any = null;
-  let paymentMethods: any[] = [];
-  
-  
-
-  // const agents = agentsResult.data as Agent[] || [];
-  // const channels = channelsResult.data as Channel[] || [];
-  // const attendants = attendantsResult.data || [];
-
-  // const agentCount = agents.length;
-  // const attendantCount = attendants.length;
-  // const channelCount = channels.length;
-  // const activeAgents = agents.filter((a: Agent) => a.is_active).length;
-  // const activeChannels = channels.filter((c: Channel) => c.is_active).length;
-  
-
   
   
   const normalizeFeatureName = (key: string, value: any) => {
@@ -403,7 +346,7 @@ export default function PlanoPage() {
                       </div>
                     </div>
 
-                    {/* Recursos Inclusos - Coluna 2 */}
+                    
                     <div>
                       <h5 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-4 opacity-0" aria-hidden="true">
                         Recursos Inclusos
@@ -466,8 +409,8 @@ export default function PlanoPage() {
            />  */}
         </TabsContent>
 
-        <TabsContent value="billing" className="space-y-6">
-          {/* Resumo Financeiro */}
+        {/* <TabsContent value="billing" className="space-y-6">
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card>
               <CardContent className="p-6">
@@ -526,7 +469,6 @@ export default function PlanoPage() {
             </Card>
           </div>
 
-          {/* Lista de Faturas */}
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-6">
@@ -593,7 +535,7 @@ export default function PlanoPage() {
               )}
             </CardContent>
           </Card>
-    </TabsContent>
+    </TabsContent> */}
 
     {/* <TabsContent value="payment-methods" className="space-y-6">
       

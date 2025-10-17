@@ -124,14 +124,14 @@ export default function DashboardLayout({
               sidebarOpen ? (
                 <a href={chatUrl} target="_blank" rel="noopener noreferrer" className="block cursor-pointer">
                   <Button className="cursor-pointer w-full h-11 px-4 text-[15px] font-semibold bg-gradient-to-r from-indigo-600 via-purple-600 to-fuchsia-600 hover:from-indigo-700 hover:via-purple-700 hover:to-fuchsia-700 text-white shadow-lg hover:shadow-xl transition-all relative overflow-hidden">
-                    <ExternalLink className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
+                    
                     <span className="block w-full text-center whitespace-nowrap">Plataforma de Atendimentos</span>
                   </Button>
                 </a>
               ) : (
                 <a href={chatUrl} target="_blank" rel="noopener noreferrer" className="block cursor-pointer" title="Plataforma de Atendimentos">
                   <Button className="cursor-pointer w-12 h-12 rounded-xl p-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-fuchsia-600 hover:from-indigo-700 hover:via-purple-700 hover:to-fuchsia-700 text-white shadow-lg hover:shadow-xl transition-all flex items-center justify-center">
-                    <ExternalLink className="h-5 w-5" aria-hidden="true" />
+                    
                   </Button>
                 </a>
               )
@@ -146,7 +146,7 @@ export default function DashboardLayout({
         </nav>
       </aside>
 
-      {/* Main content */}
+
       <div className={cn(
         "flex flex-col flex-1 transition-all duration-300",
         sidebarOpen ? "md:ml-0" : "md:ml-0"

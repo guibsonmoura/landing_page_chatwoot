@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 import { getPlanos } from "@/lib/actions/planos.actions";
 import { Button } from "@/components/ui/button";
 
-
-
 type Plan = {
     uuid: string;
     name: string;
@@ -15,7 +13,6 @@ type Plan = {
     description: string;
     features: { features: string[]; };
     cta: string;
-    
 };
 
 export default  function ConfigPage() {
@@ -29,18 +26,10 @@ export default  function ConfigPage() {
   const producao = process.env.NEXT_PUBLIC_PRODUCTION;  
   useEffect(() => {
     
-    
-    const fetchPlans = async () => {
-        console.log('entrou no planos');
-        const planos = await getPlanos();
-        console.log('planos');
-        console.log(planos); 
-
-        
+    const fetchPlans = async () => {  
+      const planos = await getPlanos();
       setPlans(planos);
-      
       setCurrentPlan("Starter");
-      setCard({ last4: "4242" });
     };
 
     fetchPlans();
@@ -74,7 +63,7 @@ export default  function ConfigPage() {
         (data) => {
         console.log('data');
         console.log(data);
-        //redirecione para o link de pagamento do mercado pago
+        
         if(data.transacao && data.transacao.init_point){
             window.location.href = data.transacao.sandbox_init_point;
         }
@@ -86,55 +75,15 @@ export default  function ConfigPage() {
     }
   };
 
-  const cancelPlan = async () => {
-    setLoading(true);
-    setMessage(null);
-    await new Promise((r) => setTimeout(r, 900));
-    setCurrentPlan(null);
-    setLoading(false);
-    setMessage("Assinatura cancelada");
-  };
-
-  const addCard = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!cardInput.replace(/\s/g, "").match(/^\d{12,19}$/)) {
-      setMessage("Número de cartão inválido (somente dígitos)");
-      return;
-    }
-    setLoading(true);
-    await new Promise((r) => setTimeout(r, 900));
-    setCard({ last4: cardInput.replace(/\s/g, "").slice(-4) });
-    setCardInput("");
-    setMessage("Cartão adicionado com sucesso");
-    setLoading(false);
-  };
-
-  const removeCard = async () => {
-    setLoading(true);
-    await new Promise((r) => setTimeout(r, 600));
-    setCard(null);
-    setLoading(false);
-    setMessage("Cartão removido");
-  };
-
-  const [flipped, setFlipped] = useState(false);
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#06060a] via-[#081229] to-[#071028]  sm:p-12 rounded-2xl  overflow-hidden">
-      
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <motion.div animate={{ x: [ -80, 80, -80 ], y: [ -10, 10, -10 ] }} transition={{ duration: 20, repeat: Infinity, ease: 'linear' }} className="absolute left-0 top-8 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl" />
-        <motion.div animate={{ x: [ 80, -80, 80 ], y: [ 10, -10, 10 ] }} transition={{ duration: 22, repeat: Infinity, ease: 'linear' }} className="absolute right-0 top-28 w-64 h-64 bg-green-400/8 rounded-full blur-3xl" />
-      </div>
+    <div className="min-h-screen bg-gradient-to-b from-[#06060a] via-[#081229] to-[#071028]  sm:p-12 rounded-2xl overflow-hidden">
 
-      <div className="relative w-full max-w-6xl flex flex-col lg:flex-row gap-6">
-        <div className="lg:w-2/3 rounded-3xl p-6 bg-white/3 backdrop-blur border border-white/6">
+      <div className="relative w-full flex flex-col lg:flex-row gap-2">
+        <div className="rounded-3xl p-6 bg-white/3 backdrop-blur border border-white/6">
           <motion.header initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} className="mb-4">
             <h1 className="text-3xl font-bold text-white">Planos - Tem um plano feito sob medida pra você — escolha o seu!</h1>
             
           </motion.header>
-
-          
 
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {plans.map((p) => {
@@ -162,8 +111,6 @@ export default  function ConfigPage() {
             )})}
           </div>
         </div>
-
-        
       </div>
 
       {message && (
