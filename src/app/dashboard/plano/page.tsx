@@ -14,7 +14,7 @@ import { createBrowserClient } from '@supabase/ssr';
 // import ValueMetricsCard from '@/components/analytics/ValueMetricsCard';
 import { HeaderSetter } from '@/components/layout/HeaderSetter';
 import {inserirPagamento} from '@/lib/actions/pagamento.actions';
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
 import {PaymentStatusModal} from '@/components/ui/status-pagamento';
 import { set } from 'zod';
@@ -49,14 +49,14 @@ interface Attendant {
 
 export default function PlanoPage() {
   const searchParams = useSearchParams();
-  const collectionId = searchParams.get("collection_id");
-  const preferenceId = searchParams.get("preference_id")
-  const status = searchParams.get("status");
-  const paymentId = searchParams.get("payment_id");
-  const paymentType = searchParams.get("payment_type");
-  const merchantOrderId = searchParams.get("merchant_order_id");
-  const [openStatusPagamento, setOpenStatusPagamento] = useState<boolean>(true);
   
+  const [openStatusPagamento, setOpenStatusPagamento] = useState<boolean>(false);
+  const [collectionId, setCollectionId] = useState<string | null>('');
+  const [preferenceId, setPreferenceId] = useState<string | null>('');
+  const [status, setStatus] = useState<string | null>('');
+  const [paymentId, setPaymentId] = useState<string | null>('');
+  const [paymentType, setPaymentType] = useState<string | null>('');
+  const [merchantOrderId, setMerchantOrderId] = useState<string | null>('');
   const [statusPagamento, setStatusPagamento] = useState<string>('failed');
 
   // const [agentsResult, channelsResult, attendantsResult, heatmapData7Days, heatmapData30Days, heatmapDataTotal] = await 
@@ -70,6 +70,14 @@ export default function PlanoPage() {
   //   getConversationHeatmap(30),
   //   getConversationHeatmapTotal()
   // ]);
+  useEffect(()=>{
+    setCollectionId(searchParams.get("collection_id"));
+    setPreferenceId(searchParams.get("preference_id"));
+    setStatus(searchParams.get("status"));
+    setPaymentId(searchParams.get("payment_id"));
+    setPaymentType(searchParams.get("payment_type"));
+    setMerchantOrderId(searchParams.get("merchant_order_id"));
+  },[searchParams])
 
   useEffect(() => {
     console.log('=======status=======');
@@ -167,6 +175,7 @@ export default function PlanoPage() {
         isOpen={openStatusPagamento}
         onClose={() => {
           setStatusPagamento('failed')
+          setStatus(null)
           setOpenStatusPagamento(false)
         }}
       />  
