@@ -33,7 +33,7 @@ export async function POST(request: NextRequest){
                     amount: select['preco'],
                     payment_method: data['paymentType'],
                     status: data['status'],
-                    colection_id: data['collectionId'],
+                    collection_id: data['collectionId'],
                     payment_id: data['paymentId'],
                     merchant_order_id: data['merchantOrderId']
                 } )
