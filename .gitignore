@@ -13,6 +13,9 @@
 ssl/*
 # testing
 /coverage
+src/lib/sqlite/cache.db
+src/lib/sqlite/cache.db-shm
+src/lib/sqlite/cache.db-wal
 
 # next.js
 /.next/

@@ -19,7 +19,7 @@ export async function POST(request: NextRequest){
         if(user){
             console.log('entrou no user')
             const {data: tenantData, error: tenantError} = await supabase
-                .from('tenant')
+                .from('tenants')
                 .select('*')
                 .eq('user_id', user.id)
                 .single()
