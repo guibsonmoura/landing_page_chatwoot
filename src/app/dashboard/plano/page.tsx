@@ -84,8 +84,8 @@ export default function PlanoPage() {
     console.log(status);
     console.log('=======status=======');
     if(status != null){
-      setOpenStatusPagamento(true);
       if(status == 'approved'){
+        setOpenStatusPagamento(true);
         setStatusPagamento('success')
           let resposta = inserirPagamento({
             collectionId,
@@ -99,8 +99,10 @@ export default function PlanoPage() {
           console.log('responsta: haha: ', resposta)
         
       }else if(status == 'pending'){
+        setOpenStatusPagamento(true);
         setStatusPagamento('pending')
       }else if(status == 'failure'){
+        setOpenStatusPagamento(true);
         setStatusPagamento('failed')
       }
 
@@ -174,7 +176,6 @@ export default function PlanoPage() {
         status={statusPagamento}
         isOpen={openStatusPagamento}
         onClose={() => {
-          setStatusPagamento('failed')
           setStatus(null)
           setOpenStatusPagamento(false)
         }}
