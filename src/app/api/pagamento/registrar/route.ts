@@ -35,7 +35,8 @@ export async function POST(request: NextRequest){
                     status: data['status'],
                     collection_id: data['collectionId'],
                     payment_id: data['paymentId'],
-                    merchant_order_id: data['merchantOrderId']
+                    merchant_order_id: data['merchantOrderId'],
+                    preference_id: data['preferenceId']
                 } )
                 .select()
                 .single();
