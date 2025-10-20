@@ -3,7 +3,10 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { getPlanos } from "@/lib/actions/planos.actions";
+import { Loader2 } from "lucide-react";
+import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
+import { Loading } from '@/components/layout/loading';
 
 type Plan = {
     uuid: string;
@@ -15,54 +18,59 @@ type Plan = {
     cta: string;
 };
 
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
+
 export default  function ConfigPage() {
   const [plans, setPlans] = useState<Plan[]>([]);
   const [currentPlan, setCurrentPlan] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [card, setCard] = useState<{ last4: string } | null>(null);
-  const [cardInput, setCardInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading2, setIsLoading2] = useState<boolean>(true)
+  const [loadingAnimation, setLoadingAnimation] = useState<any>(null);
   const [message, setMessage] = useState<string | null>(null);
 
   const producao = process.env.NEXT_PUBLIC_PRODUCTION;  
+  
   useEffect(() => {
     
     const fetchPlans = async () => {  
+      setIsLoading2(true);
       const planos = await getPlanos();
       setPlans(planos);
       setCurrentPlan("Starter");
+      setIsLoading2(false);
     };
 
     fetchPlans();
+    
   }, []);
 
+  
+  useEffect(() => {
+    fetch('/lottie/Sandy Loading.json')
+      .then(res => res.json())
+      .then(data => setLoadingAnimation(data))
+      .catch(err => console.error('Erro ao carregar animação:', err));
+  },[]);
+
   const changePlan = async (target: string) => {
-    setLoading(true);
+    setIsLoading(true);
     setMessage(null);
     try {
       let url: string;
       if(producao === 'true'){
-        console.log('producao')
-        console.log(producao);
         url = 'https://app.365ia.com.br'
       } else{
-        console.log('producao')
-        console.log(producao);
         url = 'http://localhost:3000'
       }
       const response = await fetch(`${url}/api/pagamento`, {
         method: 'POST',
         credentials: 'include',
-
         headers: { 'Content-Type': 'application/json'
          },
-        
-        
         body: JSON.stringify({ id_produto: target })
       })
       response.json().then(
         (data) => {
-        console.log('data');
-        console.log(data);
         
         if(data.transacao && data.transacao.init_point){
             window.location.href = data.transacao.sandbox_init_point;
@@ -70,24 +78,31 @@ export default  function ConfigPage() {
       });      
     } catch (err) {
       setMessage("Erro ao alterar plano");
-    } finally {
-      setLoading(false);
     }
   };
-
+ 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#06060a] via-[#081229] to-[#071028]  sm:p-12 rounded-2xl overflow-hidden">
-
+    <div className="h-full bg-gradient-to-b from-[#06060a] via-[#081229] to-[#071028]  sm:p-12 rounded-2xl overflow-hidden flex ">
+    
+      {isLoading && loadingAnimation && (<Loading loadingAnimation={loadingAnimation} Lottie={Lottie} message="Selecionando plano..."/>)}
+        {isLoading2 && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/10">
+            <Loader2 className="animate-spin text-blue-600 w-8 h-8" />
+          </div>
+        )}
       <div className="relative w-full flex flex-col lg:flex-row gap-2">
         <div className="rounded-3xl p-6 bg-white/3 backdrop-blur border border-white/6">
           <motion.header initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} className="mb-4">
-            <h1 className="text-3xl font-bold text-white">Planos - Tem um plano feito sob medida pra você — escolha o seu!</h1>
+            <h1 className="text-3xl font-bold text-white">Tem um plano feito sob medida pra você — escolha o seu!</h1>
             
           </motion.header>
 
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            
+            
             {plans.map((p) => {
-              const precoFormatado = (p.price / 100).    toLocaleString('pt-BR', {
+              
+              const precoFormatado = (p.price / 100).toLocaleString('pt-BR', {
                 style: 'currency',
                 currency: 'BRL'
               });
@@ -109,10 +124,12 @@ export default  function ConfigPage() {
                 </div>
               </motion.article>
             )})}
+             
           </div>
+          
         </div>
       </div>
-
+          
       {message && (
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="fixed bottom-6 right-6 bg-white/6 border border-gray-700 text-sm text-white px-4 py-2 rounded-md">{message}</motion.div>
       )}

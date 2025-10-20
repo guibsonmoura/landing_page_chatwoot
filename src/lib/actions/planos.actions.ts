@@ -17,13 +17,9 @@ export async function getPlanos(): Promise<Array<{
         const {data, error} = await supabase
             .from('planos')
             .select('*');
-        console.log('response planos');
-        console.log(data);
-        
-        // if(fetchError){
-        //     console.error('Erro ao buscar planos:', fetchError);
-        //     return [];
-        // };
+        if(error){
+            return [];
+        };
         return data; 
     }catch(erro){
         console.error(erro);

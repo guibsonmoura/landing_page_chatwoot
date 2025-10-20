@@ -41,11 +41,11 @@ type SignUpFormValues = z.infer<typeof signUpSchema>;
 export default function SignUpForm() {
   const supabase = createClient();
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loadingAnimation, setLoadingAnimation] = useState<any>(null);
-  const [loadingMessage, setLoadingMessage] = useState('');
+  const [loadingMessage, setLoadingMessage] = useState('Criando Conta...');
   const router = useRouter();
   
 
@@ -81,7 +81,6 @@ export default function SignUpForm() {
     setMessage(null);
 
     try {
-      // Cadastro no Supabase com os campos adicionais
       const { data, error } = await supabase.auth.signUp({
         email: values.email,
         password: values.password,
@@ -105,16 +104,17 @@ export default function SignUpForm() {
     } catch (err) {
       setError('Ocorreu um erro ao processar seu cadastro. Tente novamente.');
       logger.error('SignUpForm signup failed', { hasError: !!err });
-    } finally {
-      setIsLoading(false);
     }
   };
 
   return (
     <>
-      {/* Overlay com Loading Lottie */}
+      
       {isLoading && loadingAnimation && (
-        <Loading loadingAnimation={loadingAnimation} Lottie={Lottie}/>
+        <Loading 
+          loadingAnimation={loadingAnimation} 
+          Lottie={Lottie} 
+          message={loadingMessage}/>
       )}
 
       <Card className="w-full max-w-md shadow-lg bg-[#13131f] border border-gray-800 mt-8">

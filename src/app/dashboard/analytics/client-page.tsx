@@ -6,9 +6,7 @@ import { getChannels } from '@/lib/actions/channel.actions';
 import { getAttendants } from '@/lib/actions/attendant.actions';
 import { getCustomersAnalytics, getChatAnalytics, getTotalCustomers, getTotalAtendimentos, getTotalMensagensEnviadas, getTotalMensagensRecebidas, getConversationHeatmap } from '@/lib/actions/analytics.actions';
 import { PeriodFilter } from '@/lib/utils/analytics';
-import { StatCard } from '@/components/dashboard/StatCard';
-import { Users, Bot, Waypoints, MessageSquare, Database, Check, CheckCircle2, BadgePlus, Crown } from 'lucide-react';
-import { AnalyticsCard } from '@/components/analytics/AnalyticsCard';
+
 import { PeriodFilter as PeriodFilterComponent } from '@/components/analytics/PeriodFilter';
 import { AnalyticsDashboard } from '@/components/analytics/AnalyticsDashboard';
 import { TotalizadoresGrid } from '@/components/dashboard/TotalizadoresGrid';
@@ -139,7 +137,7 @@ export function AnalyticsClientPage() {
   return (
     <div className="space-y-6">
       <HeaderSetter title="Analytics" subtitle="Métricas e análises de performance dos seus agentes de IA" />
-      {/* Header */}
+      
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div />
         
@@ -149,15 +147,14 @@ export function AnalyticsClientPage() {
         />
       </div>
 
-      {/* Totalizadores Grid */}
+      
       <TotalizadoresGrid 
         clientes={data.totalCustomers}
         atendimentos={data.totalAtendimentos}
         mensagensEnviadas={data.totalMensagensEnviadas}
         mensagensRecebidas={data.totalMensagensRecebidas}
       />
-
-      {/* Analytics Dashboard */}
+      
       <AnalyticsDashboard 
         customersData={{
           data: customersAnalyticsData.data || [],
@@ -174,7 +171,6 @@ export function AnalyticsClientPage() {
         initialPeriod={period}
       />
 
-      {/* Heatmap de Conversas */}
       <ConversationHeatmap 
         data7Days={data.heatmapData7Days} 
         data30Days={data.heatmapData30Days} 

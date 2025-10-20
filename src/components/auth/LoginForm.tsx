@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Eye, EyeOff, Lock, Mail, Bot,  Sparkles } from 'lucide-react';
+import { Eye, EyeOff, Lock, Mail, } from 'lucide-react';
 import Link from 'next/link';
 import { Loading } from '@/components/layout/loading';
 
@@ -53,8 +53,6 @@ export default function LoginForm() {
       }
     } catch (err) {
       setError('Ocorreu um erro ao tentar fazer login. Tente novamente.');
-    } finally {
-      setIsLoading(false);
     }
   };
   
@@ -73,7 +71,7 @@ export default function LoginForm() {
     <>
       
       {isLoading && loadingAnimation && (
-        <Loading loadingAnimation={loadingAnimation} Lottie={Lottie}/>
+        <Loading loadingAnimation={loadingAnimation} Lottie={Lottie} message={loadingMessage}/>
       )}
 
       <Card className="w-full max-w-md overflow-hidden shadow-lg bg-[#13131f] border border-gray-800">
@@ -173,17 +171,17 @@ export default function LoginForm() {
         
         <CardFooter className="flex flex-col space-y-4 px-8 pb-8 pt-0">
           <div className="relative">
-            <div className="absolute inset-0 flex items-center">
+            {/* <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t border-gray-200 dark:border-gray-700" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-[#13131f] px-2 text-white">
                 Ou continue com
               </span>
-            </div>
+            </div> */}
           </div>
           
-          <div className="grid grid-cols-2 gap-4">
+          {/* <div className="grid grid-cols-2 gap-4">
             <Button 
               variant="outline" 
               className="bg-[#13131f] border-gray-700 hover:border-[#00e980] text-white"
@@ -200,7 +198,7 @@ export default function LoginForm() {
               <Bot className="mr-2 h-4 w-4 text-[#00e980]" />
               Microsoft
             </Button>
-          </div>
+          </div> */}
           
           <p className="text-center text-sm text-gray-400 mt-4">
             Não tem uma conta?{" "}

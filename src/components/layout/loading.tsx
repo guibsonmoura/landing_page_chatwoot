@@ -2,7 +2,7 @@
 
 import { ComponentType } from 'react';
 
-const Loading = ({ Lottie, loadingAnimation }: { Lottie: ComponentType<any>, loadingAnimation: any }) => {
+const Loading = ({ Lottie, loadingAnimation, message }: { Lottie: ComponentType<any>, loadingAnimation: any, message: string | null }) => {
     return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center">
           <div className="bg-[#13131f] rounded-2xl p-8 border border-gray-800 shadow-2xl">
@@ -14,7 +14,7 @@ const Loading = ({ Lottie, loadingAnimation }: { Lottie: ComponentType<any>, loa
               />
             </div>
             <p className="text-center text-white mt-4 font-medium">
-              Criando sua conta...
+              {message != null ? message : 'Carregando...'}
             </p>
           </div>
         </div>)

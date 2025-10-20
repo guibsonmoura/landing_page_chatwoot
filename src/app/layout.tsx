@@ -6,9 +6,9 @@ import { AgentProvider } from "@/contexts/AgentContext";
 import { disableConsoleInProduction } from "@/lib/security/disable-console-production";
 import "./globals.css";
 
-// SEC-004: Desabilitar console.log em produção para prevenir exposição de dados sensíveis
+
 disableConsoleInProduction();
-// Forçar renderização dinâmica em toda a aplicação para evitar erros de prerender no build BETA
+
 export const dynamic = 'force-dynamic';
 
 const geistSans = Geist({

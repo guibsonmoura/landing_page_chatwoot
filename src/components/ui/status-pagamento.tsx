@@ -6,8 +6,19 @@ interface PaymentStatusModalProps {
   status: string;
   onClose: () => void;
 }
+interface ParametrosConfig {
+  icon: React.ReactNode;
+  title: string;
+  message: string;
+  color: string;
+}
+interface StatusConfig {
+  success: ParametrosConfig,
+  pending: ParametrosConfig,
+  failed: ParametrosConfig
+}
 
-const statusConfig = {
+const statusConfig:StatusConfig = {
   success: {
     icon: <CheckCircle className="text-green-500 w-16 h-16" />,
     title: "Pagamento bem-sucedido!",
@@ -35,7 +46,7 @@ export const PaymentStatusModal: React.FC<PaymentStatusModalProps> = ({
 }) => {
   if (!isOpen) return null;
 
-  const { icon, title, message, color } = statusConfig[status];
+  const { icon, title, message, color } = statusConfig[status as keyof StatusConfig];
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">

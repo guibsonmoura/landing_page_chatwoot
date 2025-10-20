@@ -36,7 +36,7 @@ export function Navbar() {
           ${isScrolled ? "bg-black/70 border-gray-700 shadow-lg" : "bg-black/40 border-gray-800"}
           w-[90%] md:w-[70%] lg:w-[60%]`}
       >
-        {/* Logo */}
+        
         <Link href="/" className="flex items-center gap-2">
           <motion.img
             src="/images/logos/logo_64x64.png"
@@ -48,7 +48,6 @@ export function Navbar() {
           <span className="text-white font-semibold">365IA</span>
         </Link>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-6">
           {navLinks.map((link, index) => (
             <motion.div
@@ -66,8 +65,7 @@ export function Navbar() {
             </motion.div>
           ))}
         </nav>
-
-        {/* CTA Desktop */}
+        
         <div className="hidden md:flex">
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
@@ -79,7 +77,6 @@ export function Navbar() {
           </motion.div>
         </div>
 
-        {/* Mobile Menu Toggle */}
         <button
           className="md:hidden text-gray-300"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -88,7 +85,7 @@ export function Navbar() {
         </button>
       </motion.div>
 
-      {/* Mobile Menu - Fullscreen Overlay */}
+      
       <AnimatePresence>
   {isMenuOpen && (
     <motion.div
@@ -96,9 +93,9 @@ export function Navbar() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="fixed inset-0 bg-black/90 backdrop-blur-lg flex flex-col items-center justify-center space-y-8 z-40"
-      onClick={() => setIsMenuOpen(false)} // Fecha o menu ao clicar no overlay
+      onClick={() => setIsMenuOpen(false)} 
     >
-      {/* Evita que o clique nos itens do menu feche imediatamente */}
+      
       <div className="flex flex-col items-center justify-center space-y-8"
            onClick={(e) => e.stopPropagation()}>
         {navLinks.map((link, index) => (
