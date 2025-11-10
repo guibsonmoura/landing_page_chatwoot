@@ -2,12 +2,28 @@ import { NextRequest, NextResponse } from "next/server";
 import {preference} from '@/lib/billing/mercado-pago';
 import {createClient} from '@/lib/supabase/server';
 import {getDb} from '@/lib/sqlite';
-
 export const runtime = 'nodejs';
 
-export async function POST(request: NextRequest) {
+function corsHeaders() {
+  return {
+    "Access-Control-Allow-Origin": "*", // ou "http://localhost:3000"
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  };
+}
+
+// ✅ Trata a requisição preflight (OPTIONS)
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 200, headers: corsHeaders() });
+}
+
+
+export async function POST(request: NextRequest, res) {
   
   const supabase = await createClient();
+  
+  console.log('=====request=====')
+  console.log(request)
   const { id_produto } = await request.json();
 
   const { data, error } = await supabase
@@ -31,9 +47,9 @@ export async function POST(request: NextRequest) {
                 }
             ],
         back_urls: {
-                success: "https://app.365ia.com.br/dashboard/plano",
-                failure: "https://app.365ia.com.br/dashboard/plano",
-                pending: "https://app.365ia.com.br/dashboard/plano"
+                success: "https://p.365ia.com.br/app/accounts/1/dashboard",
+                failure: "https://p.365ia.com.br/app/accounts/1/dashboard",
+                pending: "https://p.365ia.com.br/app/accounts/1/dashboard"
             },
             auto_return: "approved",
         }
@@ -55,5 +71,5 @@ export async function POST(request: NextRequest) {
   return NextResponse.json({ 
     message: `ok: ${id_produto}`,  
     transacao: id_transacao
-});
+}, { headers: corsHeaders()});
 }

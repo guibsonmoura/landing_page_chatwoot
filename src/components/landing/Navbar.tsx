@@ -67,14 +67,14 @@ export function Navbar() {
         </nav>
         
         <div className="hidden md:flex">
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          {/* <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
               className="px-5 py-2 bg-[#00e980] text-black font-medium rounded-full hover:bg-[#00c870] transition"
               asChild
             >
               <Link href="/login">Entrar</Link>
             </Button>
-          </motion.div>
+          </motion.div> */}
         </div>
 
         <button
@@ -115,7 +115,7 @@ export function Navbar() {
           </motion.div>
         ))}
 
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+        {/* <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Button
             className="bg-[#00e980] text-black font-medium rounded-full hover:bg-[#00c870] transition px-8 py-3 text-lg"
             asChild
@@ -124,7 +124,7 @@ export function Navbar() {
               Entrar
             </Link>
           </Button>
-        </motion.div>
+        </motion.div> */}
       </div>
     </motion.div>
   )}

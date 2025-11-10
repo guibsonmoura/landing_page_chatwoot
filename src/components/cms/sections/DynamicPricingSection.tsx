@@ -7,8 +7,10 @@ import { Check } from "lucide-react";
 import { getPlanIcon } from "@/lib/plan-icons";
 import { SectionProps } from "../DynamicSection";
 import { useState, useRef, useEffect } from "react";
+import { getPlanos } from "@/lib/actions/planos.actions";
 
 interface Plan {
+  [x: string]: any;
   name: string;
   price: string;
   period: string;
@@ -22,10 +24,29 @@ interface PricingContent {
   plans: Plan[];
 }
 
+interface TypePlanosReal {
+  uuid: string;
+  price: Number;
+  period: string;
+  name: string;
+  features:{},
+  descriptions: string;
+  cta: string;
+  created_at: string;
+
+}
+
+interface ListPlanosReal{
+  planosRealLista: TypePlanosReal[];
+}
+
 export function DynamicPricingSection({ title, subtitle, content }: SectionProps) {
+  
   const pricingContent = content as PricingContent;
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [planosReal, setPlanosReal] = useState([]);
+  const [planoEscolhido, setPlanoEscolhido] = useState()
   const carouselRef = useRef<HTMLDivElement>(null);
 
   // Atualiza o índice ativo conforme o scroll
@@ -44,6 +65,27 @@ export function DynamicPricingSection({ title, subtitle, content }: SectionProps
     carousel.addEventListener("scroll", handleScroll);
     return () => carousel.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(()=>{
+    const  pegarPlanos = async() =>{
+
+      let planos = await  getPlanos();
+      
+      setPlanosReal(planos)
+      return planos
+    }    
+    pegarPlanos()
+
+  }, [planosReal])
+
+  const EscolherPlano = (plano: string, origem: string, name: string)=>{
+    console.log('meu plano escolhido: ', plano)
+    let escolhido = planosReal.find(p => p?.name == name);
+    const url = `https://p.365ia.com.br/app/auth/signup?utm_source=${origem}&plan=${plano}&ud=${escolhido?.uuid ?? ""}`;
+    window.location.href = url;
+    
+    
+  }
 
   return (
     <section id="planos" className="relative py-24 bg-[#0d0d17] overflow-hidden">
@@ -81,6 +123,7 @@ export function DynamicPricingSection({ title, subtitle, content }: SectionProps
           >
             {pricingContent.plans.map((plan, index) => {
               const { icon: IconComponent, iconColor } = getPlanIcon(plan.name);
+              
               const isPopular = plan.popular;
 
               return (
@@ -90,14 +133,12 @@ export function DynamicPricingSection({ title, subtitle, content }: SectionProps
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                   className={`relative group flex-shrink-0 w-[85vw] max-w-[340px] lg:w-auto lg:max-w-none rounded-3xl p-6 shadow-lg
-          ${isPopular ? "bg-[#111] border border-[#00e980]/40 lg:scale-105" : "bg-[#0f0f1a] border border-gray-800"}
-          snap-center
-        `}
-                >
-                  {/* Glow on hover */}
+                  ${isPopular ? "bg-[#111] border border-[#00e980]/40 lg:scale-105" : "bg-[#0f0f1a] border border-gray-800"}
+                  snap-center
+                `}
+                >                  
                   <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-[#00e980]/20 via-transparent to-[#4d7cfe]/20 blur-xl" />
 
-                  {/* Popular Badge */}
                   {isPopular && (
                     <div className="absolute -top-5 left-1/2 -translate-x-1/2">
                       <span className="px-4 py-1 text-sm rounded-full bg-[#00e980] text-black font-medium">
@@ -136,6 +177,10 @@ export function DynamicPricingSection({ title, subtitle, content }: SectionProps
                   {/* CTA */}
                   <Button
                     size="lg"
+                    onClick={()=>{
+                      
+                      EscolherPlano(plan.nami ,'pricing-page', plan.name)
+                    }}
                     className={`relative w-full font-medium rounded-xl transition
                     ${isPopular
                         ? "bg-[#00e980] hover:bg-[#00c870] text-black"
@@ -143,9 +188,10 @@ export function DynamicPricingSection({ title, subtitle, content }: SectionProps
                       }`}
                     asChild
                   >
-                    <Link href={plan.name === "Enterprise" ? "/contato" : "/cadastro"}>
+                    <p>{plan.cta}</p>
+                    {/* <Link href={`http://localhost:3000/app/auth/signup?utm_source=pricing-page&plan=${plan.nami}`}>
                       {plan.cta}
-                    </Link>
+                    </Link> */}
                   </Button>
                 </motion.div>
               );

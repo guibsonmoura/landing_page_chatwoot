@@ -9,7 +9,7 @@ export function getDb() {
       const dbPath = path.join(process.cwd(), 'src/lib/sqlite/cache.db');
       db = new Database(dbPath);
       db.pragma('journal_mode = WAL');
-      
+
       // Criar tabelas necessárias
       db.prepare(`
         CREATE TABLE IF NOT EXISTS transacao (
@@ -21,7 +21,7 @@ export function getDb() {
           idtransacao TEXT
         )
       `).run();
-      
+
       console.log('[SQLite] Database initialized successfully');
     } catch (error) {
       console.error('[SQLite] Failed to initialize database:', error);
@@ -30,3 +30,7 @@ export function getDb() {
   }
   return db;
 }
+
+// Default export for convenience
+const defaultDb = getDb();
+export default defaultDb;

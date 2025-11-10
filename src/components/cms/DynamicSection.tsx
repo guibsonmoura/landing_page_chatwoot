@@ -16,7 +16,6 @@ interface DynamicSectionProps {
 export function DynamicSection({ component }: DynamicSectionProps) {
   const { component_type, title, subtitle, content } = component;
 
-  // Render different components based on type
   switch (component_type) {
     case 'hero':
       return (
@@ -64,7 +63,6 @@ export function DynamicSection({ component }: DynamicSectionProps) {
       );
 
     default:
-      // Fallback for unknown component types
       return (
         <section className="py-24 bg-[#0d0d17]">
           <div className="container mx-auto px-6 text-center">
@@ -85,7 +83,6 @@ export function DynamicSection({ component }: DynamicSectionProps) {
   }
 }
 
-// Props interface for section components
 export interface SectionProps {
   title?: string;
   subtitle?: string;

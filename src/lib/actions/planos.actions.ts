@@ -12,6 +12,7 @@ export async function getPlanos(): Promise<Array<{
     features: string[]; 
     cta: string; 
     period: string; }> | any> {
+        
     try{
         const supabase = await createClient();
         const {data, error} = await supabase
