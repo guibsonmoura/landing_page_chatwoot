@@ -24,7 +24,7 @@ export async function POST(request: NextRequest, res) {
   const supabase = await createClient();
   
   const { id_produto, account_id } = await request.json();
-  console.log('account_id: ' account_id)
+  console.log('account_id: ', account_id)
   const { data, error } = await supabase
     .from("planos")
     .select("*")
