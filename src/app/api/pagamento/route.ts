@@ -19,13 +19,11 @@ export async function OPTIONS() {
 
 
 export async function POST(request: NextRequest, res) {
-  
+
   const supabase = await createClient();
   
-  console.log('=====request=====')
-  console.log(request)
-  const { id_produto } = await request.json();
-
+  const { id_produto, account_id } = await request.json();
+  
   const { data, error } = await supabase
     .from("planos")
     .select("*")
@@ -47,23 +45,20 @@ export async function POST(request: NextRequest, res) {
                 }
             ],
         back_urls: {
-                success: "https://p.365ia.com.br/app/accounts/1/dashboard",
-                failure: "https://p.365ia.com.br/app/accounts/1/dashboard",
-                pending: "https://p.365ia.com.br/app/accounts/1/dashboard"
+                success: `https://p.365ia.com.br/app/accounts/${account_id}/dashboard`,
+                failure: `https://p.365ia.com.br/app/accounts/${account_id}/dashboard`,
+                pending: `https://p.365ia.com.br/app/accounts/${account_id}/dashboard`
             },
             auto_return: "approved",
         }
 
         })
-    console.log(`id transacao: ${id_transacao}`)
-    console.log(id_transacao['id']);
+
     const db = getDb();
     const insert = db.prepare(`
         INSERT INTO transacao(titulo, quantidade, preco, idproduto, idtransacao) VALUES(?, ?, ?, ?, ?);
       `).run(`${data.name}`, 1, data.price, data.uuid, id_transacao['id']);
     
-    console.log('inserido: ', insert);
-    console.log(insert);
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   }
