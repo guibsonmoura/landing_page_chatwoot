@@ -23,7 +23,7 @@ export async function POST(request: NextRequest, res) {
   console.log('comecou')
   const supabase = await createClient();
   
-  const { id_produto, account_id } = await request.json();
+  const { id_produto, account_id, at } = await request.json();
   console.log('account_id: ', account_id)
   const { data, error } = await supabase
     .from("planos")
@@ -46,9 +46,9 @@ export async function POST(request: NextRequest, res) {
                 }
             ],
         back_urls: {
-                success: `https://p.365ia.com.br/app/accounts/${account_id}/dashboard`,
-                failure: `https://p.365ia.com.br/app/accounts/${account_id}/dashboard`,
-                pending: `https://p.365ia.com.br/app/accounts/${account_id}/dashboard`
+                success: `https://p.365ia.com.br/app/accounts/${account_id}/dashboard?at=${at}`,
+                failure: `https://p.365ia.com.br/app/accounts/${account_id}/dashboarda?t=${at}`,
+                pending: `https://p.365ia.com.br/app/accounts/${account_id}/dashboarda?t=${at}`
             },
             auto_return: "approved",
         }
