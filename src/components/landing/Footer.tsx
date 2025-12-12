@@ -43,7 +43,7 @@ export function Footer() {
           {[
             { label: "Recursos", href: "#recursos" },
             { label: "Como Funciona", href: "#como-funciona" },
-            { label: "Planos", href: "#planos" },
+            // { label: "Planos", href: "#planos" },
             { label: "Sobre", href: "#sobre" },
           ].map((item, idx) => (
             <motion.div
