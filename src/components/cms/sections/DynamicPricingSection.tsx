@@ -160,7 +160,7 @@ export function DynamicPricingSection({ title, subtitle, content }: SectionProps
 
                   {/* Price */}
                   <div className="relative mb-6">
-                    <span className="text-3xl lg:text-4xl font-bold text-white">{plan.price}</span>
+                    <span className="text-3xl lg:text-4xl font-bold text-white">00</span>
                     <span className="ml-1 text-gray-400">{plan.period}</span>
                   </div>
 

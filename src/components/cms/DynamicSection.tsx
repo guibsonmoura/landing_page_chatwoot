@@ -55,11 +55,7 @@ export function DynamicSection({ component }: DynamicSectionProps) {
 
     case 'pricing':
       return (
-        <DynamicPricingSection
-          title={title}
-          subtitle={subtitle}
-          content={content}
-        />
+        <p></p>
       );
 
     default:

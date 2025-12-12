@@ -107,7 +107,7 @@ export function PricingSection() {
                   <div className="flex-grow">
                     <h3 className="text-xl font-bold text-white mb-1">{plan.name}</h3>
                     <div className="flex items-baseline">
-                      <span className="text-3xl font-bold text-white">{plan.price}</span>
+                      <span className="text-3xl font-bold text-white">00</span>
                       <span className="text-gray-400 ml-1">{plan.period}</span>
                     </div>
                   </div>
