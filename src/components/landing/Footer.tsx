@@ -31,7 +31,7 @@ export function Footer() {
         </div>
 
         <h2 className="text-white text-2xl font-bold mb-3">
-          365IA - Agentes de IA para seu negócio
+          365IA - Plataforma de Atendimento
         </h2>
         <p className="text-gray-400 max-w-md mb-10">
           Potencialize seu atendimento com agentes de IA especializados e personalizados
