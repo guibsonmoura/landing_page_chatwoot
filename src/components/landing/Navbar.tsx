@@ -13,7 +13,7 @@ export function Navbar() {
   const navLinks = [
     { label: "Recursos", href: "#recursos" },
     { label: "Como Funciona", href: "#como-funciona" },
-    { label: "Planos", href: "#planos" },
+    // { label: "Planos", href: "#planos" },
   ];
 
   // Detect scroll para mudar estilo da navbar
