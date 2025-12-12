@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 interface HeroContent {
   description: string;
   cta_primary: string;
+  cta_primary_url: string;
   cta_secondary: string;
   stats: Array<{
     value: string;
@@ -47,8 +48,11 @@ export function DynamicHeroSection({ title, subtitle, content }: SectionProps) {
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
-                <Button className="px-6 py-3 text-lg rounded-full bg-[#00e980] text-black hover:bg-[#00c76d] transition">
-                  {heroContent.cta_primary}
+                <Button asChild className="px-6 py-3 text-lg rounded-full 
+                bg-[#00e980] text-black hover:bg-[#00c76d] transition">
+                  <Link href={heroContent.cta_primary_url}>
+                    {heroContent.cta_primary}
+                  </Link>
                 </Button>
               </motion.div>
               {/* <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
