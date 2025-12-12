@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nexus Agents - Plataforma de IA",
+  title: "365IA - Plataforma de Atendimento",
   description: "Plataforma para gerenciar agentes de IA em múltiplos canais de comunicação",
 };
 
